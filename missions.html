@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missions - Destiny Chapel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Mission Map Style */
+        .missions-map {
+            background: var(--light-color);
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .map-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .map-placeholder {
+            height: 500px;
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(230, 57, 70, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .mission-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mission-stat {
+            text-align: center;
+        }
+
+        .stat-number-large {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mission Trip Cards */
+        .trip-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .trip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
+        }
+
+        .trip-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .trip-location {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .trip-dates {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .trip-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .trip-body {
+            padding: 2rem;
+        }
+
+        .trip-body h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .trip-details-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .trip-details-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .trip-details-list li:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .detail-value {
+            color: var(--text-light);
+        }
+
+        /* Partner Organizations */
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .partner-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.15);
+        }
+
+        .partner-logo {
+            width: 100px;
+            height: 100px;
+            background: var(--light-color);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .partner-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Impact Stories */
+        .impact-story {
+            background: var(--light-color);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .impact-story blockquote {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 2rem;
+        }
+
+        .story-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .map-placeholder {
+                height: 300px;
+            }
+
+            .mission-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>Destiny Chapel</h1>
+                    <p class="tagline">Building Lives, Transforming Communities</p>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="ministries.html">MINISTRIES</a></li>
+                    <li><a href="evangelism.html">EVANGELISM</a></li>
+                    <li><a href="missions.html" class="active">MISSIONS</a></li>
+                    <li><a href="fusion.html">FUSION</a></li>
+                    <li><a href="visitors.html">VISITORS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="hero" style="height: 60vh; margin-top: 80px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Global Missions</h1>
+            <p class="hero-subtitle">Taking the Gospel to the Ends of the Earth</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">OUR MISSION</span>
+                <h2>From Nairobi to the Nations</h2>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2rem;">
+                    The Great Commission isn't just a command – it's our calling. At Destiny Chapel, we're passionate about reaching both our local community and the unreached corners of the globe. Through strategic partnerships, mission trips, and financial support, we're making disciples of all nations.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
+                    Whether you're called to go, to send, or to pray, there's a role for you in fulfilling the Great Commission.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missions Map & Stats -->
+    <section class="missions-map">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">OUR REACH</span>
+                <h2>Where We Serve</h2>
+            </div>
+
+            <div class="map-container">
+                <div class="map-placeholder">
+                    🌍 Interactive World Map Showing Mission Locations
+                </div>
+
+                <div class="mission-stats">
+                    <div class="mission-stat">
+                        <div class="stat-number-large">12</div>
+                        <div class="stat-label">Countries Reached</div>
+                    </div>
+                    <div class="mission-stat">
+                        <div class="stat-number-large">45</div>
+                        <div class="stat-label">Mission Trips</div>
+                    </div>
+                    <div class="mission-stat">
+                        <div class="stat-number-large">8</div>
+                        <div class="stat-label">Partner Churches</div>
+                    </div>
+                    <div class="mission-stat">
+                        <div class="stat-number-large">200+</div>
+                        <div class="stat-label">Missionaries Sent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Focus Areas -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">HOW WE SERVE</span>
+                <h2>Mission Focus Areas</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 3rem;">
+                <div class="value-card">
+                    <div class="value-icon">⛪</div>
+                    <h3>Church Planting</h3>
+                    <p>Establishing new churches in unreached areas, training local leaders, and providing ongoing support for sustainable ministry growth.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">📚</div>
+                    <h3>Education & Training</h3>
+                    <p>Building schools, providing scholarships, and conducting pastoral training programs to equip believers for effective ministry.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💉</div>
+                    <h3>Medical Missions</h3>
+                    <p>Mobile clinics, health education, and medical supplies for underserved communities, demonstrating Christ's compassion.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🏗️</div>
+                    <h3>Community Development</h3>
+                    <p>Building infrastructure, providing clean water, and creating sustainable livelihood programs that transform communities.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Orphan Care</h3>
+                    <p>Supporting orphanages, providing foster care training, and creating family preservation programs for vulnerable children.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🎓</div>
+                    <h3>Discipleship Programs</h3>
+                    <p>Comprehensive training for new believers, leadership development, and mentorship initiatives that build strong churches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Mission Trips -->
+    <section style="padding: 5rem 0; background: var(--light-color);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">JOIN US</span>
+                <h2>Upcoming Mission Trips</h2>
+                <p>Experience the joy of serving cross-culturally</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-top: 3rem;">
+                <div class="trip-card">
+                    <div class="trip-header">
+                        <div class="trip-status">🔥 Open</div>
+                        <div class="trip-location">🇺🇬 Uganda</div>
+                        <div class="trip-dates">July 15-28, 2026</div>
+                    </div>
+                    <div class="trip-body">
+                        <h4>Church Planting & Medical Outreach</h4>
+                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                            Join us as we partner with local churches in rural Uganda for evangelism, medical clinics, and leadership training.
+                        </p>
+                        <ul class="trip-details-list">
+                            <li>
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">2 Weeks</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Team Size</span>
+                                <span class="detail-value">15-20 people</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Cost</span>
+                                <span class="detail-value">KSh 180,000</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Spots Left</span>
+                                <span class="detail-value">8 Spots</span>
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary full-width">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="trip-card">
+                    <div class="trip-header">
+                        <div class="trip-status">🔥 Open</div>
+                        <div class="trip-location">🇹🇿 Tanzania</div>
+                        <div class="trip-dates">September 5-19, 2026</div>
+                    </div>
+                    <div class="trip-body">
+                        <h4>Orphanage Ministry & Construction</h4>
+                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                            Help build an orphanage facility and minister to precious children while sharing the love of Christ with the community.
+                        </p>
+                        <ul class="trip-details-list">
+                            <li>
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">2 Weeks</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Team Size</span>
+                                <span class="detail-value">12-15 people</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Cost</span>
+                                <span class="detail-value">KSh 160,000</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Spots Left</span>
+                                <span class="detail-value">5 Spots</span>
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary full-width">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="trip-card">
+                    <div class="trip-header">
+                        <div class="trip-status">📅 Coming Soon</div>
+                        <div class="trip-location">🇮🇳 India</div>
+                        <div class="trip-dates">December 2-16, 2026</div>
+                    </div>
+                    <div class="trip-body">
+                        <h4>Evangelistic Crusade & Training</h4>
+                        <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                            Partner with local pastors for a major evangelistic crusade and provide pastoral training in northern India.
+                        </p>
+                        <ul class="trip-details-list">
+                            <li>
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">2 Weeks</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Team Size</span>
+                                <span class="detail-value">10-12 people</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Cost</span>
+                                <span class="detail-value">KSh 220,000</span>
+                            </li>
+                            <li>
+                                <span class="detail-label">Status</span>
+                                <span class="detail-value">Applications Open Soon</span>
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-outline full-width">Get Notified</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; background: var(--white); padding: 3rem; border-radius: 12px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem;">Can't Go? You Can Still Make an Impact!</h3>
+                <p style="color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem;">
+                    Support our missionaries financially, sponsor a trip participant, or join our prayer team.
+                </p>
+                <div class="button-group" style="justify-content: center;">
+                    <a href="contact.html" class="btn btn-primary">Give to Missions</a>
+                    <a href="contact.html" class="btn btn-outline">Join Prayer Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Organizations -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">OUR PARTNERS</span>
+                <h2>Partner Organizations</h2>
+                <p>Working together to reach the world</p>
+            </div>
+
+            <div class="partner-grid">
+                <div class="partner-card">
+                    <div class="partner-logo">🤝</div>
+                    <h4>Global Harvest Ministries</h4>
+                    <p>Church planting network across East Africa with 50+ planted churches.</p>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo">💧</div>
+                    <h4>Living Water International</h4>
+                    <p>Providing clean water and sanitation to remote villages in partnership with local churches.</p>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo">📖</div>
+                    <h4>Bible Translation Network</h4>
+                    <p>Translating Scripture into indigenous languages for unreached people groups.</p>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo">🏥</div>
+                    <h4>Medical Mercy Missions</h4>
+                    <p>Mobile medical clinics serving underserved communities in rural areas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stories -->
+    <section style="padding: 5rem 0; background: var(--light-color);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">STORIES FROM THE FIELD</span>
+                <h2>Mission Impact Stories</h2>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto; margin-top: 3rem;">
+                <div class="impact-story">
+                    <blockquote>
+                        "Through the partnership with Destiny Chapel, we planted 5 new churches in rural Uganda last year. Over 300 people came to Christ, and we trained 15 new pastors. The medical clinics treated over 1,000 patients. What seemed impossible became possible through your faithful support."
+                    </blockquote>
+                    <p class="story-author">- Pastor Samuel, Uganda Mission Partner</p>
+                </div>
+
+                <div class="impact-story">
+                    <blockquote>
+                        "The orphanage you helped build is now home to 40 children who would have been on the streets. They're not just being fed – they're learning about Jesus, attending school, and discovering their purpose. You've given them hope and a future."
+                    </blockquote>
+                    <p class="story-author">- Sister Maria, Tanzania Orphanage Director</p>
+                </div>
+
+                <div class="impact-story">
+                    <blockquote>
+                        "Your mission team didn't just preach – they demonstrated Christ's love through their actions. The community has never seen such genuine care. Now our church is full every Sunday, and people are hungry for more of God."
+                    </blockquote>
+                    <p class="story-author">- Pastor John, Local Church Leader</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="padding: 5rem 0; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: var(--white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--white);">Answer the Call</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2.5rem; line-height: 1.8;">
+                    The harvest is plentiful, but the workers are few. Will you go? Will you send? Will you pray? Every role matters in fulfilling the Great Commission.
+                </p>
+                <div class="button-group" style="justify-content: center;">
+                    <a href="contact.html" class="btn btn-light">Get Involved</a>
+                    <a href="contact.html" class="btn btn-outline-light">Contact Missions Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Destiny Chapel</h3>
+                    <p>Building Lives, Transforming Communities</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="ministries.html">Ministries</a></li>
+                        <li><a href="evangelism.html">Evangelism</a></li>
+                        <li><a href="missions.html">Missions</a></li>
+                        <li><a href="fusion.html">Fusion Groups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="visitors.html">Plan Your Visit</a></li>
+                        <li><a href="#">Online Giving</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Food Bank</a></li>
+                        <li><a href="#">Prayer Requests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>📍 Ngei, Nairobi, Kenya</li>
+                        <li>📞 +254 XXX XXX XXX</li>
+                        <li>✉️ info@destinychapelngei.org</li>
+                    </ul>
+                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
+                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Destiny Chapel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

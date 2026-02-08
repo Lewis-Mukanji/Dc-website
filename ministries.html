@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministries - Destiny Chapel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Ministry Showcase */
+        .ministry-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .ministry-showcase:nth-child(even) {
+            direction: rtl;
+        }
+
+        .ministry-showcase:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .ministry-image-large {
+            height: 500px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ministry-image-large::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .ministry-details {
+            padding: 4rem;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ministry-details h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ministry-details .tagline {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .ministry-details p {
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .ministry-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .ministry-features li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .ministry-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .ministry-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-box {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        /* Kids Ministry Special Styles */
+        .kids-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .kids-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .kids-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
+        }
+
+        .kids-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .kids-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Leadership Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
+        }
+
+        .team-photo {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 968px) {
+            .ministry-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .ministry-details {
+                padding: 2rem;
+            }
+
+            .ministry-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ministry-image-large {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>Destiny Chapel</h1>
+                    <p class="tagline">Building Lives, Transforming Communities</p>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="ministries.html" class="active">MINISTRIES</a></li>
+                    <li><a href="evangelism.html">EVANGELISM</a></li>
+                    <li><a href="missions.html">MISSIONS</a></li>
+                    <li><a href="fusion.html">FUSION</a></li>
+                    <li><a href="visitors.html">VISITORS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="hero" style="height: 60vh; margin-top: 80px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Our Ministries</h1>
+            <p class="hero-subtitle">Find Your Place to Grow, Serve, and Thrive</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">GET CONNECTED</span>
+                <h2>Ministry Opportunities for Everyone</h2>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light);">
+                    At Destiny Chapel, we believe that every person has a unique purpose and calling. Our ministries are designed to help you discover your gifts, develop your potential, and deploy your talents for God's kingdom. Whether you're seeking spiritual growth, meaningful connections, or opportunities to serve, there's a place for you here.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Youth Ministry -->
+    <section class="ministry-showcase" style="margin-top: 0;">
+        <div class="ministry-image-large">
+            Youth Ministry Image
+        </div>
+        <div class="ministry-details" style="background: var(--light-color);">
+            <h2>Youth Ministry</h2>
+            <p class="tagline">Igniting Passion, Building Purpose</p>
+            <p>
+                Our youth ministry is a dynamic, Spirit-filled community where teenagers and young adults encounter God in fresh and relevant ways. We're committed to raising up a generation that knows who they are in Christ and boldly lives out their faith.
+            </p>
+            
+            <div class="ministry-info-grid">
+                <div class="info-box">
+                    <h4>📅 When We Meet</h4>
+                    <p>Fridays, 6:00 PM - 8:00 PM</p>
+                </div>
+                <div class="info-box">
+                    <h4>👥 Age Range</h4>
+                    <p>13 - 25 years old</p>
+                </div>
+            </div>
+
+            <ul class="ministry-features">
+                <li>High-energy worship and relevant teaching</li>
+                <li>Leadership development programs</li>
+                <li>Annual youth conferences and retreats</li>
+                <li>Sports, games, and social activities</li>
+                <li>Mentorship and discipleship groups</li>
+                <li>Community service projects</li>
+            </ul>
+
+            <a href="contact.html" class="btn btn-primary">Join Youth Ministry</a>
+        </div>
+    </section>
+
+    <!-- Kids Ministry -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">FOR THE LITTLE ONES</span>
+                <h2>Kids Ministry</h2>
+                <p class="tagline" style="color: var(--secondary-color); font-size: 1.3rem; margin-top: 0.5rem;">Making Faith Fun and Foundational</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto 3rem; text-align: center;">
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
+                    We believe that children are not just the future of the church – they're the present! Our kids ministry provides a safe, engaging environment where children learn about Jesus through age-appropriate lessons, creative activities, and lots of fun.
+                </p>
+            </div>
+
+            <div class="kids-grid">
+                <div class="kids-card">
+                    <div class="icon">👶</div>
+                    <h3>Nursery</h3>
+                    <p><strong>Ages 0-3</strong></p>
+                    <p>Safe, loving care for our youngest members with trained caregivers and age-appropriate activities.</p>
+                </div>
+
+                <div class="kids-card">
+                    <div class="icon">🎨</div>
+                    <h3>Preschool</h3>
+                    <p><strong>Ages 4-5</strong></p>
+                    <p>Interactive Bible stories, songs, crafts, and play-based learning that introduces children to God's love.</p>
+                </div>
+
+                <div class="kids-card">
+                    <div class="icon">📚</div>
+                    <h3>Elementary</h3>
+                    <p><strong>Ages 6-12</strong></p>
+                    <p>Engaging lessons, worship, games, and small groups that help kids apply biblical truths to daily life.</p>
+                </div>
+            </div>
+
+            <div class="ministry-info-grid" style="max-width: 900px; margin: 3rem auto;">
+                <div class="info-box">
+                    <h4>⏰ Sunday School</h4>
+                    <p>Every Sunday, 9:00 AM - 10:30 AM</p>
+                </div>
+                <div class="info-box">
+                    <h4>🎉 Special Events</h4>
+                    <p>VBS, Kids Camps, Holiday Programs</p>
+                </div>
+                <div class="info-box">
+                    <h4>🔒 Safety First</h4>
+                    <p>Background-checked volunteers & secure check-in</p>
+                </div>
+                <div class="info-box">
+                    <h4>👨‍👩‍👧 Parent Partnership</h4>
+                    <p>Resources to help you disciple at home</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">What Kids Learn</h3>
+                <ul class="ministry-features" style="max-width: 600px; margin: 0 auto;">
+                    <li>Bible stories that come alive through drama and multimedia</li>
+                    <li>Worship songs that kids love to sing</li>
+                    <li>Memory verses made fun and memorable</li>
+                    <li>Character development rooted in biblical values</li>
+                    <li>Prayer and how to have a relationship with God</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="contact.html" class="btn btn-primary">Register Your Child</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Men's Ministry -->
+    <section class="ministry-showcase">
+        <div class="ministry-image-large">
+            Men's Ministry Image
+        </div>
+        <div class="ministry-details">
+            <h2>Men's Ministry</h2>
+            <p class="tagline">Building Godly Men of Character and Courage</p>
+            <p>
+                Iron sharpens iron. Our men's ministry is a brotherhood where men challenge each other to grow spiritually, lead with integrity, and make a lasting impact in their families and communities.
+            </p>
+            
+            <div class="ministry-info-grid">
+                <div class="info-box">
+                    <h4>📅 Monthly Gatherings</h4>
+                    <p>First Saturday, 8:00 AM - 10:00 AM</p>
+                </div>
+                <div class="info-box">
+                    <h4>🎯 Focus Areas</h4>
+                    <p>Leadership, Fatherhood, Purpose</p>
+                </div>
+            </div>
+
+            <ul class="ministry-features">
+                <li>Men's Bible study groups</li>
+                <li>Accountability and mentorship relationships</li>
+                <li>Community service and outreach projects</li>
+                <li>Father-son bonding activities</li>
+                <li>Men's conferences and retreats</li>
+                <li>Sports and outdoor adventures</li>
+            </ul>
+
+            <a href="contact.html" class="btn btn-primary">Join the Brotherhood</a>
+        </div>
+    </section>
+
+    <!-- Women's Ministry -->
+    <section style="padding: 5rem 0; background: var(--light-color);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <span class="section-tag">FOR THE LADIES</span>
+                <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">Women's Ministry</h2>
+                <p class="tagline" style="color: var(--secondary-color); font-size: 1.3rem;">Empowered Women Empowering Women</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem;">
+                <div>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem;">
+                        Our women's ministry is a vibrant community where women of all ages and backgrounds come together to grow spiritually, support one another, and discover their God-given identity and purpose.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2rem;">
+                        Through Bible studies, prayer gatherings, mentorship, and fellowship events, we create spaces where women can be real, find healing, and step into their calling with confidence.
+                    </p>
+                    <a href="contact.html" class="btn btn-primary">Join Us</a>
+                </div>
+                <div class="image-placeholder" style="height: 400px;">
+                    Women's Ministry Image
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 2rem; font-size: 2rem;">What We Offer</h3>
+
+            <div class="kids-grid">
+                <div class="kids-card">
+                    <div class="icon">📖</div>
+                    <h3>Bible Study</h3>
+                    <p>Weekly in-depth study groups exploring God's Word and its application to everyday life.</p>
+                </div>
+
+                <div class="kids-card">
+                    <div class="icon">🙏</div>
+                    <h3>Prayer Meetings</h3>
+                    <p>Powerful prayer gatherings where we intercede for our families, church, and nation.</p>
+                </div>
+
+                <div class="kids-card">
+                    <div class="icon">☕</div>
+                    <h3>Coffee & Connection</h3>
+                    <p>Informal gatherings for fellowship, laughter, and building lasting friendships.</p>
+                </div>
+
+                <div class="kids-card">
+                    <div class="icon">👑</div>
+                    <h3>Women's Retreats</h3>
+                    <p>Annual getaways for rest, renewal, and deeper encounters with God.</p>
+                </div>
+
+                <div class="kids-card">
+                    <div class="icon">💝</div>
+                    <h3>Mentorship</h3>
+                    <p>Connecting younger women with mature believers for spiritual guidance and support.</p>
+                </div>
+
+                <div class="kids-card">
+                    <div class="icon">🎯</div>
+                    <h3>Purpose Workshops</h3>
+                    <p>Practical teaching on identity, calling, relationships, and kingdom impact.</p>
+                </div>
+            </div>
+
+            <div class="ministry-info-grid" style="max-width: 900px; margin: 3rem auto;">
+                <div class="info-box">
+                    <h4>📅 Weekly Meetings</h4>
+                    <p>Tuesdays, 10:00 AM & Thursdays, 6:30 PM</p>
+                </div>
+                <div class="info-box">
+                    <h4>🎉 Monthly Events</h3>
+                    <p>Women's Brunch, Service Projects, Workshops</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministry Leaders -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">OUR TEAM</span>
+                <h2>Ministry Leaders</h2>
+                <p>Passionate servants committed to your spiritual growth</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo">Youth Leader Photo</div>
+                    <div class="team-info">
+                        <h4>Pastor David Kariuki</h4>
+                        <p><strong>Youth Ministry Leader</strong></p>
+                        <p>Leading the next generation into passionate worship and purposeful living.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo">Kids Leader Photo</div>
+                    <div class="team-info">
+                        <h4>Teacher Mary Njoki</h4>
+                        <p><strong>Kids Ministry Director</strong></p>
+                        <p>Making the Bible come alive for children through creative teaching.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo">Men's Leader Photo</div>
+                    <div class="team-info">
+                        <h4>Elder John Omondi</h4>
+                        <p><strong>Men's Ministry Leader</strong></p>
+                        <p>Equipping men to be spiritual leaders in their homes and communities.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-photo">Women's Leader Photo</div>
+                    <div class="team-info">
+                        <h4>Pastor Grace Wanjiru</h4>
+                        <p><strong>Women's Ministry Leader</strong></p>
+                        <p>Empowering women to walk in their God-given identity and purpose.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="padding: 5rem 0; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: var(--white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--white);">Ready to Get Involved?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2.5rem; line-height: 1.8;">
+                    Don't just attend church – be the church! Find your ministry, discover your gifts, and start making an impact today.
+                </p>
+                <div class="button-group" style="justify-content: center;">
+                    <a href="contact.html" class="btn btn-light">Contact Us</a>
+                    <a href="visitors.html" class="btn btn-outline-light">Plan Your Visit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Destiny Chapel</h3>
+                    <p>Building Lives, Transforming Communities</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="ministries.html">Ministries</a></li>
+                        <li><a href="evangelism.html">Evangelism</a></li>
+                        <li><a href="missions.html">Missions</a></li>
+                        <li><a href="fusion.html">Fusion Groups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="visitors.html">Plan Your Visit</a></li>
+                        <li><a href="#">Online Giving</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Food Bank</a></li>
+                        <li><a href="#">Prayer Requests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>📍 Ngei, Nairobi, Kenya</li>
+                        <li>📞 +254 XXX XXX XXX</li>
+                        <li>✉️ info@destinychapelngei.org</li>
+                    </ul>
+                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
+                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Destiny Chapel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

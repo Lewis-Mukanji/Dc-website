@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Destiny Chapel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+            text-align: left;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.1);
+            position: relative;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        /* Vision Statement */
+        .vision-statement {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--white);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-statement::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .vision-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-content h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .vision-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+
+        /* Leadership Grid */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .leader-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
+        }
+
+        .leader-image {
+            height: 350px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
+        .leader-info {
+            padding: 2rem;
+        }
+
+        .leader-info h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .leader-role {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .leader-bio {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .leader-contact {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .leader-contact a {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .leader-contact a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.2);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--light-color);
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+                text-align: left;
+            }
+
+            .timeline-year {
+                left: 20px;
+                transform: translateX(0);
+            }
+
+            .vision-content h2 {
+                font-size: 2rem;
+            }
+
+            .vision-content p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>DESTINY CHAPEL</h1>
+                    <p class="tagline">Building Lives, Transforming Communities</p>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="about.html" class="active">ABOUT</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#history">Our History</a></li>
+                            <li><a href="#leadership">Leadership</a></li>
+                            <li><a href="#vision">Vision & Values</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="ministries.html">MINISTRIES</a></li>
+                    <li><a href="evangelism.html">EVANGELISM</a></li>
+                    <li><a href="missions.html">MISSIONS</a></li>
+                    <li><a href="fusion.html">FUSION</a></li>
+                    <li><a href="visitors.html">VISITORS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="hero" style="height: 60vh; margin-top: 80px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Our Story</h1>
+            <p class="hero-subtitle">A Journey of Faith, Hope, and Transformation</p>
+        </div>
+    </section>
+
+    <!-- Our Story Introduction -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">WHO WE ARE</span>
+                <h2>Welcome to the Destiny Chapel Family</h2>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2rem;">
+                    Destiny Chapel is more than just a church – we are a vibrant community of believers united by our love for God and our commitment to making a lasting impact in our world. Our journey began with a simple vision: to create a place where people could encounter God's presence, discover their purpose, and live out their destiny.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
+                    Today, we stand as a testament to God's faithfulness, growing from humble beginnings into a thriving community that reaches across neighborhoods, nations, and generations. Every testimony, every life transformed, and every soul saved reminds us of why we do what we do.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="history" style="padding: 5rem 0; background: var(--light-color);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">OUR JOURNEY</span>
+                <h2>The Destiny Chapel Story</h2>
+                <p>Tracing our path from humble beginnings to a thriving community of faith</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2005</div>
+                    <div class="timeline-content">
+                        <h3>The Vision is Born</h3>
+                        <p>A small group of passionate believers gathered in a living room, united by a vision to establish a church that would transform lives and impact communities. With nothing but faith and determination, Destiny Chapel was born.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2008</div>
+                    <div class="timeline-content">
+                        <h3>First Permanent Location</h3>
+                        <p>God blessed us with our first permanent facility in Ngei. What started as 30 members quickly grew to over 150 as the community witnessed the power of genuine worship and biblical teaching.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-content">
+                        <h3>Ministry Expansion</h3>
+                        <p>We launched our Youth, Children's, Men's, and Women's ministries, recognizing the importance of targeted discipleship for every demographic. Our community outreach programs also began, serving hundreds of families in need.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-content">
+                        <h3>Missions Movement</h3>
+                        <p>Our missions department was established, sending teams to unreached areas both locally and internationally. We partnered with organizations to bring the gospel to remote villages and urban centers alike.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-content">
+                        <h3>Fusion Groups Launch</h3>
+                        <p>Understanding the power of community, we introduced Fusion cell groups – small, location-based gatherings that foster deeper relationships and spiritual growth. These groups became the heartbeat of our church.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3>Food Bank Initiative</h3>
+                        <p>During challenging times, we opened the Destiny Chapel Food Bank, demonstrating Christ's love through practical action. To date, we've served over 500 families and continue to be a beacon of hope in our community.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-content">
+                        <h3>Looking Forward</h3>
+                        <p>Today, with over 1,000 active members and growing, we continue to pursue our mission with renewed passion. Our vision remains clear: to build lives, transform communities, and impact the world for Christ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Statement -->
+    <section id="vision" class="vision-statement">
+        <div class="vision-content">
+            <h2>Our Vision</h2>
+            <p>"To be a transformational church that raises disciples who live out their God-given destiny, impacting communities and nations through the power of the Gospel, authentic worship, and sacrificial service."</p>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">OUR MISSION</span>
+                <h2>Why We Exist</h2>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div style="background: var(--light-color); padding: 3rem; border-radius: 12px; border-left: 6px solid var(--primary-color);">
+                    <h3 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem;">Our Mission</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-color); margin-bottom: 1.5rem;">
+                        To lead people into a life-changing relationship with Jesus Christ through dynamic worship, relevant biblical teaching, and intentional discipleship.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
+                        We are committed to equipping every believer to discover and fulfill their divine purpose, serving as ambassadors of Christ in their homes, workplaces, and communities. Through evangelism, missions, and compassionate outreach, we extend God's love to the lost, the hurting, and the marginalized.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section style="padding: 5rem 0; background: var(--light-color);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">WHAT WE STAND FOR</span>
+                <h2>Our Core Values</h2>
+                <p>These principles guide everything we do as a church community</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">📖</div>
+                    <h3>Biblical Authority</h3>
+                    <p>We believe the Bible is God's inspired Word and the ultimate authority for faith and practice. Scripture guides our teaching, decisions, and daily living.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🙏</div>
+                    <h3>Authentic Worship</h3>
+                    <p>We pursue genuine, Spirit-led worship that engages the heart, mind, and soul. Our worship is both a lifestyle and a corporate expression of our love for God.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>Unconditional Love</h3>
+                    <p>We embrace everyone with Christ's love, creating a welcoming environment where people from all backgrounds can experience God's grace and acceptance.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h3>Intentional Discipleship</h3>
+                    <p>We are committed to spiritual growth through biblical teaching, small groups, and mentorship relationships that help believers mature in their faith.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Kingdom Impact</h3>
+                    <p>We actively engage in evangelism and missions, both locally and globally, believing that every person deserves to hear the good news of Jesus Christ.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Servant Leadership</h3>
+                    <p>We lead by example, following Christ's model of servant leadership. We use our gifts and resources to serve others and advance God's kingdom.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Community & Unity</h3>
+                    <p>We value authentic relationships and genuine community. Together, we're stronger, and we celebrate the diversity within the body of Christ.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">✨</div>
+                    <h3>Excellence</h3>
+                    <p>We honor God by pursuing excellence in everything we do, from worship to service to administration, believing that God deserves our very best.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">OUR LEADERS</span>
+                <h2>Meet Our Leadership Team</h2>
+                <p>Shepherds committed to serving God's people with integrity and passion</p>
+            </div>
+            
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <div class="leader-image">
+                        Senior Pastor Photo
+                    </div>
+                    <div class="leader-info">
+                        <h3>Pastor James Mwangi</h3>
+                        <p class="leader-role">Senior Pastor & Founder</p>
+                        <p class="leader-bio">
+                            Pastor James founded Destiny Chapel in 2005 with a heart for revival and transformation. His dynamic teaching and pastoral care have impacted thousands of lives. He holds a Master's in Theology and has served in ministry for over 25 years.
+                        </p>
+                        <div class="leader-contact">
+                            <a href="mailto:pastor@destinychapel.org" title="Email">✉️</a>
+                            <a href="tel:+254" title="Phone">📞</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leader-card">
+                    <div class="leader-image">
+                        Associate Pastor Photo
+                    </div>
+                    <div class="leader-info">
+                        <h3>Pastor Grace Wanjiru</h3>
+                        <p class="leader-role">Associate Pastor & Women's Ministry Leader</p>
+                        <p class="leader-bio">
+                            Pastor Grace brings a heart for women's empowerment and spiritual mentorship. She oversees our women's ministry and counseling department, helping women discover their identity in Christ and walk in purpose.
+                        </p>
+                        <div class="leader-contact">
+                            <a href="mailto:grace@destinychapel.org" title="Email">✉️</a>
+                            <a href="tel:+254" title="Phone">📞</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leader-card">
+                    <div class="leader-image">
+                        Youth Pastor Photo
+                    </div>
+                    <div class="leader-info">
+                        <h3>Pastor David Kariuki</h3>
+                        <p class="leader-role">Youth & Young Adults Pastor</p>
+                        <p class="leader-bio">
+                            With a passion for the next generation, Pastor David leads our vibrant youth ministry. His creative approach to teaching and worship has attracted hundreds of young people seeking authentic faith and purpose.
+                        </p>
+                        <div class="leader-contact">
+                            <a href="mailto:david@destinychapel.org" title="Email">✉️</a>
+                            <a href="tel:+254" title="Phone">📞</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leader-card">
+                    <div class="leader-image">
+                        Worship Leader Photo
+                    </div>
+                    <div class="leader-info">
+                        <h3>Minister Sarah Ochieng</h3>
+                        <p class="leader-role">Worship & Creative Arts Director</p>
+                        <p class="leader-bio">
+                            Minister Sarah leads our worship team with excellence and passion. Her gift for creating atmospheres of authentic worship has transformed our services, drawing people into powerful encounters with God's presence.
+                        </p>
+                        <div class="leader-contact">
+                            <a href="mailto:sarah@destinychapel.org" title="Email">✉️</a>
+                            <a href="tel:+254" title="Phone">📞</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leader-card">
+                    <div class="leader-image">
+                        Missions Leader Photo
+                    </div>
+                    <div class="leader-info">
+                        <h3>Pastor Peter Kamau</h3>
+                        <p class="leader-role">Missions & Outreach Director</p>
+                        <p class="leader-bio">
+                            Pastor Peter oversees our local and international missions initiatives. His heart for the lost has led to the establishment of multiple outreach programs and partnerships that are bringing the gospel to unreached communities.
+                        </p>
+                        <div class="leader-contact">
+                            <a href="mailto:peter@destinychapel.org" title="Email">✉️</a>
+                            <a href="tel:+254" title="Phone">📞</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leader-card">
+                    <div class="leader-image">
+                        Administrator Photo
+                    </div>
+                    <div class="leader-info">
+                        <h3>Elder Ruth Njeri</h3>
+                        <p class="leader-role">Church Administrator & Elder</p>
+                        <p class="leader-bio">
+                            Elder Ruth brings decades of ministry experience and administrative excellence to our team. She ensures our operations run smoothly while maintaining a pastoral heart for the congregation's wellbeing.
+                        </p>
+                        <div class="leader-contact">
+                            <a href="mailto:ruth@destinychapel.org" title="Email">✉️</a>
+                            <a href="tel:+254" title="Phone">📞</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">BY THE NUMBERS</span>
+                <h2>Our Impact</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Active Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Fusion Groups</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Families Served</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Mission Trips</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20</div>
+                    <div class="stat-label">Years of Ministry</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;">Join Our Family</h2>
+                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; line-height: 1.8;">
+                    We'd love to welcome you into the Destiny Chapel family. Whether you're seeking a church home or just exploring faith, there's a place for you here.
+                </p>
+                <div class="button-group" style="justify-content: center;">
+                    <a href="visitors.html" class="btn btn-primary">Plan Your Visit</a>
+                    <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Destiny Chapel</h3>
+                    <p>Building Lives, Transforming Communities</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="ministries.html">Ministries</a></li>
+                        <li><a href="evangelism.html">Evangelism</a></li>
+                        <li><a href="missions.html">Missions</a></li>
+                        <li><a href="fusion.html">Fusion Groups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="visitors.html">Plan Your Visit</a></li>
+                        <li><a href="#">Online Giving</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Food Bank</a></li>
+                        <li><a href="#">Prayer Requests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>📍 Ngei, Nairobi, Kenya</li>
+                        <li>📞 +254 XXX XXX XXX</li>
+                        <li>✉️ info@destinychapelngei.org</li>
+                    </ul>
+                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
+                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Destiny Chapel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

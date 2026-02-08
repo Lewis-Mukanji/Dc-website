@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evangelism - Destiny Chapel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Gospel Path */
+        .gospel-path {
+            background: var(--light-color);
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .path-steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .path-step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .path-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .path-step:nth-child(even) {
+            direction: rtl;
+        }
+
+        .path-step:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step-content h3 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-content p {
+            line-height: 1.8;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .step-verse {
+            background: var(--white);
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: var(--text-color);
+        }
+
+        /* Outreach Programs */
+        .outreach-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .outreach-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
+        }
+
+        .outreach-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .outreach-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .outreach-content {
+            padding: 2rem;
+        }
+
+        .outreach-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .outreach-content p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .outreach-details {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .detail-tag {
+            background: var(--light-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        /* Testimonials Slider */
+        .testimonials-slider {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            padding: 5rem 0;
+            color: var(--white);
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* Resources Section */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-card {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.15);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .download-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .path-step {
+                grid-template-columns: 1fr;
+            }
+
+            .path-step:nth-child(even) {
+                direction: ltr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>Destiny Chapel</h1>
+                    <p class="tagline">Building Lives, Transforming Communities</p>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="ministries.html">MINISTRIES</a></li>
+                    <li><a href="evangelism.html" class="active">EVANGELISM</a></li>
+                    <li><a href="missions.html">MISSIONS</a></li>
+                    <li><a href="fusion.html">FUSION</a></li>
+                    <li><a href="visitors.html">VISITORS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="hero" style="height: 60vh; margin-top: 80px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Go and Make Disciples</h1>
+            <p class="hero-subtitle">"Therefore go and make disciples of all nations" - Matthew 28:19</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">THE GREAT COMMISSION</span>
+                <h2>Our Evangelism Heart</h2>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2rem;">
+                    Evangelism is not just a program at Destiny Chapel – it's our heartbeat. We believe every believer is called to share the good news of Jesus Christ. Whether through street outreach, personal testimony, online platforms, or everyday conversations, we're passionate about introducing people to the life-changing love of God.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
+                    Our vision is simple: a community where every member is equipped and empowered to be a witness, reaching our city and beyond with the transforming message of the Gospel.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Gospel Path -->
+    <section class="gospel-path">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">THE GOOD NEWS</span>
+                <h2>The Gospel Message</h2>
+                <p>Understanding God's plan of salvation</p>
+            </div>
+
+            <div class="path-steps">
+                <div class="path-step">
+                    <div class="step-content">
+                        <div class="step-number">1</div>
+                        <h3>God Loves You</h3>
+                        <p>
+                            You are not an accident. God created you with purpose and loves you unconditionally. His desire is to have a personal relationship with you and for you to experience abundant life.
+                        </p>
+                        <div class="step-verse">
+                            "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." - John 3:16
+                        </div>
+                    </div>
+                    <div class="image-placeholder" style="height: 300px;">
+                        God's Love Image
+                    </div>
+                </div>
+
+                <div class="path-step">
+                    <div class="step-content">
+                        <div class="step-number">2</div>
+                        <h3>We Are All Sinners</h3>
+                        <p>
+                            Sin has separated humanity from God. We've all fallen short of God's perfect standard, and our sin creates a barrier between us and our Creator. This separation results in spiritual death and eternal consequences.
+                        </p>
+                        <div class="step-verse">
+                            "For all have sinned and fall short of the glory of God." - Romans 3:23
+                        </div>
+                    </div>
+                    <div class="image-placeholder" style="height: 300px;">
+                        Sin Separation Image
+                    </div>
+                </div>
+
+                <div class="path-step">
+                    <div class="step-content">
+                        <div class="step-number">3</div>
+                        <h3>Jesus is the Solution</h3>
+                        <p>
+                            God didn't leave us in our sin. He sent Jesus Christ, His only Son, to bridge the gap. Jesus lived a perfect life, died on the cross for our sins, and rose again on the third day, conquering death and offering us forgiveness and new life.
+                        </p>
+                        <div class="step-verse">
+                            "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us." - Romans 5:8
+                        </div>
+                    </div>
+                    <div class="image-placeholder" style="height: 300px;">
+                        Jesus Cross Image
+                    </div>
+                </div>
+
+                <div class="path-step">
+                    <div class="step-content">
+                        <div class="step-number">4</div>
+                        <h3>Receive and Believe</h3>
+                        <p>
+                            Salvation is a free gift that cannot be earned. To receive it, you must believe in Jesus Christ as your Lord and Savior, confess your sins, and invite Him into your life. This is not just head knowledge – it's a heart transformation.
+                        </p>
+                        <div class="step-verse">
+                            "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved." - Romans 10:9
+                        </div>
+                    </div>
+                    <div class="image-placeholder" style="height: 300px;">
+                        Salvation Image
+                    </div>
+                </div>
+
+                <div class="path-step">
+                    <div class="step-content">
+                        <div class="step-number">5</div>
+                        <h3>New Life Begins</h3>
+                        <p>
+                            When you accept Christ, you become a new creation. Old things pass away, and everything becomes new. You receive the Holy Spirit, eternal life, and the privilege of calling God your Father. Your journey of faith has just begun!
+                        </p>
+                        <div class="step-verse">
+                            "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!" - 2 Corinthians 5:17
+                        </div>
+                    </div>
+                    <div class="image-placeholder" style="height: 300px;">
+                        New Life Image
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <h3 style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1.5rem;">Ready to Accept Christ?</h3>
+                <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    If you want to give your life to Jesus today, we'd love to pray with you and help you take this life-changing step.
+                </p>
+                <a href="contact.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 2.5rem;">Pray With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outreach Programs -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">GET INVOLVED</span>
+                <h2>Our Outreach Initiatives</h2>
+                <p>Bringing the Gospel to our community through various channels</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-top: 3rem;">
+                <div class="outreach-card">
+                    <div class="outreach-image">
+                        🎤
+                        <div class="outreach-badge">Every Saturday</div>
+                    </div>
+                    <div class="outreach-content">
+                        <h3>Street Evangelism</h3>
+                        <p>
+                            Take the Gospel to the streets! Join our teams as we share Jesus in markets, parks, and neighborhoods through open-air preaching, personal conversations, and tract distribution.
+                        </p>
+                        <div class="outreach-details">
+                            <span class="detail-tag">📍 Various Locations</span>
+                            <span class="detail-tag">⏰ 10 AM - 1 PM</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Join Our Team</a>
+                    </div>
+                </div>
+
+                <div class="outreach-card">
+                    <div class="outreach-image">
+                        🏥
+                        <div class="outreach-badge">Monthly</div>
+                    </div>
+                    <div class="outreach-content">
+                        <h3>Hospital Visitation</h3>
+                        <p>
+                            Bring comfort and hope to those who are sick. Our hospital ministry visits patients, prays with them, and shares the healing power of Jesus Christ during difficult times.
+                        </p>
+                        <div class="outreach-details">
+                            <span class="detail-tag">🏥 Local Hospitals</span>
+                            <span class="detail-tag">⏰ Weekday Afternoons</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Get Involved</a>
+                    </div>
+                </div>
+
+                <div class="outreach-card">
+                    <div class="outreach-image">
+                        🏫
+                        <div class="outreach-badge">Ongoing</div>
+                    </div>
+                    <div class="outreach-content">
+                        <h3>Campus Ministry</h3>
+                        <p>
+                            Reaching the next generation! We partner with university and college students to establish Christian fellowships, host evangelistic events, and disciple young believers.
+                        </p>
+                        <div class="outreach-details">
+                            <span class="detail-tag">🎓 Universities</span>
+                            <span class="detail-tag">👥 Student Led</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Join Campus Ministry</a>
+                    </div>
+                </div>
+
+                <div class="outreach-card">
+                    <div class="outreach-image">
+                        🌐
+                        <div class="outreach-badge">24/7</div>
+                    </div>
+                    <div class="outreach-content">
+                        <h3>Online Evangelism</h3>
+                        <p>
+                            Digital outreach for a digital world. Through social media, live streams, and online resources, we're taking the Gospel to every platform where people gather.
+                        </p>
+                        <div class="outreach-details">
+                            <span class="detail-tag">💻 Social Media</span>
+                            <span class="detail-tag">📱 Digital Content</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Join Digital Team</a>
+                    </div>
+                </div>
+
+                <div class="outreach-card">
+                    <div class="outreach-image">
+                        👨‍👩‍👧‍👦
+                        <div class="outreach-badge">Quarterly</div>
+                    </div>
+                    <div class="outreach-content">
+                        <h3>Door-to-Door Campaigns</h3>
+                        <p>
+                            Personal, one-on-one evangelism. We organize neighborhood campaigns where teams visit homes, share testimonies, and invite families to experience God's love.
+                        </p>
+                        <div class="outreach-details">
+                            <span class="detail-tag">🏘️ Neighborhoods</span>
+                            <span class="detail-tag">⏰ Saturdays</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Participate</a>
+                    </div>
+                </div>
+
+                <div class="outreach-card">
+                    <div class="outreach-image">
+                        🎪
+                        <div class="outreach-badge">Annual</div>
+                    </div>
+                    <div class="outreach-content">
+                        <h3>Crusades & Events</h3>
+                        <p>
+                            Large-scale evangelistic events featuring worship, powerful preaching, and testimonies. These gatherings create opportunities for mass salvations and community transformation.
+                        </p>
+                        <div class="outreach-details">
+                            <span class="detail-tag">🎉 Major Events</span>
+                            <span class="detail-tag">🎤 Guest Speakers</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonies -->
+    <section class="testimonials-slider">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag light">LIVES TRANSFORMED</span>
+                <h2 style="color: var(--white);">Testimonies of Salvation</h2>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "I was living in darkness, bound by addiction and hopelessness. Then I encountered the love of Jesus through a street evangelism team from Destiny Chapel. Today, I'm free, saved, and serving God. My entire family has come to know Christ because of one conversation on the street."
+                </p>
+                <p class="testimonial-author">- Michael K., Transformed by Grace</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="contact.html" class="btn btn-light">Share Your Testimony</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section style="padding: 5rem 0; background: var(--light-color);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">EQUIP YOURSELF</span>
+                <h2>Evangelism Resources</h2>
+                <p>Tools to help you share your faith effectively</p>
+            </div>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📖</div>
+                    <h4>Gospel Tracts</h4>
+                    <p>Professionally designed tracts with clear Gospel presentations in multiple languages.</p>
+                    <a href="#" class="download-btn">Download PDF</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🎬</div>
+                    <h4>Training Videos</h4>
+                    <p>Watch practical training on how to share your faith naturally and effectively.</p>
+                    <a href="#" class="download-btn">Watch Now</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📝</div>
+                    <h4>Scripture Cards</h4>
+                    <p>Key Bible verses for salvation, organized by topic for easy reference during conversations.</p>
+                    <a href="#" class="download-btn">Get Cards</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">💬</div>
+                    <h4>Conversation Starters</h4>
+                    <p>Practical guides with conversation starters and responses to common questions.</p>
+                    <a href="#" class="download-btn">Download Guide</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">📱</div>
+                    <h4>Digital Resources</h4>
+                    <p>Shareable images, videos, and posts for social media evangelism.</p>
+                    <a href="#" class="download-btn">Access Library</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">🎓</div>
+                    <h4>Evangelism Course</h4>
+                    <p>Comprehensive 4-week training program covering evangelism principles and practice.</p>
+                    <a href="#" class="download-btn">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;">Be Part of the Harvest</h2>
+                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; line-height: 1.8;">
+                    The fields are ripe for harvest, and we need workers. Whether you're experienced in evangelism or just starting, there's a place for you in reaching our community for Christ.
+                </p>
+                <div class="button-group" style="justify-content: center;">
+                    <a href="contact.html" class="btn btn-primary">Join Evangelism Team</a>
+                    <a href="visitors.html" class="btn btn-outline">Visit Us First</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Destiny Chapel</h3>
+                    <p>Building Lives, Transforming Communities</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="ministries.html">Ministries</a></li>
+                        <li><a href="evangelism.html">Evangelism</a></li>
+                        <li><a href="missions.html">Missions</a></li>
+                        <li><a href="fusion.html">Fusion Groups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="visitors.html">Plan Your Visit</a></li>
+                        <li><a href="#">Online Giving</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Food Bank</a></li>
+                        <li><a href="#">Prayer Requests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>📍 Ngei, Nairobi, Kenya</li>
+                        <li>📞 +254 XXX XXX XXX</li>
+                        <li>✉️ info@destinychapelngei.org</li>
+                    </ul>
+                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
+                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Destiny Chapel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Scroll animation for gospel path
+        const pathSteps = document.querySelectorAll('.path-step');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        pathSteps.forEach(step => observer.observe(step));
+    </script>
+</body>
+</html>
