@@ -399,4 +399,75 @@ if ('IntersectionObserver' in window) {
     images.forEach(img => imageObserver.observe(img));
 }
 
+// Leader Modal Functionality
+const leaderData = {
+    'bishop-joel': {
+        name: 'Bishop Joel Chola',
+        role: 'Senior Pastor & Founder',
+        image: 'https://via.placeholder.com/300x400?text=Bishop+Joel+Chola',
+        bio: 'Bishop Joel Chola founded Destiny Chapel in 2012 with a heart for revival and transformation. His dynamic teaching and pastoral care have impacted thousands of lives. He holds a Master\'s in Theology and has served in ministry for over 25 years. His vision is to see every believer empowered to live victoriously in Christ and reach their full potential in God\'s kingdom.',
+        email: 'pastor@destinychapel.org',
+        phone: '+254'
+    },
+    'pastor-james': {
+        name: 'Pastor James Okumu',
+        role: 'Senior Pastor',
+        image: 'https://via.placeholder.com/300x400?text=Pastor+James+Okumu',
+        bio: 'Pastor James Okumu is a dedicated minister with a passion for biblical teaching and equipping believers. With extensive experience in pastoral leadership and discipleship, he has helped countless individuals find their calling in God. He is committed to creating an environment where faith is deepened and lives are transformed through God\'s Word.',
+        email: 'grace@destinychapel.org',
+        phone: '+254'
+    },
+    'pastor-joe': {
+        name: 'Pastor Joe',
+        role: 'Associate Pastor',
+        image: 'https://via.placeholder.com/300x400?text=Pastor+Joe',
+        bio: 'With a passion for the next generation, Pastor Joe leads our vibrant youth ministry. His creative approach to teaching and worship has attracted hundreds of young people seeking authentic faith and purpose. He believes in empowering young leaders to become agents of change in their communities and world.',
+        email: 'david@destinychapel.org',
+        phone: '+254'
+    }
+};
+
+function openLeaderModal(leaderId) {
+    const modal = document.getElementById('leaderModal');
+    const leader = leaderData[leaderId];
+    
+    if (leader) {
+        document.getElementById('modalImage').src = leader.image;
+        document.getElementById('modalImage').alt = leader.name;
+        document.getElementById('modalName').textContent = leader.name;
+        document.getElementById('modalRole').textContent = leader.role;
+        document.getElementById('modalBio').textContent = leader.bio;
+        
+        const contactDiv = document.getElementById('modalContact');
+        contactDiv.innerHTML = `
+            <a href="mailto:${leader.email}" title="Email">✉️</a>
+            <a href="tel:${leader.phone}" title="Phone">📞</a>
+        `;
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeLeaderModal() {
+    const modal = document.getElementById('leaderModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside of it
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('leaderModal');
+    if (event.target === modal) {
+        closeLeaderModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeLeaderModal();
+    }
+});
+
 console.log('Destiny Chapel Website Initialized Successfully! 🙏');

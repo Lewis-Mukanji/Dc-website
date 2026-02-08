@@ -227,6 +227,33 @@
             transform: scale(1.05);
         }
 
+        /* Gospel Path Image Placeholders */
+        .image-placeholder {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="rgba(255,255,255,0.05)"><circle cx="30" cy="30" r="20"/><circle cx="70" cy="70" r="25"/><circle cx="70" cy="30" r="15"/></svg>');
+            opacity: 0.3;
+        }
+
+        .image-placeholder > * {
+            position: relative;
+            z-index: 1;
+        }
+
         @media (max-width: 768px) {
             .path-step {
                 grid-template-columns: 1fr;
@@ -245,11 +272,11 @@
             <div class="nav-wrapper">
                 <div class="logo">
                     <div class="logo-image-container">
-                        <img src="logo.png" alt="Destiny Chapel Logo" class="logo-image">
+                        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-image">
                     </div>
                     <div class="logo-text">
                         <!-- <h1>DESTINY CHAPEL</h1> -->
-                        <p class="tagline">Building Lives, Transforming Communities</p>
+                        <p class="tagline">Activating Dreams<br>To Transform Lives</p>
                     </div>
                 </div>
                 <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -258,7 +285,7 @@
                     <span></span>
                 </button>
                 <ul class="nav-menu">
-                    <li><a href="#home" class="active">HOME</a></li>
+                    <li><a href="index.html" class=>HOME</a></li>
                     <li class="dropdown">
                         <a href="about.html">ABOUT</a>
                         <ul class="dropdown-menu">
@@ -277,7 +304,7 @@
                             <li><a href="#women">Women's Ministry</a></li>
                         </ul>
                     </li>
-                    <li><a href="evangelism.html">EVANGELISM</a></li>
+                    <li><a href="evangelism.html" class="Active">EVANGELISM</a></li>
                     <li><a href="missions.html">MISSIONS</a></li>
                     <li><a href="fusion.html">FUSION</a></li>
                     <!-- <li><a href="visitors.html">VISITORS</a></li> -->
@@ -336,7 +363,11 @@
                         </div>
                     </div>
                     <div class="image-placeholder" style="height: 300px;">
-                        God's Love Image
+                        <div style="text-align: center; z-index: 2; position: relative;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">❤️</div>
+                            <h4 style="font-size: 1.3rem; color: var(--white); margin: 0;">God's Love</h4>
+                            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0;">Perfect & Unconditional</p>
+                        </div>
                     </div>
                 </div>
 
@@ -352,7 +383,11 @@
                         </div>
                     </div>
                     <div class="image-placeholder" style="height: 300px;">
-                        Sin Separation Image
+                        <div style="text-align: center; z-index: 2; position: relative;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">⚖️</div>
+                            <h4 style="font-size: 1.3rem; color: var(--white); margin: 0;">We Are All Sinners</h4>
+                            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0;">Separated from God</p>
+                        </div>
                     </div>
                 </div>
 
@@ -368,7 +403,11 @@
                         </div>
                     </div>
                     <div class="image-placeholder" style="height: 300px;">
-                        Jesus Cross Image
+                        <div style="text-align: center; z-index: 2; position: relative;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">✝️</div>
+                            <h4 style="font-size: 1.3rem; color: var(--white); margin: 0;">Jesus is the Solution</h4>
+                            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0;">The Way, Truth & Life</p>
+                        </div>
                     </div>
                 </div>
 
@@ -384,7 +423,11 @@
                         </div>
                     </div>
                     <div class="image-placeholder" style="height: 300px;">
-                        Salvation Image
+                        <div style="text-align: center; z-index: 2; position: relative;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🙏</div>
+                            <h4 style="font-size: 1.3rem; color: var(--white); margin: 0;">Receive & Believe</h4>
+                            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0;">A Free Gift of Grace</p>
+                        </div>
                     </div>
                 </div>
 
@@ -400,7 +443,11 @@
                         </div>
                     </div>
                     <div class="image-placeholder" style="height: 300px;">
-                        New Life Image
+                        <div style="text-align: center; z-index: 2; position: relative;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🌟</div>
+                            <h4 style="font-size: 1.3rem; color: var(--white); margin: 0;">New Life Begins</h4>
+                            <p style="font-size: 0.95rem; color: rgba(255,255,255,0.9); margin: 0.5rem 0 0 0;">Transformed by Christ</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -410,7 +457,7 @@
                 <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                     If you want to give your life to Jesus today, we'd love to pray with you and help you take this life-changing step.
                 </p>
-                <a href="contact.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 2.5rem;">Pray With Us</a>
+                <a href="born-again.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 2.5rem;">Pray With Us</a>
             </div>
         </div>
     </section>
@@ -634,7 +681,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Destiny Chapel Ngei</h3>
-                    <p>Building Lives, Transforming Communities</p>
+                    <p>Activating Dreams<br>To Transform Lives</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook">📘</a>
                         <a href="#" aria-label="Twitter">🐦</a>

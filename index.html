@@ -14,11 +14,11 @@
             <div class="nav-wrapper">
                 <div class="logo">
                     <div class="logo-image-container">
-                        <img src="logo.png" alt="Destiny Chapel Logo" class="logo-image">
+                        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-image">
                     </div>
                     <div class="logo-text">
                         <!-- <h1>DESTINY CHAPEL</h1> -->
-                        <p class="tagline">Building Lives, Transforming Communities</p>
+                        <p class="tagline">Activating Dreams<br>To Transform Lives</p>
                     </div>
                 </div>
                 <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -58,15 +58,20 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Hero background image: put your image at `images/hero-bg.jpg`.
+             This <img> provides a lazy-loading, accessible background. */ -->
+        <div class="hero-media" aria-hidden="true">
+            <img src="images/BRE_4420.jpg" alt="Congregation worshiping at Destiny Chapel" class="hero-bg-img" loading="lazy">
+        </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Welcome to Destiny Chapel</h1>
-            <p class="hero-subtitle">A Place Where Faith Comes Alive and Communities Thrive</p>
-            <p class="hero-verse">"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future." - Jeremiah 29:11</p>
-            <div class="hero-buttons">
-                <a href="#plan-visit" class="btn btn-primary">Plan Your Visit</a>
-                <a href="#watch-live" class="btn btn-secondary">Watch Live</a>
-            </div>
+            <!-- <h1 class="hero-title">Welcome to Destiny Chapel</h1> -->
+            <!-- <p class="hero-subtitle">A Place Where Faith Comes Alive and Communities Thrive</p> -->
+            <!-- <p class="hero-verse">"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future." - Jeremiah 29:11</p> -->
+            <!-- <div class="hero-buttons">
+                <a href="visitors.html" class="btn btn-primary">Plan Your Visit</a>
+                <a href="sermons.html" class="btn btn-secondary">Watch Live</a>
+            </div> -->
         </div>
         <div class="hero-scroll">
             <span>Scroll Down</span>
@@ -74,29 +79,43 @@
         </div>
     </section>
 
-    <!-- Service Times -->
+    <!-- Service Times & Online Platforms -->
     <section class="service-times">
         <div class="container">
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="service-icon">📖</div>
-                    <h3>Sunday Service</h3>
-                    <p>9:00 AM - 12:00 PM</p>
+            <div class="service-times-wrapper">
+                <!-- Left Column: Service Times -->
+                <div class="service-times-column">
+                    <div class="column-header">
+                        <h3 class="column-title">Our Service Times</h3>
+                        <div class="title-underline"></div>
+                    </div>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <div class="service-item-header">
+                                <span class="service-name">Our Main Service</span>
+                                <span class="service-location">Ngei Primary Lang'ata</span>
+                            </div>
+                            <p class="service-time">Sunday 10:00 AM - 12:30 PM</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🙏</div>
-                    <h3>Midweek Service</h3>
-                    <p>Wednesday 6:00 PM</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👥</div>
-                    <h3>Fusion Groups</h3>
-                    <p>Various Times & Locations</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Online Streaming</h3>
-                    <p>Available Every Sunday</p>
+
+                <!-- Right Column: Online Platforms -->
+                <div class="service-times-column">
+                    <div class="column-header">
+                        <h3 class="column-title">Our Online Channel</h3>
+                        <div class="title-underline"></div>
+                    </div>
+                    <div class="online-list">
+                        <a href="https://www.youtube.com/@destinychapel04" class="online-item">
+                            <div class="platform-icon">▶</div>
+                            <div class="platform-content">
+                             <h4>Destiny Chapel Channel</h4>
+                                <!-- <p>Watch content made for kids</p> -->
+                            </div>
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,20 +153,20 @@
             <div class="connect-grid">
                 <div class="connect-card">
                     <div class="connect-image">
-                        <div class="image-placeholder">I Have Decided</div>
+                        <div class="image-placeholder">I Have Decided Image</div>
                     </div>
                     <div class="connect-content">
-                        <h3>I Have Decided</h3>
+                        <h3>Want to receive Christ</h3>
                         <p>Give your life to Jesus</p>
                         <a href="born-again.html" class="btn btn-primary">Connect</a>
                     </div>
                 </div>
                 <div class="connect-card">
                     <div class="connect-image">
-                        <div class="image-placeholder">Karibu</div>
+                        <div class="image-placeholder">Visitors Image</div>
                     </div>
                     <div class="connect-content">
-                        <h3>Karibu</h3>
+                        <h3>Visitor</h3>
                         <p>We're glad you're here</p>
                         <a href="visitors.html" class="btn btn-primary">Connect</a>
                     </div>
@@ -419,7 +438,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Destiny Chapel</h3>
-                    <p>Building Lives, Transforming Communities</p>
+                    <p>Activating Dreams To Transform Lives</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook">📘</a>
                         <a href="#" aria-label="Twitter">🐦</a>

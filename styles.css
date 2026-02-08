@@ -59,7 +59,7 @@ body {
 }
 
 .logo-image {
-    height: 50px;
+    height: 80px;
     width: auto;
     object-fit: contain;
 }
@@ -78,7 +78,7 @@ body {
 }
 
 .logo .tagline {
-    font-size: 0.75rem;
+    font-size: 1.0rem;
     color: var(--text-light);
     margin: 0;
     margin-top: -5px;
@@ -175,10 +175,44 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    margin-top: 80px;
+    /* Use a gradient overlay only; the hero image will be provided via an
+       absolutely-positioned <img> element inside the .hero section so it can
+       be lazy-loaded and carry an accessible alt attribute. Place the image
+       at `images/hero-bg.jpg` or change the <img> src in `index.html`. */
+    background: linear-gradient(135deg, rgba(26,84,144,0.45) 0%, rgba(45,123,199,0.45) 100%);
+    margin-top: 100px;
     overflow: hidden;
 }
+
+/* Hero media (image element) sits behind the overlay */
+.hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    filter: brightness(0.65) contrast(1.02);
+    transform: scale(1.02);
+    transition: transform 8s ease;
+}
+
+.hero:hover .hero-bg-img {
+    transform: scale(1.05);
+}
+
+/* Ensure overlay + content stack above the image */
+.hero-overlay { z-index: 1; }
+.hero-content { z-index: 2; }
+
 
 .hero::before {
     content: '';
@@ -364,6 +398,176 @@ body {
     z-index: 10;
 }
 
+.service-times-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: stretch;
+}
+
+.service-times-column {
+    padding: 2rem;
+    border-radius: 10px;
+    background: var(--light-color);
+    transition: var(--transition);
+}
+
+.service-times-column:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.column-header {
+    margin-bottom: 2rem;
+}
+
+.column-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* Service Items */
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.service-item {
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-color);
+    transition: var(--transition);
+}
+
+.service-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.service-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.service-name {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.service-location {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.service-time {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Online Platforms */
+.online-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.online-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--white);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.online-item:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.platform-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: var(--accent-color);
+    color: var(--white);
+    border-radius: 8px;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.online-item:hover .platform-icon {
+    background: var(--white);
+    color: var(--primary-color);
+}
+
+.platform-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.platform-content h4 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.platform-content p {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+.online-item:hover .platform-content p {
+    opacity: 1;
+}
+
+.arrow-icon {
+    font-size: 1.5rem;
+    opacity: 0.5;
+    transition: var(--transition);
+    margin-left: 0.5rem;
+}
+
+.online-item:hover .arrow-icon {
+    opacity: 1;
+    color: var(--accent-color);
+    transform: translateX(3px);
+}
+
+/* Service Grid (original for reference, now replaced) */
 .service-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -490,7 +694,7 @@ section {
 
 .connect-card {
     background: var(--white);
-    border-radius: 12px;
+    border-radius: 0px;
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     transition: var(--transition);
@@ -508,6 +712,7 @@ section {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
     display: flex;
+    border-radius: 0px;
     align-items: center;
     justify-content: center;
 }
@@ -1308,6 +1513,11 @@ section {
 
     .hero-verse {
         font-size: 1rem;
+    }
+
+    .service-times-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .service-grid {
