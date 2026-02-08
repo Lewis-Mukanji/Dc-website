@@ -211,8 +211,13 @@
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
-                    <h1>Destiny Chapel</h1>
-                    <p class="tagline">Building Lives, Transforming Communities</p>
+                    <div class="logo-image-container">
+                        <img src="logo.png" alt="Destiny Chapel Logo" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <!-- <h1>DESTINY CHAPEL</h1> -->
+                        <p class="tagline">Building Lives, Transforming Communities</p>
+                    </div>
                 </div>
                 <button class="mobile-menu-toggle" aria-label="Toggle menu">
                     <span></span>
@@ -220,11 +225,27 @@
                     <span></span>
                 </button>
                 <ul class="nav-menu">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="ministries.html">MINISTRIES</a></li>
+                    <li><a href="#home" class="active">HOME</a></li>
+                    <li class="dropdown">
+                        <a href="about.html">ABOUT</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#history">Our History</a></li>
+                            <li><a href="#leadership">Leadership</a></li>
+                            <li><a href="#vision">Vision & Values</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="sermons.html">SERMONS</a></li>
+                    <li class="dropdown">
+                        <a href="ministries.html">MINISTRIES</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#youth">Youth Ministry</a></li>
+                            <li><a href="#kids">Kids Ministry</a></li>
+                            <li><a href="#men">Men's Ministry</a></li>
+                            <li><a href="#women">Women's Ministry</a></li>
+                        </ul>
+                    </li>
                     <li><a href="evangelism.html">EVANGELISM</a></li>
-                    <li><a href="missions.html" class="active">MISSIONS</a></li>
+                    <li><a href="missions.html">MISSIONS</a></li>
                     <li><a href="fusion.html">FUSION</a></li>
                     <!-- <li><a href="visitors.html">VISITORS</a></li> -->
                     <li><a href="contact.html">CONTACT</a></li>
