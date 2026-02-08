@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Sermons - Destiny Chapel Ngei</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Sermon Cards Styling */
+        .sermons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .sermon-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .sermon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.25);
+        }
+
+        .sermon-image {
+            height: 320px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sermon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Color variations for sermon cards */
+        .sermon-card:nth-child(6n+1) .sermon-image { background: linear-gradient(135deg, #6B46C1, #9333EA); }
+        .sermon-card:nth-child(6n+2) .sermon-image { background: linear-gradient(135deg, #059669, #10B981); }
+        .sermon-card:nth-child(6n+3) .sermon-image { background: linear-gradient(135deg, #0891B2, #06B6D4); }
+        .sermon-card:nth-child(6n+4) .sermon-image { background: linear-gradient(135deg, #DC2626, #EF4444); }
+        .sermon-card:nth-child(6n+5) .sermon-image { background: linear-gradient(135deg, #EA580C, #F97316); }
+        .sermon-card:nth-child(6n+6) .sermon-image { background: linear-gradient(135deg, #1E40AF, #3B82F6); }
+
+        .sermon-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        .sermon-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary-color);
+        }
+
+        .sermon-content {
+            padding: 2.5rem;
+        }
+
+        .sermon-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .sermon-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .sermon-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .sermon-speaker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--light-color);
+        }
+
+        .speaker-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .speaker-info h4 {
+            color: var(--dark-color);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .speaker-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .watch-btn {
+            margin-top: 1.5rem;
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .watch-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* Series Filter */
+        .series-filter {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.8rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .sermons-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .sermon-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>DESTINY CHAPEL NGEI</h1>
+                    <p class="tagline">Building Lives, Transforming Communities</p>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="ministries.html">MINISTRIES</a></li>
+                    <li><a href="sermons.html" class="active">SERMONS</a></li>
+                    <li><a href="evangelism.html">EVANGELISM & MISSIONS</a></li>
+                    <li><a href="fusion.html">FUSION</a></li>
+                    <!-- <li><a href="visitors.html">VISITORS</a></li> -->
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="hero" style="height: 60vh; margin-top: 80px;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Latest Sermons</h1>
+            <p class="hero-subtitle">Life-Changing Messages from God's Word</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">WATCH & LISTEN</span>
+                <h2>Recent Messages</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light);">
+                    Missed a Sunday? Want to revisit a powerful message? Browse our sermon library and be encouraged, challenged, and equipped for your faith journey.
+                </p>
+            </div>
+
+            <!-- Series Filter -->
+            <div class="series-filter">
+                <button class="filter-btn active">All Sermons</button>
+                <button class="filter-btn">Connect Series</button>
+                <button class="filter-btn">Challenge Series</button>
+                <button class="filter-btn">Change Series</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sermons Grid -->
+    <section style="padding: 0 0 5rem 0; background: var(--light-color);">
+        <div class="container">
+            <div class="sermons-grid">
+                <!-- Sermon 1 -->
+                <div class="sermon-card">
+                    <div class="sermon-image">
+                        <div class="sermon-image-placeholder">
+                            <span style="font-size: 6rem;">🙏</span>
+                        </div>
+                        <div class="sermon-badge">CONNECT • CHALLENGE • CHANGE</div>
+                    </div>
+                    <div class="sermon-content">
+                        <div class="sermon-meta">INTERNATIONAL CHRISTIAN CENTRE - NAIROBI<br>RAISING GODLY GENERATIONS</div>
+                        <h3 class="sermon-title">WHOM SHALL I SEND?</h3>
+                        <p class="sermon-subtitle">Discovering God's call and purpose for your life in this generation</p>
+                        <div class="sermon-speaker">
+                            <div class="speaker-avatar">PM</div>
+                            <div class="speaker-info">
+                                <h4>Pastor James Mwangi</h4>
+                                <p>Senior Pastor • Feb 4, 2026</p>
+                            </div>
+                        </div>
+                        <a href="#" class="watch-btn">▶ Watch Sermon</a>
+                    </div>
+                </div>
+
+                <!-- Sermon 2 -->
+                <div class="sermon-card">
+                    <div class="sermon-image">
+                        <div class="sermon-image-placeholder">
+                            <span style="font-size: 6rem;">📖</span>
+                        </div>
+                        <div class="sermon-badge">CONNECT • CHALLENGE • CHANGE</div>
+                    </div>
+                    <div class="sermon-content">
+                        <div class="sermon-meta">INTERNATIONAL CHRISTIAN CENTRE - NAIROBI<br>RAISING GODLY GENERATIONS</div>
+                        <h3 class="sermon-title">ANSWERING GOD'S CALL</h3>
+                        <p class="sermon-subtitle">Responding to God's voice with obedience and faith</p>
+                        <div class="sermon-speaker">
+                            <div class="speaker-avatar">PD</div>
+                            <div class="speaker-info">
+                                <h4>Pastor David Kariuki</h4>
+                                <p>Associate Pastor • Jan 28, 2026</p>
+                            </div>
+                        </div>
+                        <a href="#" class="watch-btn">▶ Watch Sermon</a>
+                    </div>
+                </div>
+
+                <!-- Sermon 3 -->
+                <div class="sermon-card">
+                    <div class="sermon-image">
+                        <div class="sermon-image-placeholder">
+                            <span style="font-size: 6rem;">✨</span>
+                        </div>
+                        <div class="sermon-badge">CONNECT • CHALLENGE • CHANGE</div>
+                    </div>
+                    <div class="sermon-content">
+                        <div class="sermon-meta">INTERNATIONAL CHRISTIAN CENTRE - NAIROBI<br>RAISING GODLY GENERATIONS</div>
+                        <h3 class="sermon-title">WHO AM I?</h3>
+                        <p class="sermon-subtitle">Understanding your identity in Christ and walking in purpose</p>
+                        <div class="sermon-speaker">
+                            <div class="speaker-avatar">PG</div>
+                            <div class="speaker-info">
+                                <h4>Pastor Grace Wanjiru</h4>
+                                <p>Women's Ministry Leader • Jan 21, 2026</p>
+                            </div>
+                        </div>
+                        <a href="#" class="watch-btn">▶ Watch Sermon</a>
+                    </div>
+                </div>
+
+                <!-- Sermon 4 -->
+                <div class="sermon-card">
+                    <div class="sermon-image">
+                        <div class="sermon-image-placeholder">
+                            <span style="font-size: 6rem;">🌱</span>
+                        </div>
+                        <div class="sermon-badge">CONNECT • CHALLENGE • CHANGE</div>
+                    </div>
+                    <div class="sermon-content">
+                        <div class="sermon-meta">INTERNATIONAL CHRISTIAN CENTRE - NAIROBI<br>RAISING GODLY GENERATIONS</div>
+                        <h3 class="sermon-title">DISCIPLING THE NEXT GENERATION</h3>
+                        <p class="sermon-subtitle">Building a legacy of faith through intentional mentorship</p>
+                        <div class="sermon-speaker">
+                            <div class="speaker-avatar">PM</div>
+                            <div class="speaker-info">
+                                <h4>Pastor James Mwangi</h4>
+                                <p>Senior Pastor • Jan 14, 2026</p>
+                            </div>
+                        </div>
+                        <a href="#" class="watch-btn">▶ Watch Sermon</a>
+                    </div>
+                </div>
+
+                <!-- Sermon 5 -->
+                <div class="sermon-card">
+                    <div class="sermon-image">
+                        <div class="sermon-image-placeholder">
+                            <span style="font-size: 6rem;">👨‍👩‍👧‍👦</span>
+                        </div>
+                        <div class="sermon-badge">CONNECT • CHALLENGE • CHANGE</div>
+                    </div>
+                    <div class="sermon-content">
+                        <div class="sermon-meta">INTERNATIONAL CHRISTIAN CENTRE - NAIROBI<br>RAISING GODLY GENERATIONS</div>
+                        <h3 class="sermon-title">RAISING GODLY FAMILIES</h3>
+                        <p class="sermon-subtitle">Creating homes that honor God and nurture faith</p>
+                        <div class="sermon-speaker">
+                            <div class="speaker-avatar">PP</div>
+                            <div class="speaker-info">
+                                <h4>Pastor Peter Kamau</h4>
+                                <p>Missions Director • Jan 7, 2026</p>
+                            </div>
+                        </div>
+                        <a href="#" class="watch-btn">▶ Watch Sermon</a>
+                    </div>
+                </div>
+
+                <!-- Sermon 6 -->
+                <div class="sermon-card">
+                    <div class="sermon-image">
+                        <div class="sermon-image-placeholder">
+                            <span style="font-size: 6rem;">🔥</span>
+                        </div>
+                        <div class="sermon-badge">CONNECT • CHALLENGE • CHANGE</div>
+                    </div>
+                    <div class="sermon-content">
+                        <div class="sermon-meta">INTERNATIONAL CHRISTIAN CENTRE - NAIROBI<br>RAISING GODLY GENERATIONS</div>
+                        <h3 class="sermon-title">RAISING WORLD CHANGERS</h3>
+                        <p class="sermon-subtitle">Equipping believers to make eternal impact in their spheres</p>
+                        <div class="sermon-speaker">
+                            <div class="speaker-avatar">PD</div>
+                            <div class="speaker-info">
+                                <h4>Pastor David Kariuki</h4>
+                                <p>Youth Pastor • Dec 31, 2025</p>
+                            </div>
+                        </div>
+                        <a href="#" class="watch-btn">▶ Watch Sermon</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div style="text-align: center; margin-top: 4rem;">
+                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 3rem;">Load More Sermons</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section style="padding: 5rem 0; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: var(--white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--white);">Never Miss a Message</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2.5rem; line-height: 1.8;">
+                    Subscribe to our podcast or YouTube channel to receive new sermons delivered straight to your device every week.
+                </p>
+                <div class="button-group" style="justify-content: center;">
+                    <a href="#" class="btn btn-light">▶ Subscribe on YouTube</a>
+                    <a href="#" class="btn btn-outline-light">🎧 Listen on Podcast</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Destiny Chapel Ngei</h3>
+                    <p>Building Lives, Transforming Communities</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="ministries.html">Ministries</a></li>
+                        <li><a href="sermons.html">Sermons</a></li>
+                        <li><a href="evangelism.html">Evangelism & Missions</a></li>
+                        <li><a href="fusion.html">Fusion Groups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="visitors.html">Plan Your Visit</a></li>
+                        <li><a href="#">Online Giving</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Food Bank</a></li>
+                        <li><a href="#">Prayer Requests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>📍 Ngei, Nairobi, Kenya</li>
+                        <li>📞 +254 XXX XXX XXX</li>
+                        <li>✉️ info@destinychapelngei.org</li>
+                    </ul>
+                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
+                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Destiny Chapel Ngei. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
