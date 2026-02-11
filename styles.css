@@ -692,6 +692,42 @@ section {
     gap: 2rem;
 }
 
+@media (max-width: 768px) {
+    .connect-grid {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .connect-grid::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .connect-grid::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .connect-grid::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+        border-radius: 10px;
+    }
+
+    .connect-grid::-webkit-scrollbar-thumb:hover {
+        background: #e69510;
+    }
+
+    .connect-card {
+        flex: 0 0 calc(100% - 1rem);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+}
+
 .connect-card {
     background: var(--white);
     border-radius: 0px;
@@ -934,6 +970,42 @@ section {
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .events-grid-new {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .events-grid-new::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .events-grid-new::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .events-grid-new::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+        border-radius: 10px;
+    }
+
+    .events-grid-new::-webkit-scrollbar-thumb:hover {
+        background: #e69510;
+    }
+
+    .event-card-new {
+        flex: 0 0 calc(100% - 1rem);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
 }
 
 .event-card-new {
@@ -1537,9 +1609,7 @@ section {
         width: 100%;
     }
 
-    .events-grid-new {
-        grid-template-columns: 1fr;
-    }
+
 
     .modal-info {
         padding: 2rem 1.5rem;
