@@ -656,15 +656,12 @@
         const outreachModal = document.getElementById('outreachModal');
         const modalOverlay = outreachModal.querySelector('.modal-overlay');
         const modalClose = outreachModal.querySelector('.modal-close');
-        const initiativeCards = document.querySelectorAll('.initiative-card');
 
         // Open modal function
         function openOutreachModal(initiativeKey) {
             const initiative = initiativeData[initiativeKey];
-            
             outreachModal.querySelector('.modal-initiative-title').textContent = initiative.title;
             outreachModal.querySelector('.modal-initiative-content').innerHTML = initiative.content;
-            
             outreachModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -675,11 +672,15 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Add click events to initiative cards
-        initiativeCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const initiativeKey = card.getAttribute('data-initiative');
-                openOutreachModal(initiativeKey);
+        // Add click events to 'Learn More' buttons only
+        document.querySelectorAll('.view-more-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = btn.closest('.initiative-card');
+                if (card) {
+                    const initiativeKey = card.getAttribute('data-initiative');
+                    openOutreachModal(initiativeKey);
+                }
             });
         });
 
