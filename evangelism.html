@@ -343,8 +343,27 @@
                 display: flex;
                 gap: 1rem;
                 overflow-x: auto;
-                padding-bottom: 1rem;
+                overflow-y: hidden;
+                padding-bottom: 1.5rem;
                 scroll-behavior: smooth;
+            }
+
+            .steps-container::-webkit-scrollbar {
+                height: 8px;
+            }
+
+            .steps-container::-webkit-scrollbar-track {
+                background: var(--light-color);
+                border-radius: 10px;
+            }
+
+            .steps-container::-webkit-scrollbar-thumb {
+                background: var(--primary-color);
+                border-radius: 10px;
+            }
+
+            .steps-container::-webkit-scrollbar-thumb:hover {
+                background: var(--secondary-color);
             }
 
             .step-card {
