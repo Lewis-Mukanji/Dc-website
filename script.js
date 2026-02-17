@@ -83,7 +83,8 @@ const eventData = {
         price: 'Kshs. 15,000/= for ICC Members, Kshs.18,000/= for non-ICC couples',
         paybill: '904800',
         account: 'Prema or MB then your names. For example: PremaJohnJane / MBJohnJane.',
-        posterClass: 'prema-poster'
+        posterClass: 'prema-poster',
+        image: 'images/allyours.jpeg'
     },
     prayer: {
         title: 'Prayer Conference',
@@ -94,7 +95,8 @@ const eventData = {
         price: 'Free Entry',
         paybill: 'N/A',
         account: 'N/A',
-        posterClass: 'prayer-poster'
+        posterClass: 'prayer-poster',
+        image: 'images/how.jpeg'
     },
     masters: {
         title: 'Masters Commission 2026',
@@ -105,7 +107,8 @@ const eventData = {
         price: 'KES. 9,000/- The charge for the program is KES. 9,000/- is payable upon registration.',
         paybill: '904800',
         account: 'Account name: "Masters" followed by the participant\'s name',
-        posterClass: 'masters-poster'
+        posterClass: 'masters-poster',
+        image: 'images/how.jpeg'
     },
     valentine: {
         title: 'Couples Valentine\'s Dinner',
@@ -116,7 +119,8 @@ const eventData = {
         price: 'KSH 6,000',
         paybill: 'MPESA PAYBILL: 904800 ACCOUNT NAME: VALENTINES COUPLES DINNER',
         account: 'VALENTINES COUPLES DINNER',
-        posterClass: 'valentine-poster'
+        posterClass: 'valentine-poster',
+        image: 'images/Gala.jpeg'
     }
 };
 
@@ -129,60 +133,20 @@ const eventCards = document.querySelectorAll('.event-card-new');
 // Function to create poster HTML for modal
 function createPosterHTML(eventKey) {
     const event = eventData[eventKey];
-    
-    switch(eventKey) {
-        case 'prema':
-            return `
-                <div class="event-poster ${event.posterClass}">
-                    <div class="event-poster-content">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2'%3E%3Ccircle cx='12' cy='8' r='5'/%3E%3Cpath d='M12 13a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8z'/%3E%3C/svg%3E" alt="Rings" class="poster-icon">
-                        <div class="event-badge">Destiny Chapel</div>
-                        <h3 class="event-poster-title">PREMARITAL COUNSELLING &<br>MARRIAGE BLESSING<br>COUNSELLING 2026</h3>
-                        <p class="event-poster-desc">PREMA is for dating and courting couples while Marriage Blessing is for couples staying together</p>
-                    </div>
-                </div>
-            `;
-        case 'prayer':
-            return `
-                <div class="event-poster ${event.posterClass}">
-                    <div class="event-poster-content">
-                        <div class="event-badge">Destiny Chapel - Nairobi</div>
-                        <h3 class="event-poster-title-large">Prayer<br>Conference</h3>
-                        <p class="event-speaker">Guest Speaker: Evangelist Mikel French</p>
-                        <p class="event-date-time">Date: Feb 13th 2026<br>Time: 9:00am - 4:00pm<br>at ICC Nairobi</p>
-                    </div>
-                </div>
-            `;
-        case 'masters':
-            return `
-                <div class="event-poster ${event.posterClass}">
-                    <div class="event-poster-content">
-                        <h3 class="event-poster-title-stylized">Masters<br>Commission</h3>
-                        <div class="masters-group-photo">
-                            <div class="photo-placeholder">Group Photo</div>
-                        </div>
-                        <p class="event-dates">30th Jan - 10th May<br>2026</p>
-                    </div>
-                </div>
-            `;
-        case 'valentine':
-            return `
-                <div class="event-poster ${event.posterClass}">
-                    <div class="event-poster-content">
-                        <div class="event-badge">Destiny Chapel - Nairobi</div>
-                        <div class="heart-icon">❤️</div>
-                        <h3 class="event-poster-title-elegant">Couples<br>Valentine's<br>Dinner</h3>
-                        <p class="event-subtitle">CELEBRATING LOVE</p>
-                        <p class="event-date-venue">13TH FEBRUARY 2026 | 7:00PM<br>JACARANDA HOTEL 'THE NODE'</p>
-                    </div>
-                </div>
-            `;
-    }
+    return `<img src="${event.image}" alt="${event.title}" style="width: 100%; height: 100%; object-fit: cover;">`;
 }
 
 // Open modal when clicking event card or More Info button
 eventCards.forEach(card => {
     const eventKey = card.getAttribute('data-event');
+    const imageUrl = card.getAttribute('data-image');
+    const imageWrapper = card.querySelector('.event-image-wrapper');
+    
+    // Set background image for the card
+    if (imageWrapper && imageUrl) {
+        imageWrapper.style.backgroundImage = `url('${imageUrl}')`;
+    }
+    
     const moreInfoBtn = card.querySelector('.more-info-btn');
     
     if (moreInfoBtn) {
