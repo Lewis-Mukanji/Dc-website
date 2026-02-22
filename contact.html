@@ -1,342 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Destiny Chapel</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Destiny Chapel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* PAGE HERO */
+    .page-hero{position:relative;height:52vh;min-height:340px;display:flex;align-items:flex-end;overflow:hidden;}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 25% 50%,rgba(201,149,42,.1) 0%,transparent 65%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 55%,var(--navy-light) 100%);}
+    .page-hero-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:36px 36px;}
+    .page-hero-content{position:relative;z-index:2;padding:0 80px 60px;color:var(--white);}
+    .page-hero-eyebrow{display:inline-block;background:rgba(201,149,42,.2);border:1px solid rgba(201,149,42,.45);color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:18px;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:600;line-height:1.1;margin-bottom:14px;}
+    .page-hero h1 em{font-style:italic;color:var(--gold-light);}
+    .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.72);max-width:500px;}
+    .page-hero-line{position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-light) 50%,transparent 100%);z-index:3;}
+
+    /* CONTACT CARDS */
+    .contact-cards-section{background:var(--white);padding:90px 0;}
+    .contact-cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+    .contact-card{background:var(--cream);border-radius:18px;padding:36px 28px;text-align:center;border-top:3px solid var(--gold);transition:transform .3s,box-shadow .3s;}
+    .contact-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(13,31,60,.1);}
+    .contact-card-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.6rem;}
+    .contact-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:10px;}
+    .contact-card p{font-size:.86rem;color:var(--muted);line-height:1.7;}
+    .contact-card a{color:var(--muted);text-decoration:none;transition:color .2s;}
+    .contact-card a:hover{color:var(--gold);}
+
+    /* CONTACT FORM + DEPARTMENTS */
+    .form-dept-section{background:var(--cream);padding:90px 0;}
+    .form-dept-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:52px;align-items:start;}
+
+    /* Form */
+    .contact-form-wrap{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 8px 48px rgba(13,31,60,.08);}
+    .form-head{background:linear-gradient(135deg,var(--navy),var(--navy-light));padding:28px 36px;position:relative;overflow:hidden;}
+    .form-head::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px;}
+    .form-head-inner{position:relative;z-index:2;}
+    .form-head h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);font-weight:600;margin-bottom:4px;}
+    .form-head p{font-size:.84rem;color:rgba(255,255,255,.65);}
+    .form-body-inner{padding:32px 36px 36px;}
+    .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .fg{margin-bottom:16px;}
+    .fg label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px;}
+    .fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;border:1.5px solid #dde2ec;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--text);background:var(--white);outline:none;transition:all .25s;}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,149,42,.12);}
+    .fg textarea{min-height:120px;resize:vertical;}
+    .btn-submit{width:100%;background:var(--navy);color:var(--white);border:none;padding:14px 28px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .25s;margin-top:8px;}
+    .btn-submit:hover{background:var(--gold);}
+
+    /* Department cards */
+    .dept-list{display:flex;flex-direction:column;gap:14px;}
+    .dept-card{background:var(--white);border-left:4px solid var(--gold);border-radius:0 14px 14px 0;padding:22px 24px;transition:all .3s;}
+    .dept-card:hover{transform:translateX(4px);box-shadow:0 6px 28px rgba(13,31,60,.08);}
+    .dept-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:4px;}
+    .dept-card-desc{font-size:.8rem;color:var(--muted);margin-bottom:8px;}
+    .dept-card-person{font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:2px;}
+    .dept-card-email{font-size:.8rem;color:var(--gold);}
+
+    /* SOCIAL */
+    .social-section{background:var(--white);padding:90px 0;}
+    .social-grid{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:48px;}
+    .social-tile{background:var(--cream);border-radius:18px;padding:36px 44px;text-align:center;text-decoration:none;border-top:3px solid var(--gold);transition:all .3s;min-width:160px;}
+    .social-tile:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(201,149,42,.14);}
+    .social-tile-icon{font-size:2.2rem;display:block;margin-bottom:10px;}
+    .social-tile-label{font-size:.85rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.08em;}
+
+    /* MAP */
+    .map-section{background:var(--cream);padding:90px 0;}
+    .map-wrap{max-width:960px;margin:0 auto;}
+    .map-placeholder{height:420px;background:var(--white);border-radius:18px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.1rem;box-shadow:0 4px 24px rgba(13,31,60,.07);margin-bottom:24px;border:2px dashed #dde2ec;}
+    .directions-card{background:var(--white);border-radius:18px;padding:32px 36px;box-shadow:0 4px 24px rgba(13,31,60,.07);}
+    .directions-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--navy);margin-bottom:16px;}
+    .dir-item{padding:12px 0;border-bottom:1px solid #eef0f4;font-size:.9rem;color:var(--muted);line-height:1.65;}
+    .dir-item:last-child{border-bottom:none;}
+    .dir-item strong{color:var(--navy);}
+
+    @media(max-width:1024px){.contact-cards-grid{grid-template-columns:1fr 1fr;}.form-dept-grid{grid-template-columns:1fr;}}
+    @media(max-width:600px){.page-hero-content{padding:0 28px 48px;}.contact-cards-grid{grid-template-columns:1fr;}.form-row-2{grid-template-columns:1fr;}.social-grid{gap:14px;}}
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <div class="logo-image-container">
-                        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-image">
-                        
-                    </div>
-                    <div class="logo-text">
-                        <!-- <h1>DESTINY CHAPEL</h1> -->
-                        <p class="tagline">Activating Dreams<br>To Transform Lives</p>
-                    </div>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class=>HOME</a></li>
-                    <li class="dropdown">
-                        <a href="About.html">ABOUT</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#history">Our History</a></li>
-                            <li><a href="#leadership">Leadership</a></li>
-                            <li><a href="#vision">Vision & Values</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="sermons.html">SERMONS</a></li>
-                    <li class="dropdown">
-                        <a href="ministries.html">MINISTRIES</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#youth">Youth Ministry</a></li>
-                            <li><a href="#kids">Kids Ministry</a></li>
-                            <li><a href="#men">Men's Ministry</a></li>
-                            <li><a href="#women">Women's Ministry</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="evangelism.html">EVANGELISM</a></li>
-                    <li><a href="missions.html">MISSIONS</a></li>
-                    <li><a href="fusion.html">FUSION</a></li>
-                    <!-- <li><a href="visitors.html">VISITORS</a></li> -->
-                    <li><a href="contact.html" class ="Active" >CONTACT</a></li>
-                </ul>
-            </div>
+  <div class="top-bar">
+    <span>📍 Ngei Primary, Lang'ata, Nairobi</span>
+    <span>⛪ Sunday Service: 10:00 AM – 12:30 PM</span>
+    <a href="https://www.youtube.com/@destinychapel04" target="_blank">▶ Watch Live on YouTube</a>
+  </div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-img" />
+        <div class="logo-text"><span class="logo-tagline">Activating Dreams<br>To Transform Lives</span></div>
+      </a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="About.html">ABOUT</a></li>
+        <li><a href="sermons.html">SERMONS</a></li>
+        <li><a href="ministries.html">MINISTRIES</a></li>
+        <li><a href="evangelism.html">EVANGELISM</a></li>
+        <li><a href="missions.html">MISSIONS</a></li>
+        <li><a href="fusion.html">FUSION</a></li>
+        <li><a href="contact.html" class="active">CONTACT</a></li>
+      </ul>
+      <a href="visitors.html" class="nav-cta">Plan Your Visit</a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">Get In Touch</div>
+      <h1>We'd Love to<br/><em>Hear From You</em></h1>
+      <p>Whether you have a question, a prayer request, or just want to say hello — our team is here for you.</p>
+    </div>
+    <div class="page-hero-line"></div>
+  </section>
+
+  <!-- CONTACT CARDS -->
+  <section class="contact-cards-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">REACH US</span>
+        <h2 class="section-title">How to Connect</h2>
+      </div>
+      <div class="contact-cards-grid" style="margin-top:52px;">
+        <div class="contact-card">
+          <div class="contact-card-icon">📍</div>
+          <h3>Visit Us</h3>
+          <p>Ngei Primary, Lang'ata<br/>Nairobi, Kenya</p>
         </div>
-    </nav>
-
-    <!-- Page Hero -->
-    <section class="hero" style="height: 50vh; margin-top: 80px;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Get In Touch</h1>
-            <p class="hero-subtitle">We'd Love to Hear From You</p>
+        <div class="contact-card">
+          <div class="contact-card-icon">📞</div>
+          <h3>Call Us</h3>
+          <p><a href="tel:+254000000000">+254 XXX XXX XXX</a><br/><a href="tel:+254000000001">Pastor's Line: +254 XXX XXX</a></p>
         </div>
-    </section>
-
-    <!-- Contact Info Cards -->
-    <section style="padding: 5rem 0; background: var(--white); margin-top: -50px; position: relative; z-index: 10;">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
-                <div style="background: var(--white); padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">Visit Us</h3>
-                    <p style="color: var(--text-light); line-height: 1.7;">
-                        Ngei Estate, Off Mombasa Road<br>
-                        Nairobi, Kenya
-                    </p>
-                </div>
-
-                <div style="background: var(--white); padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">📞</div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">Call Us</h3>
-                    <p style="color: var(--text-light); line-height: 1.7;">
-                        Main Office: +254 XXX XXX XXX<br>
-                        Pastor's Line: +254 XXX XXX XXX
-                    </p>
-                </div>
-
-                <div style="background: var(--white); padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">✉️</div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">Email Us</h3>
-                    <p style="color: var(--text-light); line-height: 1.7;">
-                        General: info@destinychapelngei.org<br>
-                        Prayer: prayer@destinychapelngei.org
-                    </p>
-                </div>
-
-                <div style="background: var(--white); padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">⏰</div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.5rem;">Office Hours</h3>
-                    <p style="color: var(--text-light); line-height: 1.7;">
-                        Mon - Fri: 9:00 AM - 5:00 PM<br>
-                        Sat: 10:00 AM - 2:00 PM
-                    </p>
-                </div>
-            </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">✉️</div>
+          <h3>Email Us</h3>
+          <p><a href="mailto:info@destinychapelngei.org">info@destinychapelngei.org</a><br/><a href="mailto:prayer@destinychapelngei.org">prayer@destinychapelngei.org</a></p>
         </div>
-    </section>
-
-    <!-- Contact Form -->
-    <section style="padding: 5rem 0; background: var(--light-color);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">SEND US A MESSAGE</span>
-                <h2>Contact Form</h2>
-                <p>Fill out the form below and we'll get back to you within 24 hours</p>
-            </div>
-
-            <div style="max-width: 800px; margin: 3rem auto;">
-                <form style="background: var(--white); padding: 3rem; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">First Name *</label>
-                            <input type="text" required style="width: 100%; padding: 1rem; border: 2px solid var(--light-color); border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;">
-                        </div>
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">Last Name *</label>
-                            <input type="text" required style="width: 100%; padding: 1rem; border: 2px solid var(--light-color); border-radius: 8px; font-size: 1rem;">
-                        </div>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">Email *</label>
-                            <input type="email" required style="width: 100%; padding: 1rem; border: 2px solid var(--light-color); border-radius: 8px; font-size: 1rem;">
-                        </div>
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">Phone</label>
-                            <input type="tel" style="width: 100%; padding: 1rem; border: 2px solid var(--light-color); border-radius: 8px; font-size: 1rem;">
-                        </div>
-                    </div>
-
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">Subject *</label>
-                        <select required style="width: 100%; padding: 1rem; border: 2px solid var(--light-color); border-radius: 8px; font-size: 1rem;">
-                            <option value="">Select a subject...</option>
-                            <option>General Inquiry</option>
-                            <option>Prayer Request</option>
-                            <option>Join a Ministry</option>
-                            <option>Missions Interest</option>
-                            <option>Fusion Group Info</option>
-                            <option>First Time Visitor</option>
-                            <option>Pastoral Counseling</option>
-                            <option>Food Bank Assistance</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-
-                    <div style="margin-bottom: 2rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">Message *</label>
-                        <textarea required rows="6" style="width: 100%; padding: 1rem; border: 2px solid var(--light-color); border-radius: 8px; font-size: 1rem; resize: vertical;"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1.2rem;">Send Message</button>
-                </form>
-            </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">⏰</div>
+          <h3>Office Hours</h3>
+          <p>Mon–Fri: 9:00 AM – 5:00 PM<br/>Sat: 10:00 AM – 2:00 PM</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Department Contacts -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">SPECIFIC NEEDS?</span>
-                <h2>Department Contacts</h2>
-                <p>Reach out to the right person for your specific need</p>
+  <!-- FORM + DEPARTMENTS -->
+  <section class="form-dept-section">
+    <div class="container">
+      <div class="form-dept-grid">
+        <!-- Form -->
+        <div class="contact-form-wrap">
+          <div class="form-head">
+            <div class="form-head-inner">
+              <h3>Send Us a Message</h3>
+              <p>We'll respond within 24 hours.</p>
             </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">🙏 Pastoral Care</h4>
-                    <p style="color: var(--text-light); margin-bottom: 1rem;">For counseling, prayer, or spiritual guidance</p>
-                    <p style="color: var(--text-color); font-weight: 600;">Pastor James Mwangi</p>
-                    <p style="color: var(--text-light);">pastor@destinychapelngei.org</p>
-                </div>
-
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">👥 Ministries</h4>
-                    <p style="color: var(--text-light); margin-bottom: 1rem;">Youth, Kids, Men's, Women's ministry info</p>
-                    <p style="color: var(--text-color); font-weight: 600;">Ministry Coordinator</p>
-                    <p style="color: var(--text-light);">ministries@destinychapelngei.org</p>
-                </div>
-
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">🌍 Missions</h4>
-                    <p style="color: var(--text-light); margin-bottom: 1rem;">Mission trips and global outreach</p>
-                    <p style="color: var(--text-color); font-weight: 600;">Pastor Peter Kamau</p>
-                    <p style="color: var(--text-light);">missions@destinychapelngei.org</p>
-                </div>
-
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">👨‍👩‍👧 Fusion Groups</h4>
-                    <p style="color: var(--text-light); margin-bottom: 1rem;">Join or start a cell group</p>
-                    <p style="color: var(--text-color); font-weight: 600;">Fusion Coordinator</p>
-                    <p style="color: var(--text-light);">fusion@destinychapelngei.org</p>
-                </div>
-
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">🍞 Food Bank</h4>
-                    <p style="color: var(--text-light); margin-bottom: 1rem;">Food assistance and volunteer opportunities</p>
-                    <p style="color: var(--text-color); font-weight: 600;">Food Bank Manager</p>
-                    <p style="color: var(--text-light);">foodbank@destinychapelngei.org</p>
-                </div>
-
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">🎤 Evangelism</h4>
-                    <p style="color: var(--text-light); margin-bottom: 1rem;">Outreach teams and evangelism training</p>
-                    <p style="color: var(--text-color); font-weight: 600;">Evangelism Team</p>
-                    <p style="color: var(--text-light);">evangelism@destinychapelngei.org</p>
-                </div>
-            </div>
+          </div>
+          <div class="form-body-inner">
+            <form id="contactForm" novalidate>
+              <div class="form-row-2">
+                <div class="fg"><label>First Name *</label><input type="text" required placeholder="Jane"/></div>
+                <div class="fg"><label>Last Name *</label><input type="text" required placeholder="Doe"/></div>
+              </div>
+              <div class="form-row-2">
+                <div class="fg"><label>Email *</label><input type="email" required placeholder="you@email.com"/></div>
+                <div class="fg"><label>Phone</label><input type="tel" placeholder="+254 700 000 000"/></div>
+              </div>
+              <div class="fg">
+                <label>Subject *</label>
+                <select required>
+                  <option value="">Select a subject…</option>
+                  <option>General Inquiry</option>
+                  <option>Prayer Request</option>
+                  <option>Join a Ministry</option>
+                  <option>Missions Interest</option>
+                  <option>Fusion Group Info</option>
+                  <option>First Time Visitor</option>
+                  <option>Pastoral Counseling</option>
+                  <option>Food Bank Assistance</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="fg"><label>Message *</label><textarea required placeholder="Tell us how we can help…"></textarea></div>
+              <button type="submit" class="btn-submit">Send Message →</button>
+            </form>
+          </div>
         </div>
-    </section>
 
-    <!-- Social Media -->
-    <section style="padding: 5rem 0; background: var(--light-color);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">STAY CONNECTED</span>
-                <h2>Follow Us Online</h2>
-                <p>Join our online community for updates, encouragement, and live streaming</p>
+        <!-- Departments -->
+        <div>
+          <div class="section-header" style="margin-bottom:28px;">
+            <span class="section-tag">SPECIFIC NEEDS?</span>
+            <h2 class="section-title" style="font-size:1.9rem;">Department<br/>Contacts</h2>
+          </div>
+          <div class="dept-list">
+            <div class="dept-card">
+              <div class="dept-card-title">🙏 Pastoral Care</div>
+              <div class="dept-card-desc">Counseling, prayer, spiritual guidance</div>
+              <div class="dept-card-person">Pastor James Mwangi</div>
+              <div class="dept-card-email">pastor@destinychapelngei.org</div>
             </div>
-
-            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 3rem; flex-wrap: wrap;">
-                <a href="#" style="background: var(--white); padding: 2rem 3rem; border-radius: 12px; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; text-align: center; min-width: 180px;">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">📘</div>
-                    <div style="color: var(--primary-color); font-weight: 600; font-size: 1.1rem;">Facebook</div>
-                </a>
-
-                <a href="#" style="background: var(--white); padding: 2rem 3rem; border-radius: 12px; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; text-align: center; min-width: 180px;">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">📷</div>
-                    <div style="color: var(--primary-color); font-weight: 600; font-size: 1.1rem;">Instagram</div>
-                </a>
-
-                <a href="#" style="background: var(--white); padding: 2rem 3rem; border-radius: 12px; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; text-align: center; min-width: 180px;">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">▶️</div>
-                    <div style="color: var(--primary-color); font-weight: 600; font-size: 1.1rem;">YouTube</div>
-                </a>
-
-                <a href="#" style="background: var(--white); padding: 2rem 3rem; border-radius: 12px; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; text-align: center; min-width: 180px;">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🐦</div>
-                    <div style="color: var(--primary-color); font-weight: 600; font-size: 1.1rem;">Twitter / X</div>
-                </a>
+            <div class="dept-card">
+              <div class="dept-card-title">👥 Ministries</div>
+              <div class="dept-card-desc">Youth, Kids, Men's & Women's ministry info</div>
+              <div class="dept-card-person">Ministry Coordinator</div>
+              <div class="dept-card-email">ministries@destinychapelngei.org</div>
             </div>
+            <div class="dept-card">
+              <div class="dept-card-title">🌍 Missions</div>
+              <div class="dept-card-desc">Mission trips and global outreach</div>
+              <div class="dept-card-person">Pastor Peter Kamau</div>
+              <div class="dept-card-email">missions@destinychapelngei.org</div>
+            </div>
+            <div class="dept-card">
+              <div class="dept-card-title">👨‍👩‍👧 Fusion Groups</div>
+              <div class="dept-card-desc">Join or start a cell group</div>
+              <div class="dept-card-person">Fusion Coordinator</div>
+              <div class="dept-card-email">fusion@destinychapelngei.org</div>
+            </div>
+            <div class="dept-card">
+              <div class="dept-card-title">🍞 Food Bank</div>
+              <div class="dept-card-desc">Food assistance and volunteer opportunities</div>
+              <div class="dept-card-person">Food Bank Manager</div>
+              <div class="dept-card-email">foodbank@destinychapelngei.org</div>
+            </div>
+            <div class="dept-card">
+              <div class="dept-card-title">🎤 Evangelism</div>
+              <div class="dept-card-desc">Outreach teams and evangelism training</div>
+              <div class="dept-card-person">Evangelism Team</div>
+              <div class="dept-card-email">evangelism@destinychapelngei.org</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Map Section -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">FIND US</span>
-                <h2>Location Map</h2>
-            </div>
+  <!-- SOCIAL -->
+  <section class="social-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">STAY CONNECTED</span>
+        <h2 class="section-title">Follow Us Online</h2>
+        <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:.97rem;">Join our online community for updates, encouragement, and live streaming.</p>
+      </div>
+      <div class="social-grid">
+        <a href="#" class="social-tile"><span class="social-tile-icon">📘</span><span class="social-tile-label">Facebook</span></a>
+        <a href="#" class="social-tile"><span class="social-tile-icon">📷</span><span class="social-tile-label">Instagram</span></a>
+        <a href="https://www.youtube.com/@destinychapel04" target="_blank" class="social-tile"><span class="social-tile-icon">▶️</span><span class="social-tile-label">YouTube</span></a>
+        <a href="#" class="social-tile"><span class="social-tile-icon">𝕏</span><span class="social-tile-label">Twitter / X</span></a>
+      </div>
+    </div>
+  </section>
 
-            <div style="max-width: 1000px; margin: 3rem auto;">
-                <div style="background: var(--light-color); height: 450px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                    <p style="font-size: 1.2rem; color: var(--text-light); text-align: center;">
-                        🗺️ Google Maps Embed<br>
-                        <span style="font-size: 1rem;">(Interactive map showing church location)</span>
-                    </p>
-                </div>
-
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Quick Directions</h3>
-                    <p style="color: var(--text-light); line-height: 1.7; margin-bottom: 1rem;">
-                        <strong>From CBD:</strong> Take Mombasa Road to Lang'ata, turn right at Ngei Primary, church is 500m ahead on the left.
-                    </p>
-                    <p style="color: var(--text-light); line-height: 1.7;">
-                        <strong>By Matatu:</strong> Board route 11, 12, or 33 from town to Ngei Stage, church is a 5-minute walk.
-                    </p>
-                </div>
-            </div>
+  <!-- MAP -->
+  <section class="map-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">FIND US</span>
+        <h2 class="section-title">Our Location</h2>
+      </div>
+      <div class="map-wrap" style="margin-top:48px;">
+        <div class="map-placeholder">🗺️ Google Maps Embed — Ngei Primary, Lang'ata, Nairobi</div>
+        <div class="directions-card">
+          <h3>Quick Directions</h3>
+          <div class="dir-item"><strong>From CBD:</strong> Take Mombasa Road, turn right at Ngei Primary — church is 500 m ahead on the left.</div>
+          <div class="dir-item"><strong>From Embakasi:</strong> Take Pipeline Road towards Lang'ata, turn at the Ngei junction.</div>
+          <div class="dir-item"><strong>By Matatu:</strong> Board route 11, 12, or 33 from town to Ngei Stage — 5-minute walk.</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Destiny Chapel</h3>
-                    <p>Activating Dreams<br>To Transform Lives</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="YouTube">▶️</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="ministries.html">Ministries</a></li>
-                        <li><a href="evangelism.html">Evangelism</a></li>
-                        <li><a href="missions.html">Missions</a></li>
-                        <li><a href="fusion.html">Fusion Groups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Get Involved</h4>
-                    <ul>
-                        <li><a href="visitors.html">Plan Your Visit</a></li>
-                        <li><a href="#">Online Giving</a></li>
-                        <li><a href="#">Volunteer</a></li>
-                        <li><a href="#">Food Bank</a></li>
-                        <li><a href="#">Prayer Requests</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <ul class="contact-info">
-                        <li>📍 Ngei, Nairobi, Kenya</li>
-                        <li>📞 +254 XXX XXX XXX</li>
-                        <li>✉️ info@destinychapelngei.org</li>
-                    </ul>
-                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
-                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Destiny Chapel. All rights reserved.</p>
-            </div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top"><div class="container"><div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/dc.jpg" alt="Destiny Chapel" class="footer-logo"/>
+        <p class="footer-tagline">Activating Dreams To Transform Lives</p>
+        <p class="footer-address">Ngei Primary, Lang'ata<br/>Nairobi, Kenya</p>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-btn" aria-label="Instagram">◈</a>
+          <a href="https://www.youtube.com/@destinychapel04" class="social-btn" aria-label="YouTube">▶</a>
         </div>
-    </footer>
+      </div>
+      <div class="footer-col"><h4>Explore</h4><a href="About.html">About Us</a><a href="sermons.html">Sermons</a><a href="ministries.html">Ministries</a><a href="evangelism.html">Evangelism</a><a href="missions.html">Missions</a><a href="fusion.html">Fusion Groups</a></div>
+      <div class="footer-col"><h4>Get Involved</h4><a href="visitors.html">Plan Your Visit</a><a href="#">Online Giving</a><a href="#">Volunteer</a><a href="#">Food Bank</a><a href="#">Prayer Requests</a></div>
+      <div class="footer-col"><h4>Contact Us</h4><a href="#">📍 Ngei, Lang'ata, Nairobi</a><a href="tel:+254000000000">📞 +254 XXX XXX XXX</a><a href="mailto:info@destinychapelngei.org">✉️ info@destinychapelngei.org</a><div class="footer-service-times"><h4>Service Times</h4><p>Sunday: 10:00 AM – 12:30 PM</p></div></div>
+    </div></div></div>
+    <div class="footer-bottom"><div class="container"><p>© <span id="fy"></span> Destiny Chapel. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p></div></div>
+  </footer>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('fy').textContent = new Date().getFullYear();
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thank you! We\'ll be in touch within 24 hours. God bless you!');
+      e.target.reset();
+    });
+  </script>
 </body>
 </html>

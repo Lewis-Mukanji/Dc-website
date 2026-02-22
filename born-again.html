@@ -1,526 +1,799 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receive Christ - Destiny Chapel Ngei</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        .decision-form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(196, 30, 58, 0.15);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Receive Christ – Destiny Chapel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 
-        .form-step {
-            display: none;
-        }
+  <style>
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative;
+      height: 52vh;
+      min-height: 340px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 25% 50%, rgba(201,149,42,0.1) 0%, transparent 65%),
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 55%, var(--navy-light) 100%);
+    }
+    .page-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 80px 60px;
+      color: var(--white);
+    }
+    .page-hero-eyebrow {
+      display: inline-block;
+      background: rgba(201,149,42,0.2);
+      border: 1px solid rgba(201,149,42,0.45);
+      color: var(--gold-light);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 18px;
+    }
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.72); max-width: 500px; }
+    .page-hero-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, transparent 100%);
+      z-index: 3;
+    }
 
-        .form-step.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
+    /* ── FORM SECTION ── */
+    .form-section { background: var(--cream); padding: 90px 0; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .decision-form-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: 0 8px 48px rgba(13,31,60,0.1);
+      overflow: hidden;
+    }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+    /* Form header strip */
+    .form-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 32px 40px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .form-header-inner { position: relative; z-index: 2; }
+    .form-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .form-header p { font-size: 0.88rem; color: rgba(255,255,255,0.65); }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-color);
-            font-size: 1.05rem;
-        }
+    /* Progress */
+    .progress-wrap { padding: 28px 40px 0; }
+    .progress-track {
+      height: 6px;
+      background: #eef0f4;
+      border-radius: 50px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+      border-radius: 50px;
+      transition: width 0.45s ease;
+    }
+    .step-indicator {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .step-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .step-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #dde2ec;
+      transition: all 0.3s ease;
+    }
+    .step-dot.active  { background: var(--navy); transform: scale(1.3); }
+    .step-dot.done    { background: var(--gold); }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1.2rem;
-            border: 2px solid var(--light-color);
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-        }
+    /* Form body */
+    .form-body { padding: 32px 40px 40px; }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
-        }
+    /* Steps */
+    .form-step { display: none; }
+    .form-step.active {
+      display: block;
+      animation: stepIn 0.4s ease both;
+    }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .step-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 28px; }
 
-        .decision-options {
-            display: grid;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+    /* Form groups */
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid #dde2ec;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,149,42,0.12);
+    }
+    .form-group input.error { border-color: #e53e3e; }
+    .form-group textarea { min-height: 110px; resize: vertical; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-        .decision-option {
-            padding: 1.5rem;
-            border: 3px solid var(--light-color);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+    /* Decision options */
+    .decision-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .decision-option {
+      padding: 18px 20px;
+      border: 2px solid #dde2ec;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .decision-option:hover { border-color: var(--navy); background: var(--cream); }
+    .decision-option.selected {
+      border-color: var(--navy);
+      background: #f0f4fb;
+    }
+    .decision-option.selected .option-radio { border-color: var(--navy); }
+    .decision-option.selected .option-radio::after { opacity: 1; }
 
-        .decision-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-        }
+    .option-radio {
+      width: 20px; height: 20px;
+      border: 2px solid #c0c8d8;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 3px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .option-radio::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--navy);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .option-text h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+    .option-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+    .option-emoji { font-size: 1.4rem; flex-shrink: 0; margin-top: 1px; }
 
-        .decision-option:hover {
-            border-color: var(--primary-color);
-            background: var(--light-color);
-        }
+    .prayer-field { display: none; }
+    .prayer-field.visible {
+      display: block;
+      animation: stepIn 0.35s ease both;
+    }
 
-        .decision-option input[type="radio"]:checked + label {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
+    /* Buttons */
+    .step-btns { display: flex; gap: 12px; margin-top: 28px; }
+    .btn-back-step {
+      background: var(--cream);
+      color: var(--text);
+      border: 1.5px solid #dde2ec;
+      padding: 13px 24px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+    .btn-back-step:hover { background: #e2e8f0; }
+    .btn-next-step {
+      flex: 1;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      letter-spacing: 0.03em;
+    }
+    .btn-next-step:hover { background: var(--gold); transform: translateY(-1px); }
+    .btn-submit-step {
+      flex: 1;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(201,149,42,0.35);
+    }
+    .btn-submit-step:hover { background: var(--navy); transform: translateY(-2px); }
 
-        .decision-option input[type="radio"]:checked ~ * {
-            border-color: var(--primary-color);
-        }
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 60px 40px;
+      animation: stepIn 0.5s ease both;
+    }
+    .form-success.visible { display: block; }
+    .success-icon {
+      width: 84px; height: 84px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 32px rgba(13,31,60,0.2);
+    }
+    .form-success h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .form-success p { font-size: 0.97rem; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
 
-        .decision-option.selected {
-            border-color: var(--primary-color);
-            background: rgba(196, 30, 58, 0.05);
-        }
+    /* ── WHAT'S NEXT ── */
+    .whats-next { background: var(--white); padding: 90px 0; }
+    .next-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 880px;
+      margin: 52px auto 0;
+    }
+    .next-card {
+      background: var(--cream);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 16px 16px 0;
+      padding: 28px 32px;
+      transition: all 0.3s ease;
+    }
+    .next-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 8px 32px rgba(13,31,60,0.08);
+    }
+    .next-card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .next-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .next-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
 
-        .decision-option h4 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-            color: var(--dark-color);
-        }
+    /* ── SCRIPTURE BANNER ── */
+    .scripture-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 80px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .scripture-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .scripture-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .scripture-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .scripture-ref { font-size: 0.85rem; font-weight: 700; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase; }
 
-        .decision-option p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: var(--light-color);
-            border-radius: 50px;
-            margin-bottom: 3rem;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            transition: width 0.4s ease;
-            border-radius: 50px;
-        }
-
-        .step-indicator {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--text-light);
-            font-weight: 600;
-        }
-
-        .prayer-request-field {
-            display: none;
-        }
-
-        .prayer-request-field.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .btn-back {
-            background: var(--light-color);
-            color: var(--text-color);
-        }
-
-        .btn-back:hover {
-            background: #e0e0e0;
-        }
-    </style>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .page-hero-content { padding: 0 28px 48px; }
+      .form-header { padding: 28px 28px 24px; }
+      .progress-wrap { padding: 24px 28px 0; }
+      .form-body { padding: 28px 28px 36px; }
+      .form-success { padding: 48px 28px; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      .next-cards { grid-template-columns: 1fr; }
+      .step-btns { flex-direction: column; }
+      .btn-back-step { order: 2; }
+    }
+  </style>
 </head>
 <body>
-    
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <div class="logo-image-container">
-                        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-image">
-                        
-                    </div>
-                    <div class="logo-text">
-                        <!-- <h1>DESTINY CHAPEL</h1> -->
-                        <p class="tagline">Activating Dreams<br>To Transform Lives</p>
-                    </div>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class=>HOME</a></li>
-                    <li class="dropdown">
-                        <a href="About.html">ABOUT</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#history">Our History</a></li>
-                            <li><a href="#leadership">Leadership</a></li>
-                            <li><a href="#vision">Vision & Values</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="sermons.html">SERMONS</a></li>
-                    <li class="dropdown">
-                        <a href="ministries.html">MINISTRIES</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#youth">Youth Ministry</a></li>
-                            <li><a href="#kids">Kids Ministry</a></li>
-                            <li><a href="#men">Men's Ministry</a></li>
-                            <li><a href="#women">Women's Ministry</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="evangelism.html">EVANGELISM</a></li>
-                    <li><a href="missions.html">MISSIONS</a></li>
-                    <li><a href="fusion.html">FUSION</a></li>
-                    <!-- <li><a href="visitors.html">VISITORS</a></li> -->
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span>📍 Ngei Primary, Lang'ata, Nairobi</span>
+    <span>⛪ Sunday Service: 10:00 AM – 12:30 PM</span>
+    <a href="https://www.youtube.com/@destinychapel04" target="_blank">▶ Watch Live on YouTube</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-tagline">Activating Dreams<br>To Transform Lives</span>
         </div>
-    </nav>
+      </a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="About.html">ABOUT</a></li>
+        <li><a href="sermons.html">SERMONS</a></li>
+        <li><a href="ministries.html">MINISTRIES</a></li>
+        <li><a href="evangelism.html">EVANGELISM</a></li>
+        <li><a href="missions.html">MISSIONS</a></li>
+        <li><a href="fusion.html">FUSION</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <a href="visitors.html" class="nav-cta">Plan Your Visit</a>
+    </div>
+  </nav>
 
-    <!-- Page Hero -->
-    <section class="hero" style="height: 50vh; margin-top: 80px;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">A Life-Changing Decision</h1>
-            <p class="hero-subtitle">Today Can Be the Beginning of Your New Life in Christ</p>
+  <!-- PAGE HERO -->
+  <!-- <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">A Life-Changing Decision</div>
+      <h1>Today Can Be the<br/>Beginning of Your<br/><em>New Life in Christ</em></h1>
+      <p>We're so glad you're here. Take a moment to make your decision known — we'd love to walk this journey with you.</p>
+    </div>
+    <div class="page-hero-line"></div>
+  </section> -->
+
+  <!-- SCRIPTURE BANNER -->
+  <div class="scripture-banner">
+    <div class="scripture-inner">
+      <p class="scripture-quote">"If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved."</p>
+      <span class="scripture-ref">Romans 10:9</span>
+    </div>
+  </div>
+
+  <!-- FORM SECTION -->
+  <section class="form-section">
+    <div class="container">
+
+      <div class="decision-form-wrap">
+
+        <!-- Header -->
+        <div class="form-header">
+          <div class="form-header-inner">
+            <h2>Make Your Decision</h2>
+            <p>A pastor will personally reach out to you within 24–48 hours.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Decision Form -->
-    <section style="padding: 5rem 0; background: var(--light-color);">
-        <div class="container">
-            <div class="decision-form-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressBar" style="width: 33%;"></div>
-                </div>
-
-                <div class="step-indicator" id="stepIndicator">Step 1 of 3: Personal Information</div>
-
-                <form id="decisionForm">
-                    <!-- Step 1: Personal Info -->
-                    <div class="form-step active" data-step="1">
-                        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.8rem;">Let's Get to Know You</h2>
-                        <p style="color: var(--text-light); margin-bottom: 2rem;">We're so glad you're taking this step. Please share your information so we can connect with you.</p>
-
-                        <div class="form-group">
-                            <label for="fullName">Full Name *</label>
-                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phoneNumber">Phone Number *</label>
-                            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="+254 XXX XXX XXX">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address (Optional)</label>
-                            <input type="email" id="email" name="email" placeholder="your.email@example.com">
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary full-width" onclick="nextStep()">Continue →</button>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Decision Type -->
-                    <div class="form-step" data-step="2">
-                        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.8rem;">Your Decision Today</h2>
-                        <p style="color: var(--text-light); margin-bottom: 2rem;">Please select what best describes your decision:</p>
-
-                        <div class="decision-options">
-                            <div class="decision-option" onclick="selectDecision('born-again', this)">
-                                <input type="radio" name="decisionType" id="bornAgain" value="born-again" required>
-                                <label for="bornAgain">
-                                    <h4>🎉 Born Again</h4>
-                                    <p>I want to accept Jesus Christ as my Lord and Savior for the first time</p>
-                                </label>
-                            </div>
-
-                            <div class="decision-option" onclick="selectDecision('rededication', this)">
-                                <input type="radio" name="decisionType" id="rededication" value="rededication" required>
-                                <label for="rededication">
-                                    <h4>🔄 Rededication</h4>
-                                    <p>I want to recommit my life to Christ and return to fellowship with God</p>
-                                </label>
-                            </div>
-
-                            <div class="decision-option" onclick="selectDecision('prayer-request', this)">
-                                <input type="radio" name="decisionType" id="prayerRequest" value="prayer-request" required>
-                                <label for="prayerRequest">
-                                    <h4>🙏 Prayer Request</h4>
-                                    <p>I have a specific prayer need I'd like the church to pray about</p>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group prayer-request-field" id="prayerRequestField">
-                            <label for="prayerNotes">Please share your prayer request *</label>
-                            <textarea id="prayerNotes" name="prayerNotes" rows="5" placeholder="Tell us how we can pray for you..."></textarea>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-back" onclick="prevStep()">← Back</button>
-                            <button type="button" class="btn btn-primary" style="flex: 1;" onclick="nextStep()">Continue →</button>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Location -->
-                    <div class="form-step" data-step="3">
-                        <h2 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.8rem;">Where Are You Located?</h2>
-                        <p style="color: var(--text-light); margin-bottom: 2rem;">This helps us connect you with a Fusion group and pastoral care in your area.</p>
-
-                        <div class="form-group">
-                            <label for="location">Area of Residence *</label>
-                            <select id="location" name="location" required>
-                                <option value="">Select your area...</option>
-                                <option value="Ngei / Embakasi">Ngei / Embakasi</option>
-                                <option value="Pipeline / Kware">Pipeline / Kware</option>
-                                <option value="Umoja / Tena">Umoja / Tena</option>
-                                <option value="Donholm / Savannah">Donholm / Savannah</option>
-                                <option value="Kayole / Soweto">Kayole / Soweto</option>
-                                <option value="Buruburu / Makadara">Buruburu / Makadara</option>
-                                <option value="Eastleigh">Eastleigh</option>
-                                <option value="South B / South C">South B / South C</option>
-                                <option value="Langata / Karen">Langata / Karen</option>
-                                <option value="Kasarani / Ruaraka">Kasarani / Ruaraka</option>
-                                <option value="Thika Road Estates">Thika Road Estates</option>
-                                <option value="Westlands / Parklands">Westlands / Parklands</option>
-                                <option value="Other (Please specify below)">Other Location</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="specificLocation">Specific Estate/Landmark (Optional)</label>
-                            <input type="text" id="specificLocation" name="specificLocation" placeholder="e.g., Green Estate, Near ABC Mall">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="additionalNotes">Additional Notes (Optional)</label>
-                            <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Anything else you'd like us to know..."></textarea>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-back" onclick="prevStep()">← Back</button>
-                            <button type="submit" class="btn btn-primary" style="flex: 1;">Submit Decision 🎉</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <!-- Progress -->
+        <div class="progress-wrap" id="progressWrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width:33%;"></div>
+          </div>
+          <div class="step-indicator" id="stepIndicator">Step 1 of 3 — Personal Information</div>
+          <div class="step-dots">
+            <div class="step-dot active" id="dot1"></div>
+            <div class="step-dot"        id="dot2"></div>
+            <div class="step-dot"        id="dot3"></div>
+          </div>
         </div>
-    </section>
 
-    <!-- What Happens Next -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">WHAT'S NEXT?</span>
-                <h2>Your Journey Begins Here</h2>
+        <!-- Form body -->
+        <div class="form-body">
+          <form id="decisionForm" novalidate>
+
+            <!-- STEP 1 -->
+            <div class="form-step active" data-step="1">
+              <h3 class="step-title">Let's Get to Know You</h3>
+              <p class="step-desc">Please share your details so we can connect with you on your journey.</p>
+
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+              </div>
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label>Phone Number *</label>
+                  <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+254 700 000 000" required />
+                </div>
+                <div class="form-group">
+                  <label>Email Address (Optional)</label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" />
+                </div>
+              </div>
+
+              <div class="step-btns">
+                <button type="button" class="btn-next-step" onclick="nextStep()">Continue →</button>
+              </div>
             </div>
 
-            <div style="max-width: 900px; margin: 3rem auto; display: grid; gap: 2rem;">
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">✉️ We'll Reach Out</h3>
-                    <p style="color: var(--text-light); line-height: 1.7;">Within 24-48 hours, a pastor or ministry leader will contact you to pray with you, answer any questions, and connect you with resources for your spiritual growth.</p>
-                </div>
+            <!-- STEP 2 -->
+            <div class="form-step" data-step="2">
+              <h3 class="step-title">Your Decision Today</h3>
+              <p class="step-desc">Please select what best describes your decision:</p>
 
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">📖 Free Resources</h3>
-                    <p style="color: var(--text-light); line-height: 1.7;">You'll receive a new believer's guide, devotional materials, and information about our next baptism class and newcomers' orientation.</p>
+              <div class="decision-options">
+                <div class="decision-option" onclick="selectDecision('born-again', this)" id="opt-born-again">
+                  <span class="option-emoji">🎉</span>
+                  <div class="option-radio"></div>
+                  <div class="option-text">
+                    <h4>Born Again</h4>
+                    <p>I want to accept Jesus Christ as my Lord and Saviour for the first time</p>
+                  </div>
                 </div>
+                <div class="decision-option" onclick="selectDecision('rededication', this)" id="opt-rededication">
+                  <span class="option-emoji">🔄</span>
+                  <div class="option-radio"></div>
+                  <div class="option-text">
+                    <h4>Rededication</h4>
+                    <p>I want to recommit my life to Christ and return to fellowship with God</p>
+                  </div>
+                </div>
+                <div class="decision-option" onclick="selectDecision('prayer-request', this)" id="opt-prayer">
+                  <span class="option-emoji">🙏</span>
+                  <div class="option-radio"></div>
+                  <div class="option-text">
+                    <h4>Prayer Request</h4>
+                    <p>I have a specific prayer need I'd like the church to pray about</p>
+                  </div>
+                </div>
+              </div>
 
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">👥 Join a Fusion Group</h3>
-                    <p style="color: var(--text-light); line-height: 1.7;">We'll connect you with a Fusion cell group in your area where you can build friendships, grow spiritually, and find support on your journey.</p>
+              <div class="prayer-field" id="prayerField">
+                <div class="form-group">
+                  <label>Share your prayer request *</label>
+                  <textarea id="prayerNotes" name="prayerNotes" placeholder="Tell us how we can pray for you…"></textarea>
                 </div>
+              </div>
 
-                <div style="background: var(--light-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">⛪ Visit This Sunday</h3>
-                    <p style="color: var(--text-light); line-height: 1.7;">We'd love to celebrate with you in person! Come this Sunday and let us welcome you into the Destiny Chapel family.</p>
-                </div>
+              <div class="step-btns">
+                <button type="button" class="btn-back-step" onclick="prevStep()">← Back</button>
+                <button type="button" class="btn-next-step" onclick="nextStep()">Continue →</button>
+              </div>
             </div>
+
+            <!-- STEP 3 -->
+            <div class="form-step" data-step="3">
+              <h3 class="step-title">Where Are You Located?</h3>
+              <p class="step-desc">This helps us connect you with a Fusion group and pastoral care in your area.</p>
+
+              <div class="form-group">
+                <label>Area of Residence *</label>
+                <select id="location" name="location" required>
+                  <option value="">Select your area…</option>
+                  <option>Ngei / Embakasi</option>
+                  <option>Pipeline / Kware</option>
+                  <option>Umoja / Tena</option>
+                  <option>Donholm / Savannah</option>
+                  <option>Kayole / Soweto</option>
+                  <option>Buruburu / Makadara</option>
+                  <option>Eastleigh</option>
+                  <option>South B / South C</option>
+                  <option>Langata / Karen</option>
+                  <option>Kasarani / Ruaraka</option>
+                  <option>Thika Road Estates</option>
+                  <option>Westlands / Parklands</option>
+                  <option>Other Location</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Specific Estate / Landmark (Optional)</label>
+                <input type="text" id="specificLocation" name="specificLocation" placeholder="e.g. Green Estate, near ABC Mall" />
+              </div>
+              <div class="form-group">
+                <label>Additional Notes (Optional)</label>
+                <textarea id="additionalNotes" name="additionalNotes" placeholder="Anything else you'd like us to know…"></textarea>
+              </div>
+
+              <div class="step-btns">
+                <button type="button" class="btn-back-step" onclick="prevStep()">← Back</button>
+                <button type="submit" class="btn-submit-step">Submit Decision 🎉</button>
+              </div>
+            </div>
+
+          </form>
+
+          <!-- SUCCESS STATE -->
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">🙌</div>
+            <h2>Welcome to the Family!</h2>
+            <p>Thank you for taking this incredible step. A pastor or ministry leader will personally reach out to you within 24–48 hours to pray with you and walk this journey together.<br/><br/>God bless you!</p>
+            <a href="index.html" class="btn btn-gold" style="display:inline-block;">Return to Home</a>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Destiny Chapel Ngei</h3>
-                    <p>Activating Dreams<br>To Transform Lives</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="YouTube">▶️</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="ministries.html">Ministries</a></li>
-                        <li><a href="sermons.html">Sermons</a></li>
-                        <li><a href="evangelism.html">Evangelism & Missions</a></li>
-                        <li><a href="fusion.html">Fusion Groups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Get Involved</h4>
-                    <ul>
-                        <li><a href="visitors.html">Plan Your Visit</a></li>
-                        <li><a href="#">Online Giving</a></li>
-                        <li><a href="#">Volunteer</a></li>
-                        <li><a href="#">Food Bank</a></li>
-                        <li><a href="#">Prayer Requests</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <ul class="contact-info">
-                        <li>📍 Ngei, Nairobi, Kenya</li>
-                        <li>📞 +254 XXX XXX XXX</li>
-                        <li>✉️ info@destinychapelngei.org</li>
-                    </ul>
-                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
-                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Destiny Chapel Ngei. All rights reserved.</p>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S NEXT -->
+  <section class="whats-next">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">WHAT'S NEXT?</span>
+        <h2 class="section-title">Your Journey<br/>Begins Here</h2>
+      </div>
+      <div class="next-cards">
+        <div class="next-card">
+          <div class="next-card-icon">✉️</div>
+          <h3>We'll Reach Out</h3>
+          <p>Within 24–48 hours, a pastor or ministry leader will contact you to pray with you, answer any questions, and connect you with resources for your spiritual growth.</p>
         </div>
-    </footer>
+        <div class="next-card">
+          <div class="next-card-icon">📖</div>
+          <h3>Free Resources</h3>
+          <p>You'll receive a new believer's guide, devotional materials, and information about our next baptism class and newcomers' orientation.</p>
+        </div>
+        <div class="next-card">
+          <div class="next-card-icon">👥</div>
+          <h3>Join a Fusion Group</h3>
+          <p>We'll connect you with a Fusion cell group in your area where you can build friendships, grow spiritually, and find support on your journey.</p>
+        </div>
+        <div class="next-card">
+          <div class="next-card-icon">⛪</div>
+          <h3>Visit This Sunday</h3>
+          <p>We'd love to celebrate with you in person! Come this Sunday at 10:00 AM and let us welcome you into the Destiny Chapel family.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-    <script>
-        let currentStep = 1;
-        const totalSteps = 3;
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="footer-logo" />
+            <p class="footer-tagline">Activating Dreams To Transform Lives</p>
+            <p class="footer-address">Ngei Primary, Lang'ata<br/>Nairobi, Kenya</p>
+            <div class="social-links">
+              <a href="#" class="social-btn" aria-label="Facebook">f</a>
+              <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+              <a href="#" class="social-btn" aria-label="Instagram">◈</a>
+              <a href="https://www.youtube.com/@destinychapel04" class="social-btn" aria-label="YouTube">▶</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="About.html">About Us</a>
+            <a href="sermons.html">Sermons</a>
+            <a href="ministries.html">Ministries</a>
+            <a href="evangelism.html">Evangelism</a>
+            <a href="missions.html">Missions</a>
+            <a href="fusion.html">Fusion Groups</a>
+          </div>
+          <div class="footer-col">
+            <h4>Get Involved</h4>
+            <a href="visitors.html">Plan Your Visit</a>
+            <a href="#">Online Giving</a>
+            <a href="#">Volunteer</a>
+            <a href="#">Food Bank</a>
+            <a href="#">Prayer Requests</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact Us</h4>
+            <a href="#">📍 Ngei, Lang'ata, Nairobi</a>
+            <a href="tel:+254000000000">📞 +254 XXX XXX XXX</a>
+            <a href="mailto:info@destinychapelngei.org">✉️ info@destinychapelngei.org</a>
+            <div class="footer-service-times">
+              <h4>Service Times</h4>
+              <p>Sunday: 10:00 AM – 12:30 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="footerYear">2026</span> Destiny Chapel. All rights reserved. |
+          <a href="#privacy">Privacy Policy</a> |
+          <a href="#terms">Terms of Use</a>
+        </p>
+      </div>
+    </div>
+  </footer>
 
-        function updateProgress() {
-            const progress = (currentStep / totalSteps) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-            
-            const stepTexts = [
-                'Step 1 of 3: Personal Information',
-                'Step 2 of 3: Your Decision',
-                'Step 3 of 3: Location'
-            ];
-            document.getElementById('stepIndicator').textContent = stepTexts[currentStep - 1];
+  <script src="script.js"></script>
+  <script>
+    let currentStep = 1;
+    const totalSteps = 3;
+    let selectedDecision = null;
+
+    function updateProgress() {
+      const pct = (currentStep / totalSteps) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+
+      const labels = [
+        'Step 1 of 3 — Personal Information',
+        'Step 2 of 3 — Your Decision',
+        'Step 3 of 3 — Location'
+      ];
+      document.getElementById('stepIndicator').textContent = labels[currentStep - 1];
+
+      for (let i = 1; i <= totalSteps; i++) {
+        const dot = document.getElementById('dot' + i);
+        dot.className = 'step-dot' + (i < currentStep ? ' done' : i === currentStep ? ' active' : '');
+      }
+    }
+
+    function nextStep() {
+      const active = document.querySelector('.form-step.active');
+      const required = active.querySelectorAll('[required]');
+      let valid = true;
+
+      required.forEach(el => {
+        if (!el.value.trim()) {
+          el.classList.add('error');
+          valid = false;
+        } else {
+          el.classList.remove('error');
         }
+      });
 
-        function nextStep() {
-            const currentStepEl = document.querySelector('.form-step.active');
-            const inputs = currentStepEl.querySelectorAll('input[required], select[required], textarea[required]');
-            
-            let isValid = true;
-            inputs.forEach(input => {
-                if (!input.value) {
-                    isValid = false;
-                    input.style.borderColor = 'red';
-                } else {
-                    input.style.borderColor = '';
-                }
-            });
+      // Step 2: must have a decision selected
+      if (currentStep === 2 && !selectedDecision) {
+        alert('Please select one of the options above.');
+        return;
+      }
 
-            if (!isValid) {
-                alert('Please fill in all required fields');
-                return;
-            }
+      if (!valid) { return; }
 
-            if (currentStep < totalSteps) {
-                currentStepEl.classList.remove('active');
-                currentStep++;
-                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
-                updateProgress();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
+      if (currentStep < totalSteps) {
+        active.classList.remove('active');
+        currentStep++;
+        document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+        updateProgress();
+        window.scrollTo({ top: document.querySelector('.decision-form-wrap').offsetTop - 100, behavior: 'smooth' });
+      }
+    }
 
-        function prevStep() {
-            if (currentStep > 1) {
-                document.querySelector('.form-step.active').classList.remove('active');
-                currentStep--;
-                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
-                updateProgress();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
+    function prevStep() {
+      if (currentStep > 1) {
+        document.querySelector('.form-step.active').classList.remove('active');
+        currentStep--;
+        document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+        updateProgress();
+      }
+    }
 
-        function selectDecision(value, element) {
-            // Remove selected class from all options
-            document.querySelectorAll('.decision-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-            
-            // Add selected class to clicked option
-            element.classList.add('selected');
-            
-            // Check the radio button
-            element.querySelector('input[type="radio"]').checked = true;
-            
-            // Show/hide prayer request field
-            const prayerField = document.getElementById('prayerRequestField');
-            if (value === 'prayer-request') {
-                prayerField.classList.add('active');
-                document.getElementById('prayerNotes').required = true;
-            } else {
-                prayerField.classList.remove('active');
-                document.getElementById('prayerNotes').required = false;
-            }
-        }
+    function selectDecision(value, el) {
+      document.querySelectorAll('.decision-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedDecision = value;
 
-        // Form submission
-        document.getElementById('decisionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Here you would typically send this to your backend
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            alert('Thank you for your decision! 🎉\n\nWe will contact you within 24-48 hours. May God bless you on this incredible journey!');
-            
-            // Redirect to home page
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2000);
-        });
-    </script>
+      const prayerField = document.getElementById('prayerField');
+      const prayerNotes = document.getElementById('prayerNotes');
+      if (value === 'prayer-request') {
+        prayerField.classList.add('visible');
+        prayerNotes.required = true;
+      } else {
+        prayerField.classList.remove('visible');
+        prayerNotes.required = false;
+        prayerNotes.value = '';
+      }
+    }
+
+    document.getElementById('decisionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Hide form, show success
+      this.style.display = 'none';
+      document.getElementById('progressWrap').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('visible');
+
+      window.scrollTo({ top: document.querySelector('.decision-form-wrap').offsetTop - 100, behavior: 'smooth' });
+    });
+
+    // Clear error on input
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', () => el.classList.remove('error'));
+    });
+
+    // Footer year
+    const fy = document.getElementById('footerYear');
+    if (fy) fy.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

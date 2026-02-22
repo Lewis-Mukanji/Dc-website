@@ -1,446 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destiny Chapel - Welcome Home</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destiny Chapel – Activating Dreams To Transform Lives</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <div class="logo-image-container">
-                        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-image">
-                        
-                    </div>
-                    <div class="logo-text">
-                        <!-- <h1>DESTINY CHAPEL</h1> -->
-                        <p class="tagline">Activating Dreams<br>To Transform Lives</p>
-                    </div>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="#home" class="active">HOME</a></li>
-                    <li class="dropdown">
-                        <a href="About.html">ABOUT</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#history">Our History</a></li>
-                            <li><a href="#leadership">Leadership</a></li>
-                            <li><a href="#vision">Vision & Values</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="sermons.html">SERMONS</a></li>
-                    <li class="dropdown">
-                        <a href="ministries.html">MINISTRIES</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#youth">Youth Ministry</a></li>
-                            <li><a href="#kids">Kids Ministry</a></li>
-                            <li><a href="#men">Men's Ministry</a></li>
-                            <li><a href="#women">Women's Ministry</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="evangelism.html">EVANGELISM</a></li>
-                    <li><a href="missions.html">MISSIONS</a></li>
-                    <li><a href="fusion.html">FUSION</a></li>
-                    <!-- <li><a href="visitors.html">VISITORS</a></li> -->
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <!-- Hero background image: put your image at `images/hero-bg.jpg`.
-             This <img> provides a lazy-loading, accessible background. */ -->
-        <div class="hero-media" aria-hidden="true">
-            <img src="images/BRE_4420.jpg" alt="Congregation worshiping at Destiny Chapel" class="hero-bg-img" loading="lazy">
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <!-- <h1 class="hero-title">Welcome to Destiny Chapel</h1> -->
-            <!-- <p class="hero-subtitle">A Place Where Faith Comes Alive and Communities Thrive</p> -->
-            <!-- <p class="hero-verse">"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future." - Jeremiah 29:11</p> -->
-            <!-- <div class="hero-buttons">
-                <a href="visitors.html" class="btn btn-primary">Plan Your Visit</a>
-                <a href="sermons.html" class="btn btn-secondary">Watch Live</a>
-            </div> -->
-        </div>
-        <div class="hero-scroll">
-            <span>Scroll Down</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span>📍 Ngei Primary, Lang'ata, Nairobi</span>
+    <span>⛪ Sunday Service: 10:00 AM – 12:30 PM</span>
+    <a href="https://www.youtube.com/@destinychapel04" target="_blank">▶ Watch Live on YouTube</a>
+  </div>
 
-    <!-- Service Times & Online Platforms -->
-    <section class="service-times">
-        <div class="container">
-            <div class="service-times-wrapper">
-                <!-- Left Column: Service Times -->
-                <div class="service-times-column">
-                    <div class="column-header">
-                        <h3 class="column-title">Our Service Times</h3>
-                        <div class="title-underline"></div>
-                    </div>
-                    <div class="service-list">
-                        <div class="service-item">
-                            <div class="service-item-header">
-                                <span class="service-name">Our Main Service</span>
-                                <span class="service-location">Ngei Primary Lang'ata</span>
-                            </div>
-                            <p class="service-time">Sunday 10:00 AM - 12:30 PM</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Online Platforms -->
-                <div class="service-times-column">
-                    <div class="column-header">
-                        <h3 class="column-title">Our Online Channel</h3>
-                        <div class="title-underline"></div>
-                    </div>
-                    <div class="online-list">
-                        <a href="https://www.youtube.com/@destinychapel04" class="online-item">
-                            <div class="platform-icon">▶</div>
-                            <div class="platform-content">
-                             <h4>Destiny Chapel Channel</h4>
-                                <!-- <p>Watch content made for kids</p> -->
-                            </div>
-                            <span class="arrow-icon">→</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-tagline">Activating Dreams<br>To Transform Lives</span>
         </div>
-    </section>
+      </a>
 
-    <!-- Welcome Section -->
-    <section class="welcome">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">WHO WE ARE</span>
-                <h2>Welcome to Our Family</h2>
-            </div>
-            <div class="welcome-content">
-                <div class="welcome-text">
-                    <p class="lead">Destiny Chapel is more than just a church – we're a vibrant community of believers committed to making a lasting impact in our world.</p>
-                    <p>Founded on the principles of faith, hope, and love, we strive to create an environment where everyone can encounter God's presence, grow in their faith, and discover their divine purpose. Whether you're taking your first steps in faith or have been walking with God for years, there's a place for you here.</p>
-                    <p>Our heart beats for evangelism, community transformation, and empowering every believer to live out their calling. Through our various ministries, missions work, and community outreach programs, we're actively making a difference both locally and globally.</p>
-                    <a href="#about" class="btn btn-outline">Learn More About Us</a>
-                </div>
-                <div class="welcome-image">
-                    <div class="image-placeholder">
-                        <span>Church Community Image</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
 
-    <!-- Connect With Us -->
-    <section class="connect-with-us">
-        <div class="container">
-            <div class="section-header center">
-                <h2>Connect With Us</h2>
-            </div>
-            <div class="connect-grid">
-                <div class="connect-card">
-                    <div class="connect-image">
-                        <div class="image-placeholder">I Have Decided Image</div>
-                    </div>
-                    <div class="connect-content">
-                        <h3>Want to receive Christ</h3>
-                        <p>Give your life to Jesus</p>
-                        <a href="born-again.html" class="btn btn-primary">Connect</a>
-                    </div>
-                </div>
-                <div class="connect-card">
-                    <div class="connect-image">
-                        <div class="image-placeholder">Visitors Image</div>
-                    </div>
-                    <div class="connect-content">
-                        <h3>Visitor</h3>
-                        <p>We're glad you're here</p>
-                        <a href="visitors.html" class="btn btn-primary">Connect</a>
-                    </div>
-                </div>
-                <div class="connect-card">
-                    <div class="connect-image">
-                        <div class="image-placeholder">Connect</div>
-                    </div>
-                    <div class="connect-content">
-                        <h3>Connect</h3>
-                        <p>Find a community with us</p>
-                        <a href="fusion.html" class="btn btn-primary">Connect</a>
-                    </div>
-                </div>
-                <div class="connect-card">
-                    <div class="connect-image">
-                        <div class="image-placeholder">Prayer / Testimony</div>
-                    </div>
-                    <div class="connect-content">
-                        <h3>Prayer / Testimony</h3>
-                        <p>Share with us</p>
-                        <a href="born-again.html" class="btn btn-primary">Share</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="About.html">ABOUT</a></li>
+        <li><a href="sermons.html">SERMONS</a></li>
+        <li><a href="ministries.html">MINISTRIES</a></li>
+        <li><a href="evangelism.html">EVANGELISM</a></li>
+        <li><a href="missions.html">MISSIONS</a></li>
+        <li><a href="fusion.html">FUSION</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
 
-    <!-- Good Works Section -->
-    <section class="good-works">
-        <div class="container">
-            <div class="good-works-content">
-                <div class="good-works-text">
-                    <span class="section-tag light">COMMUNITY IMPACT</span>
-                    <h2>Making a Difference Through Good Works</h2>
-                    <p>Our commitment to serving extends beyond the church walls. Through our community outreach programs, we're actively transforming lives and bringing hope to those in need.</p>
-                    <div class="impact-stats">
-                        <div class="stat">
-                            <h3>500+</h3>
-                            <p>Families Helped</p>
-                        </div>
-                        <div class="stat">
-                            <h3>50+</h3>
-                            <p>Community Events</p>
-                        </div>
-                        <div class="stat">
-                            <h3>1000+</h3>
-                            <p>Lives Touched</p>
-                        </div>
-                    </div>
-                    <a href="#goodworks" class="btn btn-light">See Our Impact</a>
-                </div>
-                <div class="good-works-image">
-                    <div class="image-placeholder">Community Outreach Image</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Food Bank Highlight -->
-    <section class="food-bank-highlight">
-        <div class="container">
-            <div class="food-bank-content">
-                <div class="food-bank-image">
-                    <div class="image-placeholder">Food Bank Image</div>
-                </div>
-                <div class="food-bank-text">
-                    <span class="section-tag">COMMUNITY CARE</span>
-                    <h2>Destiny Chapel Food Bank</h2>
-                    <p>Our food bank serves as a beacon of hope for families in need, providing essential nutrition and demonstrating Christ's love through practical action.</p>
-                    <ul class="feature-list">
-                        <li>Weekly food distribution</li>
-                        <li>Emergency assistance available</li>
-                        <li>Compassionate volunteer support</li>
-                        <li>Partnership with local suppliers</li>
-                    </ul>
-                    <div class="button-group">
-                        <a href="#foodbank" class="btn btn-primary">Access Food Bank Portal</a>
-                        <a href="#volunteer" class="btn btn-outline">Volunteer with Us</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Evangelism Call to Action -->
-    <section class="evangelism-cta">
-        <div class="evangelism-overlay"></div>
-        <div class="container">
-            <div class="evangelism-content">
-                <h2>Go and Make Disciples</h2>
-                <p>Join us in spreading the good news of Jesus Christ to our community and beyond. Whether through street evangelism, online outreach, or personal testimony, every believer has a role to play in the Great Commission.</p>
-                <div class="button-group">
-                    <a href="#evangelism" class="btn btn-light">Get Involved in Outreach</a>
-                    <a href="#resources" class="btn btn-outline-light">Download Resources</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events & News -->
-    <section class="events">
-        <div class="container">
-            <div class="section-header center">
-                <h2 class="events-main-title">Upcoming Events</h2>
-            </div>
-            <div class="events-grid-new">
-                <!-- Event 1: Premarital Counselling -->
-                <div class="event-card-new" data-event="prema" data-image="images/allyours.jpeg">
-                    <div class="event-image-wrapper">
-                        <div class="event-overlay">
-                            <button class="more-info-btn">More Info</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Event 2: Prayer Conference -->
-                <div class="event-card-new" data-event="prayer" data-image="images/how.jpeg">
-                    <div class="event-image-wrapper">
-                        <div class="event-overlay">
-                            <button class="more-info-btn">More Info</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Event 3: Couples Valentine Dinner -->
-                <div class="event-card-new" data-event="valentine" data-image="images/Gala.jpeg">
-                    <div class="event-image-wrapper">
-                        <div class="event-overlay">
-                            <button class="more-info-btn">More Info</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Event Modal -->
-    <div class="event-modal" id="eventModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div class="modal-body">
-                <div class="modal-poster">
-                    <!-- Poster will be dynamically inserted -->
-                </div>
-                <div class="modal-info">
-                    <h2 class="modal-title"></h2>
-                    <div class="modal-details">
-                        <div class="detail-item">
-                            <strong>Date:</strong>
-                            <span class="event-date"></span>
-                        </div>
-                        <div class="detail-item">
-                            <strong>Time:</strong>
-                            <span class="event-time"></span>
-                        </div>
-                        <div class="detail-item">
-                            <strong>Venue:</strong>
-                            <span class="event-venue"></span>
-                        </div>
-                        <div class="detail-item description">
-                            <strong>Description:</strong>
-                            <p class="event-description"></p>
-                        </div>
-                        <div class="detail-item payment">
-                            <strong>Payment Information</strong>
-                            <div class="payment-details">
-                                <p><strong>Price:</strong> <span class="event-price"></span></p>
-                                <p><strong>Paybill:</strong> <span class="event-paybill"></span></p>
-                                <p><strong>Account Number:</strong> <span class="event-account"></span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#register" class="btn btn-primary register-btn">Register Now</a>
-                </div>
-            </div>
-        </div>
+      <a href="born-again.html" class="nav-cta">Get Born Again</a>
     </div>
+  </nav>
 
-    <!-- Visitor Section -->
-    <section class="visitors">
-        <div class="container">
-            <div class="visitor-content">
-                <div class="visitor-text">
-                    <span class="section-tag">FIRST TIME?</span>
-                    <h2>Plan Your Visit</h2>
-                    <p>We'd love to welcome you! Whether you're new to faith or looking for a church home, we're here to support you on your journey.</p>
-                    <h3>What to Expect:</h3>
-                    <ul class="visitor-list">
-                        <li>Warm, friendly atmosphere</li>
-                        <li>Contemporary worship and relevant teaching</li>
-                        <li>Programs for all ages</li>
-                        <li>Free parking and accessible facilities</li>
-                        <li>Coffee and connection time after service</li>
-                    </ul>
-                    <div class="button-group">
-                        <a href="#plan-visit" class="btn btn-primary">Plan Your Visit</a>
-                        <a href="#virtual-tour" class="btn btn-outline">Take a Virtual Tour</a>
-                    </div>
-                </div>
-                <div class="visitor-form">
-                    <h3>Let Us Know You're Coming</h3>
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Email Address" required>
-                        <input type="tel" placeholder="Phone Number">
-                        <select>
-                            <option>How many attending?</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4+</option>
-                        </select>
-                        <textarea placeholder="Any questions or special needs?"></textarea>
-                        <button type="submit" class="btn btn-primary full-width">Submit</button>
-                    </form>
-                </div>
-            </div>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-media">
+      <img src="images/BRE_4420.jpg" alt="Congregation worshiping at Destiny Chapel" class="hero-bg-img" loading="eager" />
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Welcome to Destiny Chapel</div>
+      <h1 class="hero-title">Where <em>Faith</em> Comes Alive &amp; <br/>Dreams<br/>Are Activated</h1>
+      <p class="hero-verse">"For I know the plans I have for you, declares the Lord — plans to prosper you and not to harm you, plans to give you hope and a future." — Jeremiah 29:11</p>
+      <!-- <div class="hero-actions">
+        <a href="visitors.html" class="btn btn-gold">Plan Your Visit</a>
+        <a href="sermons.html" class="btn-watch">
+          <span class="play-circle">▶</span> Watch a Sermon
+        </a>
+      </div> -->
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll Down</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- SERVICE TIMES STRIP -->
+  <div class="service-strip">
+    <div class="strip-container">
+      <div class="strip-item">
+        <span class="strip-icon">🕙</span>
+        <div>
+          <strong>Main Service</strong>
+          <span>Sunday · 10:00 AM – 12:30 PM</span>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Destiny Chapel</h3>
-                    <p>Activating Dreams To Transform Lives</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="YouTube">▶️</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="ministries.html">Ministries</a></li>
-                        <li><a href="evangelism.html">Evangelism</a></li>
-                        <li><a href="missions.html">Missions</a></li>
-                        <li><a href="fusion.html">Fusion Groups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Ministries</h4>
-                    <ul>
-                        <li><a href="#youth">Youth Ministry</a></li>
-                        <li><a href="#kids">Kids Ministry</a></li>
-                        <li><a href="#men">Men's Ministry</a></li>
-                        <li><a href="#women">Women's Ministry</a></li>
-                        <li><a href="#fusion">Fusion Groups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <ul class="contact-info">
-                        <li>📍 Ngei, Nairobi, Kenya</li>
-                        <li>📞 +254 XXX XXX XXX</li>
-                        <li>✉️ info@destinychapelngei.org</li>
-                    </ul>
-                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
-                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Destiny Chapel. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Use</a></p>
-            </div>
+      </div>
+      <div class="strip-divider"></div>
+      <div class="strip-item">
+        <span class="strip-icon">📍</span>
+        <div>
+          <strong>Location</strong>
+          <span>Ngei Primary, Lang'ata</span>
         </div>
-    </footer>
+      </div>
+      <div class="strip-divider"></div>
+      <div class="strip-item">
+        <span class="strip-icon">▶</span>
+        <div>
+          <strong>Online</strong>
+          <a href="https://www.youtube.com/@destinychapel04" target="_blank">Destiny Chapel YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- WELCOME / WHO WE ARE -->
+  <section class="welcome" id="about">
+    <div class="container">
+      <div class="welcome-grid">
+        <div class="welcome-text">
+          <span class="section-tag">WHO WE ARE</span>
+          <h2 class="section-title">Welcome to<br/>Our Family</h2>
+          <p class="lead">Destiny Chapel is more than just a church — we're a vibrant community of believers committed to making a lasting impact in our world.</p>
+          <p>Founded on the principles of faith, hope, and love, we strive to create an environment where everyone can encounter God's presence, grow in their faith, and discover their divine purpose.</p>
+          <p>Our heart beats for evangelism, community transformation, and empowering every believer to live out their calling. Through our various ministries, missions work, and community outreach programs, we're actively making a difference both locally and globally.</p>
+          <a href="About.html" class="btn btn-outline">Learn More About Us</a>
+        </div>
+        <div class="welcome-image">
+          <div class="image-frame">
+            <div class="image-placeholder-box">
+              <span>Church Community Image</span>
+            </div>
+            <div class="image-accent-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT WITH US -->
+  <section class="connect" id="connect">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">GET STARTED</span>
+        <h2 class="section-title">Connect With Us</h2>
+      </div>
+      <div class="connect-grid">
+        <div class="connect-card">
+          <div class="connect-img-wrap">
+            <div class="connect-img-placeholder gradient-1">✝️</div>
+          </div>
+          <div class="connect-body">
+            <h3>Receive Christ</h3>
+            <p>Give your life to Jesus today</p>
+            <a href="born-again.html" class="btn btn-gold btn-sm">Connect</a>
+          </div>
+        </div>
+        <div class="connect-card">
+          <div class="connect-img-wrap">
+            <div class="connect-img-placeholder gradient-2">🤝</div>
+          </div>
+          <div class="connect-body">
+            <h3>First-Time Visitor</h3>
+            <p>We're glad you're here</p>
+            <a href="visitors.html" class="btn btn-gold btn-sm">Connect</a>
+          </div>
+        </div>
+        <div class="connect-card">
+          <div class="connect-img-wrap">
+            <div class="connect-img-placeholder gradient-3">🌐</div>
+          </div>
+          <div class="connect-body">
+            <h3>Join a Group</h3>
+            <p>Find community with us</p>
+            <a href="fusion.html" class="btn btn-gold btn-sm">Connect</a>
+          </div>
+        </div>
+        <div class="connect-card">
+          <div class="connect-img-wrap">
+            <div class="connect-img-placeholder gradient-4">🙏</div>
+          </div>
+          <div class="connect-body">
+            <h3>Prayer &amp; Testimony</h3>
+            <p>Share with us</p>
+            <a href="born-again.html" class="btn btn-gold btn-sm">Share</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOD WORKS / COMMUNITY IMPACT -->
+  <section class="good-works">
+    <div class="container">
+      <div class="good-works-grid">
+        <div class="good-works-text">
+          <span class="section-tag light">COMMUNITY IMPACT</span>
+          <h2 class="section-title light">Making a Difference<br/>Through Good Works</h2>
+          <p>Our commitment to serving extends beyond the church walls. Through our community outreach programs, we're actively transforming lives and bringing hope to those in need.</p>
+          <div class="stats-row">
+            <div class="stat-item">
+              <span class="stat-num" data-target="500">0</span>+
+              <span class="stat-label">Families Helped</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="50">0</span>+
+              <span class="stat-label">Community Events</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="1000">0</span>+
+              <span class="stat-label">Lives Touched</span>
+            </div>
+          </div>
+          <a href="missions.html" class="btn btn-light-outline">See Our Impact</a>
+        </div>
+        <div class="good-works-image">
+          <div class="image-placeholder-box dark">Community Outreach Image</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOD BANK -->
+  <section class="food-bank" id="foodbank">
+    <div class="container">
+      <div class="food-bank-grid">
+        <div class="food-bank-img-wrap">
+          <img src="images/bf.jpeg" alt="Destiny Chapel Food Bank" class="food-bank-img" />
+        </div>
+        <div class="food-bank-text">
+          <span class="section-tag">COMMUNITY CARE</span>
+          <h2 class="section-title">Destiny Chapel<br/>Food Bank</h2>
+          <p>Our food bank serves as a beacon of hope for families in need, providing essential nutrition and demonstrating Christ's love through practical action.</p>
+          <ul class="feature-list">
+            <li>Weekly food distribution</li>
+            <li>Emergency assistance available</li>
+            <li>Compassionate volunteer support</li>
+            <li>Partnership with local suppliers</li>
+          </ul>
+          <div class="btn-group">
+            <a href="#foodbank" class="btn btn-gold">Access Food Bank Portal</a>
+            <a href="#volunteer" class="btn btn-outline">Volunteer With Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVANGELISM CTA BAND -->
+  <section class="evangelism-band">
+    <div class="evangelism-overlay"></div>
+    <div class="container">
+      <div class="evangelism-content">
+        <span class="section-tag light">THE GREAT COMMISSION</span>
+        <h2>Go and Make Disciples</h2>
+        <p>Join us in spreading the good news of Jesus Christ to our community and beyond. Every believer has a role to play.</p>
+        <div class="btn-group center-group">
+          <a href="evangelism.html" class="btn btn-gold">Get Involved in Outreach</a>
+          <a href="#resources" class="btn btn-ghost-white">Download Resources</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events" id="events">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">WHAT'S ON</span>
+        <h2 class="section-title events-title">Upcoming Events</h2>
+      </div>
+      <div class="events-grid">
+        <div class="event-card" data-event="prema" data-image="images/allyours.jpeg">
+          <div class="event-img-wrap">
+            <div class="event-overlay">
+              <button class="more-info-btn">More Info</button>
+            </div>
+          </div>
+        </div>
+        <div class="event-card" data-event="prayer" data-image="images/how.jpeg">
+          <div class="event-img-wrap">
+            <div class="event-overlay">
+              <button class="more-info-btn">More Info</button>
+            </div>
+          </div>
+        </div>
+        <div class="event-card" data-event="valentine" data-image="images/Gala.jpeg">
+          <div class="event-img-wrap">
+            <div class="event-overlay">
+              <button class="more-info-btn">More Info</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT MODAL -->
+  <div class="event-modal" id="eventModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <div class="modal-body">
+        <div class="modal-poster"></div>
+        <div class="modal-info">
+          <h2 class="modal-title"></h2>
+          <div class="modal-details">
+            <div class="detail-item"><strong>Date</strong><span class="event-date"></span></div>
+            <div class="detail-item"><strong>Time</strong><span class="event-time"></span></div>
+            <div class="detail-item"><strong>Venue</strong><span class="event-venue"></span></div>
+            <div class="detail-item"><strong>Description</strong><p class="event-description"></p></div>
+            <div class="detail-item payment-block">
+              <strong>Payment Information</strong>
+              <div class="payment-details">
+                <p><strong>Price:</strong> <span class="event-price"></span></p>
+                <p><strong>Paybill:</strong> <span class="event-paybill"></span></p>
+                <p><strong>Account:</strong> <span class="event-account"></span></p>
+              </div>
+            </div>
+          </div>
+          <a href="#register" class="btn btn-gold full-width register-btn">Register Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAN YOUR VISIT -->
+  <section class="visitors" id="visit">
+    <div class="container">
+      <div class="visitors-grid">
+        <div class="visitor-text">
+          <span class="section-tag">FIRST TIME?</span>
+          <h2 class="section-title">Plan Your Visit</h2>
+          <p>We'd love to welcome you! Whether you're new to faith or looking for a church home, we're here to support you on your journey.</p>
+          <h3>What to Expect:</h3>
+          <ul class="visitor-list">
+            <li>Warm, friendly atmosphere</li>
+            <li>Contemporary worship and relevant teaching</li>
+            <li>Programs for all ages</li>
+            <li>Free parking and accessible facilities</li>
+            <li>Coffee and connection time after service</li>
+          </ul>
+          <div class="btn-group">
+            <a href="visitors.html" class="btn btn-gold">Plan Your Visit</a>
+            <a href="#virtual-tour" class="btn btn-outline">Take a Virtual Tour</a>
+          </div>
+        </div>
+        <div class="visitor-form-wrap">
+          <div class="visitor-form">
+            <h3>Let Us Know You're Coming</h3>
+            <form id="visitorForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Your Name</label>
+                  <input type="text" placeholder="" required />
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" placeholder="" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="" />
+              </div>
+              <div class="form-group">
+                <label>How many attending?</label>
+                <select>
+                  <option>Select number</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Any questions or special needs?</label>
+                <textarea placeholder=""></textarea>
+              </div>
+              <button type="submit" class="btn btn-gold full-width">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="footer-logo" />
+            <p class="footer-tagline">Activating Dreams To Transform Lives</p>
+            <p class="footer-address">Ngei Primary, Lang'ata<br/>Nairobi, Kenya</p>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook" class="social-btn">f</a>
+              <a href="#" aria-label="Twitter" class="social-btn">𝕏</a>
+              <a href="#" aria-label="Instagram" class="social-btn">◈</a>
+              <a href="https://www.youtube.com/@destinychapel04" aria-label="YouTube" class="social-btn">▶</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="About.html">About Us</a>
+            <a href="sermons.html">Sermons</a>
+            <a href="ministries.html">Ministries</a>
+            <a href="evangelism.html">Evangelism</a>
+            <a href="missions.html">Missions</a>
+            <a href="fusion.html">Fusion Groups</a>
+          </div>
+          <div class="footer-col">
+            <h4>Ministries</h4>
+            <a href="ministries.html#youth">Youth Ministry</a>
+            <a href="ministries.html#kids">Kids Ministry</a>
+            <a href="ministries.html#men">Men's Ministry</a>
+            <a href="ministries.html#women">Women's Ministry</a>
+            <a href="fusion.html">Fusion Groups</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact Us</h4>
+            <a href="#">📍 Ngei, Lang'ata, Nairobi</a>
+            <a href="tel:+254000000000">📞 +254 XXX XXX XXX</a>
+            <a href="mailto:info@destinychapelngei.org">✉️ info@destinychapelngei.org</a>
+            <div class="footer-service-times">
+              <h4>Service Times</h4>
+              <p>Sunday: 10:00 AM – 12:30 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="footerYear">2026</span> Destiny Chapel. All rights reserved. |
+          <a href="#privacy">Privacy Policy</a> |
+          <a href="#terms">Terms of Use</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

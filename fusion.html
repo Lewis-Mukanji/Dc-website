@@ -1,659 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fusion Groups - Destiny Chapel</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        /* Group Finder */
-        .group-finder {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(196, 30, 58, 0.1);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fusion Groups – Destiny Chapel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero{position:relative;height:52vh;min-height:340px;display:flex;align-items:flex-end;overflow:hidden;}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 25% 50%,rgba(201,149,42,.1) 0%,transparent 65%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 55%,var(--navy-light) 100%);}
+    .page-hero-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:36px 36px;}
+    .page-hero-content{position:relative;z-index:2;padding:0 80px 60px;color:var(--white);}
+    .page-hero-eyebrow{display:inline-block;background:rgba(201,149,42,.2);border:1px solid rgba(201,149,42,.45);color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:18px;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:600;line-height:1.1;margin-bottom:14px;}
+    .page-hero h1 em{font-style:italic;color:var(--gold-light);}
+    .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.72);max-width:500px;}
+    .page-hero-line{position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-light) 50%,transparent 100%);z-index:3;}
 
-        .finder-input {
-            width: 100%;
-            padding: 1.2rem;
-            border: 2px solid var(--light-color);
-            border-radius: 50px;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            transition: var(--transition);
-        }
+    /* INTRO */
+    .fusion-intro{background:var(--white);padding:90px 0;}
+    .fusion-intro-inner{max-width:820px;margin:0 auto;text-align:center;}
+    .fusion-intro-inner p{font-size:1.08rem;color:var(--muted);line-height:1.85;margin-bottom:18px;}
+    .fusion-intro-inner p:first-of-type{font-size:1.18rem;color:var(--text);}
 
-        .finder-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
+    /* BENEFITS */
+    .benefits-section{background:var(--cream);padding:90px 0;}
+    .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px;}
+    .benefit-card{background:var(--white);border-radius:18px;padding:32px 26px;text-align:center;border-top:3px solid var(--gold);transition:transform .3s,box-shadow .3s;}
+    .benefit-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(13,31,60,.1);}
+    .benefit-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.6rem;}
+    .benefit-card h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:10px;}
+    .benefit-card p{font-size:.85rem;color:var(--muted);line-height:1.7;}
 
-        /* Group Cards */
-        .groups-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+    /* WHAT TO EXPECT */
+    .expect-section{background:var(--white);padding:90px 0;}
+    .expect-timeline{max-width:700px;margin:52px auto 0;display:flex;flex-direction:column;gap:0;}
+    .expect-item{display:grid;grid-template-columns:100px 1fr;gap:24px;position:relative;}
+    .expect-item:not(:last-child)::before{content:'';position:absolute;left:48px;top:56px;bottom:-1px;width:2px;background:linear-gradient(to bottom,var(--gold),rgba(201,149,42,.1));}
+    .expect-item{padding-bottom:28px;}
+    .expect-time{padding-top:18px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-align:right;}
+    .expect-content{background:var(--cream);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;}
+    .expect-content h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:6px;}
+    .expect-content p{font-size:.86rem;color:var(--muted);line-height:1.7;}
 
-        .group-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: var(--transition);
-            border-left: 6px solid var(--primary-color);
-        }
+    /* FINDER */
+    .finder-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);padding:90px 0;position:relative;overflow:hidden;}
+    .finder-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:36px 36px;}
+    .finder-inner{position:relative;z-index:2;max-width:580px;margin:0 auto;text-align:center;}
+    .finder-inner .section-tag{color:var(--gold-light);}
+    .finder-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--white);margin-bottom:10px;}
+    .finder-inner p{font-size:.92rem;color:rgba(255,255,255,.72);margin-bottom:28px;}
+    .finder-bar{display:flex;gap:10px;background:var(--white);border-radius:50px;padding:6px 6px 6px 20px;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+    .finder-bar input{flex:1;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--text);background:transparent;}
+    .finder-bar button{background:var(--gold);color:var(--white);border:none;padding:10px 24px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .25s;white-space:nowrap;}
+    .finder-bar button:hover{background:var(--navy);}
 
-        .group-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
-        }
+    /* GROUP CARDS */
+    .groups-section{background:var(--cream);padding:90px 0;}
+    .groups-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px;}
+    .group-card{background:var(--white);border-radius:18px;padding:28px 26px;box-shadow:0 4px 24px rgba(13,31,60,.07);border-left:4px solid var(--gold);transition:transform .3s,box-shadow .3s;}
+    .group-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(13,31,60,.12);}
+    .group-location-badge{display:inline-block;background:var(--cream);color:var(--navy);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:5px 14px;border-radius:50px;margin-bottom:14px;border:1px solid #dde2ec;}
+    .group-card h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--navy);margin-bottom:14px;}
+    .group-info-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+    .group-info-row{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--muted);}
+    .group-info-icon{font-size:1rem;min-width:20px;}
+    .group-leader-block{background:var(--cream);border-radius:10px;padding:12px 14px;margin-bottom:16px;}
+    .leader-n{font-size:.84rem;font-weight:700;color:var(--navy);margin-bottom:3px;}
+    .leader-c{font-size:.78rem;color:var(--muted);}
+    .btn-join{display:block;background:var(--navy);color:var(--white);text-align:center;text-decoration:none;padding:11px 20px;border-radius:50px;font-size:.82rem;font-weight:700;transition:all .25s;}
+    .btn-join:hover{background:var(--gold);}
 
-        .group-location {
-            display: inline-block;
-            background: var(--light-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
+    /* START GROUP */
+    .start-section{background:var(--white);padding:90px 0;}
+    .start-card{max-width:820px;margin:0 auto;background:var(--navy);border-radius:24px;padding:60px 52px;text-align:center;position:relative;overflow:hidden;}
+    .start-card::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px;}
+    .start-card-inner{position:relative;z-index:2;}
+    .start-card h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--white);margin-bottom:14px;}
+    .start-card p{font-size:.95rem;color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto;}
 
-        .group-card h3 {
-            color: var(--primary-color);
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .group-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text-light);
-        }
-
-        .info-icon {
-            font-size: 1.2rem;
-            min-width: 25px;
-        }
-
-        .leader-section {
-            background: var(--light-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-
-        .leader-name {
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .leader-contact {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* Benefits Grid */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .benefit-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: var(--transition);
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .benefit-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
-        }
-
-        .benefit-card h4 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        /* What to Expect */
-        .expect-timeline {
-            max-width: 800px;
-            margin: 3rem auto;
-        }
-
-        .expect-item {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            align-items: flex-start;
-        }
-
-        .expect-time {
-            min-width: 100px;
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-
-        .expect-content {
-            flex: 1;
-            background: var(--light-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .expect-content h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .groups-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .expect-item {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    @media(max-width:900px){.benefits-grid{grid-template-columns:1fr 1fr;}.groups-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){.page-hero-content{padding:0 28px 48px;}.benefits-grid{grid-template-columns:1fr;}.groups-grid{grid-template-columns:1fr;}.expect-item{grid-template-columns:80px 1fr;gap:14px;}.start-card{padding:36px 24px;}}
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <div class="logo-image-container">
-                        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-image">
-                        
-                    </div>
-                    <div class="logo-text">
-                        <!-- <h1>DESTINY CHAPEL</h1> -->
-                        <p class="tagline">Activating Dreams<br>To Transform Lives</p>
-                    </div>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class=>HOME</a></li>
-                    <li class="dropdown">
-                        <a href="About.html">ABOUT</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#history">Our History</a></li>
-                            <li><a href="#leadership">Leadership</a></li>
-                            <li><a href="#vision">Vision & Values</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="sermons.html">SERMONS</a></li>
-                    <li class="dropdown">
-                        <a href="ministries.html">MINISTRIES</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#youth">Youth Ministry</a></li>
-                            <li><a href="#kids">Kids Ministry</a></li>
-                            <li><a href="#men">Men's Ministry</a></li>
-                            <li><a href="#women">Women's Ministry</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="evangelism.html">EVANGELISM</a></li>
-                    <li><a href="missions.html">MISSIONS</a></li>
-                    <li><a href="fusion.html" class="Active">FUSION</a></li>
-                    <!-- <li><a href="visitors.html">VISITORS</a></li> -->
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </div>
+  <div class="top-bar">
+    <span>📍 Ngei Primary, Lang'ata, Nairobi</span>
+    <span>⛪ Sunday Service: 10:00 AM – 12:30 PM</span>
+    <a href="https://www.youtube.com/@destinychapel04" target="_blank">▶ Watch Live on YouTube</a>
+  </div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-img"/><div class="logo-text"><span class="logo-tagline">Activating Dreams<br>To Transform Lives</span></div></a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">HOME</a></li><li><a href="About.html">ABOUT</a></li><li><a href="sermons.html">SERMONS</a></li><li><a href="ministries.html">MINISTRIES</a></li><li><a href="evangelism.html">EVANGELISM</a></li><li><a href="missions.html">MISSIONS</a></li><li><a href="fusion.html" class="active">FUSION</a></li><li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <a href="visitors.html" class="nav-cta">Plan Your Visit</a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">Cell Groups</div>
+      <h1>Where Life Change<br/>Happens in <em>Community</em></h1>
+      <p>Fusion groups are small, location-based gatherings where believers connect, grow, and serve together.</p>
+    </div>
+    <div class="page-hero-line"></div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="fusion-intro">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">COMMUNITY THAT MATTERS</span>
+        <h2 class="section-title">What is Fusion?</h2>
+      </div>
+      <div class="fusion-intro-inner">
+        <p>Fusion groups are location-based small groups where believers gather during the week to connect, grow, and serve together. These aren't just meetings — they're families where authentic relationships are built, faith is strengthened, and life is done together.</p>
+        <p>In a Fusion group, you'll find people from your neighbourhood who are walking the same journey of faith. Here, nobody is a stranger — everyone matters, everyone belongs, and everyone contributes to the growth of others.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="benefits-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">WHY JOIN</span>
+        <h2 class="section-title">The Power of<br/>Small Groups</h2>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card"><div class="benefit-icon">💬</div><h4>Authentic Relationships</h4><p>Build deep, meaningful friendships with people who genuinely care about your journey and celebrate your victories.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">📖</div><h4>Biblical Growth</h4><p>Dive deeper into God's Word through discussion, application, and mutual learning in a safe environment.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">🙏</div><h4>Prayer Support</h4><p>Experience the power of united prayer as your group intercedes for each other's needs and breakthroughs.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">🎯</div><h4>Personal Accountability</h4><p>Grow stronger through accountability relationships that help you stay on track with your spiritual goals.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">🤝</div><h4>Practical Care</h4><p>Find support during life's challenges — from meals during illness to help with moving or childcare.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">🌟</div><h4>Discover Your Gifts</h4><p>In a small group setting, you'll have opportunities to serve, lead, and discover your spiritual gifts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPECT -->
+  <section class="expect-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">YOUR FIRST VISIT</span>
+        <h2 class="section-title">What to Expect<br/>at Fusion</h2>
+      </div>
+      <div class="expect-timeline">
+        <div class="expect-item"><div class="expect-time">6:30 PM</div><div class="expect-content"><h4>Welcome & Fellowship</h4><p>Arrive to warm hospitality. Enjoy light refreshments, catch up with friends, and meet new members. This is your time to unwind from the day.</p></div></div>
+        <div class="expect-item"><div class="expect-time">7:00 PM</div><div class="expect-content"><h4>Worship & Prayer</h4><p>Begin with worship songs and a time of corporate prayer. We invite God's presence and share prayer requests.</p></div></div>
+        <div class="expect-item"><div class="expect-time">7:20 PM</div><div class="expect-content"><h4>Bible Study</h4><p>Engage in interactive Bible study, discussing the sermon from Sunday or a specific topic. Everyone's voice matters as we learn together.</p></div></div>
+        <div class="expect-item"><div class="expect-time">8:00 PM</div><div class="expect-content"><h4>Application & Closing</h4><p>Discuss how to apply what we've learned to daily life. Close with prayer and plan for service or social activities.</p></div></div>
+        <div class="expect-item"><div class="expect-time">8:30 PM</div><div class="expect-content"><h4>Fellowship Continues</h4><p>Many stay to chat, laugh, and build relationships. Some of the best conversations happen after the "official" meeting ends!</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINDER -->
+  <section class="finder-section">
+    <div class="finder-inner">
+      <span class="section-tag">CONNECT LOCALLY</span>
+      <h2>Find a Group Near You</h2>
+      <p>Enter your area to discover Fusion groups in your neighbourhood.</p>
+      <div class="finder-bar">
+        <input type="text" id="locationSearch" placeholder="e.g. Ngei, Eastleigh, Buruburu…"/>
+        <button onclick="searchGroups()">Find My Group →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROUPS -->
+  <section class="groups-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">AVAILABLE GROUPS</span>
+        <h2 class="section-title">Fusion Groups<br/>in Your Area</h2>
+      </div>
+      <div class="groups-grid" id="groupsGrid">
+        <div class="group-card" data-loc="ngei embakasi">
+          <span class="group-location-badge">📍 Ngei / Embakasi</span>
+          <h3>Ngei Fusion Group A</h3>
+          <div class="group-info-list">
+            <div class="group-info-row"><span class="group-info-icon">📅</span><span>Every Wednesday</span></div>
+            <div class="group-info-row"><span class="group-info-icon">⏰</span><span>6:30 PM – 8:30 PM</span></div>
+            <div class="group-info-row"><span class="group-info-icon">👥</span><span>12–15 Members</span></div>
+            <div class="group-info-row"><span class="group-info-icon">🏠</span><span>Johnson's Home</span></div>
+          </div>
+          <div class="group-leader-block"><div class="leader-n">John & Mary Kamau</div><div class="leader-c">📞 0712 XXX XXX · john.kamau@email.com</div></div>
+          <a href="contact.html" class="btn-join">Join This Group</a>
         </div>
-    </nav>
-
-    <!-- Page Hero -->
-    <section class="hero" style="height: 60vh; margin-top: 80px;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Fusion Cell Groups</h1>
-            <p class="hero-subtitle">Where Life Change Happens in Community</p>
+        <div class="group-card" data-loc="pipeline kware">
+          <span class="group-location-badge">📍 Pipeline / Kware</span>
+          <h3>Pipeline Fusion Group</h3>
+          <div class="group-info-list">
+            <div class="group-info-row"><span class="group-info-icon">📅</span><span>Every Thursday</span></div>
+            <div class="group-info-row"><span class="group-info-icon">⏰</span><span>7:00 PM – 9:00 PM</span></div>
+            <div class="group-info-row"><span class="group-info-icon">👥</span><span>10–12 Members</span></div>
+            <div class="group-info-row"><span class="group-info-icon">🏠</span><span>Grace's Home</span></div>
+          </div>
+          <div class="group-leader-block"><div class="leader-n">Grace & Peter Omondi</div><div class="leader-c">📞 0722 XXX XXX · grace.omondi@email.com</div></div>
+          <a href="contact.html" class="btn-join">Join This Group</a>
         </div>
-    </section>
-
-    <!-- Introduction -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">COMMUNITY THAT MATTERS</span>
-                <h2>What is Fusion?</h2>
-            </div>
-            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2rem;">
-                    Fusion groups are location-based small groups where believers gather during the week to connect, grow, and serve together. These aren't just meetings – they're families where authentic relationships are built, faith is strengthened, and life is done together.
-                </p>
-                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
-                    In a Fusion group, you'll find people from your neighborhood who are walking the same journey of faith. Here, nobody is a stranger – everyone matters, everyone belongs, and everyone contributes to the growth of others.
-                </p>
-            </div>
+        <div class="group-card" data-loc="umoja tena">
+          <span class="group-location-badge">📍 Umoja / Tena</span>
+          <h3>Umoja Fusion Group</h3>
+          <div class="group-info-list">
+            <div class="group-info-row"><span class="group-info-icon">📅</span><span>Every Tuesday</span></div>
+            <div class="group-info-row"><span class="group-info-icon">⏰</span><span>6:00 PM – 8:00 PM</span></div>
+            <div class="group-info-row"><span class="group-info-icon">👥</span><span>15–18 Members</span></div>
+            <div class="group-info-row"><span class="group-info-icon">🏠</span><span>David's Home</span></div>
+          </div>
+          <div class="group-leader-block"><div class="leader-n">David & Sarah Mwangi</div><div class="leader-c">📞 0734 XXX XXX · david.mwangi@email.com</div></div>
+          <a href="contact.html" class="btn-join">Join This Group</a>
         </div>
-    </section>
-
-    <!-- Benefits of Fusion -->
-    <section style="padding: 5rem 0; background: var(--light-color);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">WHY JOIN</span>
-                <h2>The Power of Small Groups</h2>
-                <p>Experience transformation through authentic community</p>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">💬</div>
-                    <h4>Authentic Relationships</h4>
-                    <p>Build deep, meaningful friendships with people who genuinely care about your journey and celebrate your victories.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">📖</div>
-                    <h4>Biblical Growth</h4>
-                    <p>Dive deeper into God's Word through discussion, application, and mutual learning in a safe environment.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">🙏</div>
-                    <h4>Prayer Support</h4>
-                    <p>Experience the power of united prayer as your group intercedes for each other's needs and breakthroughs.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎯</div>
-                    <h4>Personal Accountability</h4>
-                    <p>Grow stronger through accountability relationships that help you stay on track with your spiritual goals.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">🤝</div>
-                    <h4>Practical Care</h4>
-                    <p>Find support during life's challenges – from meals during illness to help with moving or childcare.</p>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌟</div>
-                    <h4>Discover Your Gifts</h4>
-                    <p>In a small group setting, you'll have opportunities to serve, lead, and discover your spiritual gifts.</p>
-                </div>
-            </div>
+        <div class="group-card" data-loc="donholm savannah">
+          <span class="group-location-badge">📍 Donholm / Savannah</span>
+          <h3>Donholm Fusion Group</h3>
+          <div class="group-info-list">
+            <div class="group-info-row"><span class="group-info-icon">📅</span><span>Every Wednesday</span></div>
+            <div class="group-info-row"><span class="group-info-icon">⏰</span><span>7:00 PM – 9:00 PM</span></div>
+            <div class="group-info-row"><span class="group-info-icon">👥</span><span>8–10 Members</span></div>
+            <div class="group-info-row"><span class="group-info-icon">🏠</span><span>Ruth's Home</span></div>
+          </div>
+          <div class="group-leader-block"><div class="leader-n">Ruth & James Njoroge</div><div class="leader-c">📞 0745 XXX XXX · ruth.njoroge@email.com</div></div>
+          <a href="contact.html" class="btn-join">Join This Group</a>
         </div>
-    </section>
-
-    <!-- What to Expect -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">YOUR FIRST VISIT</span>
-                <h2>What to Expect at Fusion</h2>
-                <p>A typical evening in a Fusion group</p>
-            </div>
-
-            <div class="expect-timeline">
-                <div class="expect-item">
-                    <div class="expect-time">6:30 PM</div>
-                    <div class="expect-content">
-                        <h4>Welcome & Fellowship</h4>
-                        <p>Arrive to warm hospitality. Enjoy light refreshments, catch up with friends, and meet new members. This is your time to unwind from the day.</p>
-                    </div>
-                </div>
-
-                <div class="expect-item">
-                    <div class="expect-time">7:00 PM</div>
-                    <div class="expect-content">
-                        <h4>Worship & Prayer</h4>
-                        <p>Begin with worship songs and a time of corporate prayer. We invite God's presence and share prayer requests.</p>
-                    </div>
-                </div>
-
-                <div class="expect-item">
-                    <div class="expect-time">7:20 PM</div>
-                    <div class="expect-content">
-                        <h4>Bible Study</h4>
-                        <p>Engage in interactive Bible study, discussing the sermon from Sunday or a specific topic. Everyone's voice matters as we learn together.</p>
-                    </div>
-                </div>
-
-                <div class="expect-item">
-                    <div class="expect-time">8:00 PM</div>
-                    <div class="expect-content">
-                        <h4>Application & Closing</h4>
-                        <p>Discuss how to apply what we've learned to daily life. Close with prayer and plan for service opportunities or social activities.</p>
-                    </div>
-                </div>
-
-                <div class="expect-item">
-                    <div class="expect-time">8:30 PM</div>
-                    <div class="expect-content">
-                        <h4>Fellowship Continues</h4>
-                        <p>Many stay to chat, laugh, and build relationships. Some of the best conversations happen after the "official" meeting ends!</p>
-                    </div>
-                </div>
-            </div>
+        <div class="group-card" data-loc="kayole soweto">
+          <span class="group-location-badge">📍 Kayole / Soweto</span>
+          <h3>Kayole Fusion Group</h3>
+          <div class="group-info-list">
+            <div class="group-info-row"><span class="group-info-icon">📅</span><span>Every Friday</span></div>
+            <div class="group-info-row"><span class="group-info-icon">⏰</span><span>6:30 PM – 8:30 PM</span></div>
+            <div class="group-info-row"><span class="group-info-icon">👥</span><span>12–14 Members</span></div>
+            <div class="group-info-row"><span class="group-info-icon">🏠</span><span>Paul's Home</span></div>
+          </div>
+          <div class="group-leader-block"><div class="leader-n">Paul & Catherine Wanjiru</div><div class="leader-c">📞 0756 XXX XXX · paul.wanjiru@email.com</div></div>
+          <a href="contact.html" class="btn-join">Join This Group</a>
         </div>
-    </section>
-
-    <!-- Find Your Group -->
-    <section style="padding: 5rem 0; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag light">CONNECT LOCALLY</span>
-                <h2 style="color: var(--white);">Find a Fusion Group Near You</h2>
-                <p style="color: rgba(255,255,255,0.9);">Enter your area to discover groups in your neighborhood</p>
-            </div>
-
-            <div class="group-finder">
-                <input type="text" class="finder-input" placeholder="Enter your area (e.g., Ngara, Eastleigh, Buruburu...)" id="locationSearch">
-                <button class="btn btn-primary full-width" onclick="searchGroups()">Find My Group</button>
-            </div>
+        <div class="group-card" data-loc="buruburu makadara">
+          <span class="group-location-badge">📍 Buruburu / Makadara</span>
+          <h3>Buruburu Fusion Group</h3>
+          <div class="group-info-list">
+            <div class="group-info-row"><span class="group-info-icon">📅</span><span>Every Thursday</span></div>
+            <div class="group-info-row"><span class="group-info-icon">⏰</span><span>7:00 PM – 9:00 PM</span></div>
+            <div class="group-info-row"><span class="group-info-icon">👥</span><span>10–12 Members</span></div>
+            <div class="group-info-row"><span class="group-info-icon">🏠</span><span>Simon's Home</span></div>
+          </div>
+          <div class="group-leader-block"><div class="leader-n">Simon & Agnes Kariuki</div><div class="leader-c">📞 0767 XXX XXX · simon.kariuki@email.com</div></div>
+          <a href="contact.html" class="btn-join">Join This Group</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Available Groups -->
-    <section style="padding: 5rem 0; background: var(--light-color);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">AVAILABLE GROUPS</span>
-                <h2>Fusion Groups in Your Area</h2>
-            </div>
-
-            <div class="groups-grid" id="groupsGrid">
-                <div class="group-card">
-                    <span class="group-location">📍 Ngei / Embakasi</span>
-                    <h3>Ngei Fusion Group A</h3>
-                    <div class="group-info">
-                        <div class="info-row">
-                            <span class="info-icon">📅</span>
-                            <span>Every Wednesday</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">⏰</span>
-                            <span>6:30 PM - 8:30 PM</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">👥</span>
-                            <span>12-15 Members</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">🏠</span>
-                            <span>Meeting at Johnson's Home</span>
-                        </div>
-                    </div>
-                    <div class="leader-section">
-                        <div class="leader-name">Leader: John & Mary Kamau</div>
-                        <div class="leader-contact">📧 john.kamau@email.com | 📞 0712 XXX XXX</div>
-                    </div>
-                    <a href="contact.html" class="btn btn-primary full-width">Join This Group</a>
-                </div>
-
-                <div class="group-card">
-                    <span class="group-location">📍 Pipeline / Kware</span>
-                    <h3>Pipeline Fusion Group</h3>
-                    <div class="group-info">
-                        <div class="info-row">
-                            <span class="info-icon">📅</span>
-                            <span>Every Thursday</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">⏰</span>
-                            <span>7:00 PM - 9:00 PM</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">👥</span>
-                            <span>10-12 Members</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">🏠</span>
-                            <span>Meeting at Grace's Home</span>
-                        </div>
-                    </div>
-                    <div class="leader-section">
-                        <div class="leader-name">Leader: Grace & Peter Omondi</div>
-                        <div class="leader-contact">📧 grace.omondi@email.com | 📞 0722 XXX XXX</div>
-                    </div>
-                    <a href="contact.html" class="btn btn-primary full-width">Join This Group</a>
-                </div>
-
-                <div class="group-card">
-                    <span class="group-location">📍 Umoja / Tena</span>
-                    <h3>Umoja Fusion Group</h3>
-                    <div class="group-info">
-                        <div class="info-row">
-                            <span class="info-icon">📅</span>
-                            <span>Every Tuesday</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">⏰</span>
-                            <span>6:00 PM - 8:00 PM</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">👥</span>
-                            <span>15-18 Members</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">🏠</span>
-                            <span>Meeting at David's Home</span>
-                        </div>
-                    </div>
-                    <div class="leader-section">
-                        <div class="leader-name">Leader: David & Sarah Mwangi</div>
-                        <div class="leader-contact">📧 david.mwangi@email.com | 📞 0734 XXX XXX</div>
-                    </div>
-                    <a href="contact.html" class="btn btn-primary full-width">Join This Group</a>
-                </div>
-
-                <div class="group-card">
-                    <span class="group-location">📍 Donholm / Savannah</span>
-                    <h3>Donholm Fusion Group</h3>
-                    <div class="group-info">
-                        <div class="info-row">
-                            <span class="info-icon">📅</span>
-                            <span>Every Wednesday</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">⏰</span>
-                            <span>7:00 PM - 9:00 PM</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">👥</span>
-                            <span>8-10 Members</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">🏠</span>
-                            <span>Meeting at Ruth's Home</span>
-                        </div>
-                    </div>
-                    <div class="leader-section">
-                        <div class="leader-name">Leader: Ruth & James Njoroge</div>
-                        <div class="leader-contact">📧 ruth.njoroge@email.com | 📞 0745 XXX XXX</div>
-                    </div>
-                    <a href="contact.html" class="btn btn-primary full-width">Join This Group</a>
-                </div>
-
-                <div class="group-card">
-                    <span class="group-location">📍 Kayole / Soweto</span>
-                    <h3>Kayole Fusion Group</h3>
-                    <div class="group-info">
-                        <div class="info-row">
-                            <span class="info-icon">📅</span>
-                            <span>Every Friday</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">⏰</span>
-                            <span>6:30 PM - 8:30 PM</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">👥</span>
-                            <span>12-14 Members</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">🏠</span>
-                            <span>Meeting at Paul's Home</span>
-                        </div>
-                    </div>
-                    <div class="leader-section">
-                        <div class="leader-name">Leader: Paul & Catherine Wanjiru</div>
-                        <div class="leader-contact">📧 paul.wanjiru@email.com | 📞 0756 XXX XXX</div>
-                    </div>
-                    <a href="contact.html" class="btn btn-primary full-width">Join This Group</a>
-                </div>
-
-                <div class="group-card">
-                    <span class="group-location">📍 Buruburu / Makadara</span>
-                    <h3>Buruburu Fusion Group</h3>
-                    <div class="group-info">
-                        <div class="info-row">
-                            <span class="info-icon">📅</span>
-                            <span>Every Thursday</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">⏰</span>
-                            <span>7:00 PM - 9:00 PM</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">👥</span>
-                            <span>10-12 Members</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-icon">🏠</span>
-                            <span>Meeting at Simon's Home</span>
-                        </div>
-                    </div>
-                    <div class="leader-section">
-                        <div class="leader-name">Leader: Simon & Agnes Kariuki</div>
-                        <div class="leader-contact">📧 simon.kariuki@email.com | 📞 0767 XXX XXX</div>
-                    </div>
-                    <a href="contact.html" class="btn btn-primary full-width">Join This Group</a>
-                </div>
-            </div>
+  <!-- START OWN -->
+  <section class="start-section">
+    <div class="container">
+      <div class="start-card">
+        <div class="start-card-inner">
+          <span class="section-tag" style="color:var(--gold-light);">START A GROUP</span>
+          <h2>Don't See a Group in Your Area?</h2>
+          <p>God might be calling you to start one! We provide training, resources, and ongoing support for new Fusion leaders. You don't need to be perfect — just willing to open your home and heart.</p>
+          <a href="contact.html" class="btn btn-gold">Start a Fusion Group →</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Start Your Own Group -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center; background: var(--light-color); padding: 4rem; border-radius: 12px;">
-                <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;">Don't See a Group in Your Area?</h2>
-                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; line-height: 1.8;">
-                    God might be calling you to start one! We provide training, resources, and ongoing support for new Fusion leaders. You don't need to be perfect – just willing to open your home and heart.
-                </p>
-                <a href="contact.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 2.5rem;">Start a Fusion Group</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Destiny Chapel</h3>
-                    <p>Activating Dreams<br>To Transform Lives</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="YouTube">▶️</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="ministries.html">Ministries</a></li>
-                        <li><a href="evangelism.html">Evangelism</a></li>
-                        <li><a href="missions.html">Missions</a></li>
-                        <li><a href="fusion.html">Fusion Groups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Get Involved</h4>
-                    <ul>
-                        <li><a href="visitors.html">Plan Your Visit</a></li>
-                        <li><a href="#">Online Giving</a></li>
-                        <li><a href="#">Volunteer</a></li>
-                        <li><a href="#">Food Bank</a></li>
-                        <li><a href="#">Prayer Requests</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <ul class="contact-info">
-                        <li>📍 Ngei, Nairobi, Kenya</li>
-                        <li>📞 +254 XXX XXX XXX</li>
-                        <li>✉️ info@destinychapelngei.org</li>
-                    </ul>
-                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
-                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Destiny Chapel. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-        function searchGroups() {
-            const searchValue = document.getElementById('locationSearch').value.toLowerCase();
-            const groups = document.querySelectorAll('.group-card');
-            
-            groups.forEach(group => {
-                const location = group.querySelector('.group-location').textContent.toLowerCase();
-                if (location.includes(searchValue) || searchValue === '') {
-                    group.style.display = 'block';
-                } else {
-                    group.style.display = 'none';
-                }
-            });
-        }
-
-        // Allow Enter key to trigger search
-        document.getElementById('locationSearch').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchGroups();
-            }
-        });
-    </script>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top"><div class="container"><div class="footer-grid">
+      <div class="footer-brand"><img src="images/dc.jpg" alt="Destiny Chapel" class="footer-logo"/><p class="footer-tagline">Activating Dreams To Transform Lives</p><p class="footer-address">Ngei Primary, Lang'ata<br/>Nairobi, Kenya</p><div class="social-links"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">𝕏</a><a href="#" class="social-btn">◈</a><a href="https://www.youtube.com/@destinychapel04" class="social-btn">▶</a></div></div>
+      <div class="footer-col"><h4>Explore</h4><a href="About.html">About Us</a><a href="sermons.html">Sermons</a><a href="ministries.html">Ministries</a><a href="evangelism.html">Evangelism</a><a href="missions.html">Missions</a><a href="fusion.html">Fusion Groups</a></div>
+      <div class="footer-col"><h4>Get Involved</h4><a href="visitors.html">Plan Your Visit</a><a href="#">Online Giving</a><a href="#">Volunteer</a><a href="#">Food Bank</a><a href="#">Prayer Requests</a></div>
+      <div class="footer-col"><h4>Contact Us</h4><a href="#">📍 Ngei, Lang'ata, Nairobi</a><a href="tel:+254000000000">📞 +254 XXX XXX XXX</a><a href="mailto:info@destinychapelngei.org">✉️ info@destinychapelngei.org</a><div class="footer-service-times"><h4>Service Times</h4><p>Sunday: 10:00 AM – 12:30 PM</p></div></div>
+    </div></div></div>
+    <div class="footer-bottom"><div class="container"><p>© <span id="fy"></span> Destiny Chapel. All rights reserved.</p></div></div>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('fy').textContent=new Date().getFullYear();
+    function searchGroups(){const v=document.getElementById('locationSearch').value.toLowerCase();document.querySelectorAll('.group-card').forEach(c=>{c.style.display=c.dataset.loc.includes(v)||v===''?'block':'none';});}
+    document.getElementById('locationSearch').addEventListener('keypress',e=>{if(e.key==='Enter')searchGroups();});
+  </script>
 </body>
 </html>

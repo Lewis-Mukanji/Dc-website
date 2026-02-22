@@ -1,842 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evangelism - Destiny Chapel</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        /* Salvation Steps Section */
-        .salvation-steps {
-            background: var(--white);
-            padding: 5rem 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evangelism – Destiny Chapel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-hero{position:relative;height:52vh;min-height:340px;display:flex;align-items:flex-end;overflow:hidden;}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 25% 50%,rgba(201,149,42,.1) 0%,transparent 65%),linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 55%,var(--navy-light) 100%);}
+    .page-hero-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:36px 36px;}
+    .page-hero-content{position:relative;z-index:2;padding:0 80px 60px;color:var(--white);}
+    .page-hero-eyebrow{display:inline-block;background:rgba(201,149,42,.2);border:1px solid rgba(201,149,42,.45);color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:18px;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:600;line-height:1.1;margin-bottom:14px;}
+    .page-hero h1 em{font-style:italic;color:var(--gold-light);}
+    .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.72);max-width:500px;}
+    .page-hero-line{position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-light) 50%,transparent 100%);z-index:3;}
 
-        .steps-container {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
+    /* GOSPEL STEPS */
+    .steps-section{background:var(--white);padding:90px 0;}
+    .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px;}
+    .step-card{background:var(--cream);border-radius:18px;padding:32px 26px;border-top:3px solid var(--gold);position:relative;transition:transform .3s,box-shadow .3s;}
+    .step-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(13,31,60,.1);}
+    .step-num{width:48px;height:48px;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:var(--gold-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;margin-bottom:18px;}
+    .step-card h3{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;color:var(--navy);margin-bottom:12px;}
+    .step-card p{font-size:.86rem;color:var(--muted);line-height:1.75;margin-bottom:14px;}
+    .scripture-block{background:var(--white);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 14px;margin-top:10px;}
+    .scripture-block p{font-size:.82rem;font-style:italic;color:var(--muted);margin-bottom:4px;}
+    .scripture-block span{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);}
 
-        .step-card {
-            background: var(--light-color);
-            padding: 3rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            border-left: 6px solid var(--primary-color);
-            transition: var(--transition);
-            flex: 1 1 calc(25% - 1.5rem);
-            min-width: 250px;
-        }
+    /* DECISION BANNER */
+    .decision-banner{position:relative;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);padding:100px 32px;text-align:center;overflow:hidden;}
+    .decision-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:40px 40px;animation:movePattern 24s linear infinite;}
+    @keyframes movePattern{from{transform:translate(0,0);}to{transform:translate(40px,40px);}}
+    .decision-inner{position:relative;z-index:2;max-width:680px;margin:0 auto;}
+    .decision-inner .section-tag{color:var(--gold-light);}
+    .decision-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);color:var(--white);margin-bottom:18px;}
+    .decision-inner p{font-size:1rem;color:rgba(255,255,255,.78);line-height:1.75;margin-bottom:32px;}
+    .btn-decision{display:inline-block;background:var(--gold);color:var(--white);text-decoration:none;padding:16px 40px;border-radius:50px;font-weight:700;font-size:.95rem;letter-spacing:.04em;box-shadow:0 6px 24px rgba(201,149,42,.4);transition:all .3s;}
+    .btn-decision:hover{background:var(--white);color:var(--navy);transform:translateY(-2px);}
 
-        .step-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+    /* OUTREACH */
+    .outreach-section{background:var(--cream);padding:90px 0;}
+    .outreach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;}
+    .initiative-card{background:var(--white);border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(13,31,60,.07);cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;}
+    .initiative-card:hover{transform:translateY(-8px);box-shadow:0 18px 52px rgba(13,31,60,.13);}
+    .initiative-img{height:260px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);display:flex;align-items:flex-end;padding:20px;position:relative;overflow:hidden;}
+    .initiative-img::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:24px 24px;}
+    .initiative-img-title{position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);font-weight:600;}
+    .initiative-img-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:.18;}
+    .initiative-overlay{position:absolute;inset:0;background:rgba(13,31,60,.82);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+    .initiative-card:hover .initiative-overlay{opacity:1;}
+    .overlay-btn{background:var(--gold);color:var(--white);border:none;padding:11px 28px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .25s;}
+    .overlay-btn:hover{background:var(--white);color:var(--navy);}
+    .initiative-body{padding:22px 24px;}
+    .initiative-body p{font-size:.86rem;color:var(--muted);line-height:1.7;}
 
-        .step-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            color: var(--white);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 50px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
+    /* Modal */
+    .initiative-modal{display:none;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);}
+    .initiative-modal.active{display:flex;}
+    .modal-box{position:relative;background:var(--white);border-radius:20px;width:90%;max-width:720px;max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.3);animation:slideUp .3s ease;}
+    @keyframes slideUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+    .modal-close-btn{position:absolute;top:16px;right:16px;width:38px;height:38px;background:var(--cream);border:none;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;z-index:3;}
+    .modal-close-btn:hover{background:var(--navy);color:var(--white);transform:rotate(90deg);}
+    .modal-header{background:linear-gradient(135deg,var(--navy),var(--navy-light));padding:36px 40px;position:relative;overflow:hidden;}
+    .modal-header::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:24px 24px;}
+    .modal-header h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--white);font-weight:600;position:relative;z-index:2;}
+    .modal-content-inner{padding:36px 40px;}
+    .modal-content-inner p{font-size:.92rem;color:var(--muted);line-height:1.8;margin-bottom:14px;}
+    .modal-content-inner h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--navy);font-weight:600;margin:20px 0 10px;}
+    .modal-check-list{list-style:none;padding:0;margin-bottom:16px;}
+    .modal-check-list li{padding:7px 0 7px 26px;position:relative;font-size:.88rem;color:var(--muted);line-height:1.65;}
+    .modal-check-list li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700;}
+    .modal-cta-block{background:var(--cream);border-radius:14px;padding:22px 24px;margin-top:20px;}
+    .modal-cta-block h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--navy);font-weight:600;margin-bottom:8px;}
+    .modal-cta-block p{font-size:.84rem;color:var(--muted);line-height:1.65;margin-bottom:0;}
 
-        .step-card h3 {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
+    /* JOIN CTA */
+    .join-section{background:var(--white);padding:90px 0;}
+    .join-inner{max-width:680px;margin:0 auto;text-align:center;}
+    .join-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);color:var(--navy);margin-bottom:16px;}
+    .join-inner p{font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:36px;}
 
-        .step-card p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        .scripture {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-            margin-top: 1.5rem;
-            font-style: italic;
-            color: var(--text-light);
-        }
-
-        .scripture-ref {
-            display: block;
-            margin-top: 0.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            font-style: normal;
-        }
-
-        /* Decision Section */
-        .decision-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--white);
-            padding: 5rem 0;
-            text-align: center;
-        }
-
-        .decision-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .decision-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--white);
-        }
-
-        .decision-content p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        /* Outreach Initiatives */
-        .outreach-initiatives {
-            background: var(--light-color);
-            padding: 5rem 0;
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .initiative-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .initiative-image {
-            height: 350px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .initiative-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-        }
-
-        .initiative-title {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            z-index: 2;
-            color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .initiative-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .initiative-card:hover .initiative-overlay {
-            opacity: 1;
-        }
-        
-        .view-more-btn {
-            background: var(--accent-color);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Outreach Modal - Updated to match event modal structure */
-        .outreach-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .outreach-modal.active {
-            display: flex;
-        }
-
-        .outreach-modal .modal-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1;
-        }
-
-        .outreach-modal .modal-content {
-            position: relative;
-            z-index: 2;
-            background: var(--white);
-            border-radius: 12px;
-            max-width: 800px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .outreach-modal .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--white);
-            border: none;
-            font-size: 2rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: var(--transition);
-        }
-
-        .outreach-modal .modal-close:hover {
-            background: var(--light-color);
-            transform: rotate(90deg);
-        }
-
-        .outreach-modal .modal-body {
-            padding: 3rem;
-        }
-
-        .modal-initiative-title {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .modal-initiative-content {
-            line-height: 1.8;
-            color: var(--text-color);
-        }
-
-        .modal-initiative-content h3 {
-            color: var(--primary-color);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .modal-initiative-content ul {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .modal-initiative-content ul li {
-            padding: 0.75rem 0;
-            padding-left: 2rem;
-            position: relative;
-        }
-
-        .modal-initiative-content ul li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .involvement-section {
-            background: var(--light-color);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-        }
-
-        .involvement-section h3 {
-            color: var(--primary-color);
-            margin-top: 0 !important;
-        }
-
-        /* Mobile Styles - Horizontal Scrolling */
-        @media (max-width: 768px) {
-            /* Steps Container - Horizontal Scroll */
-            .steps-container {
-                max-width: 100%;
-                display: flex;
-                flex-wrap: nowrap;
-                gap: 1.5rem;
-                overflow-x: auto;
-                overflow-y: hidden;
-                padding-bottom: 1.5rem;
-                scroll-behavior: smooth;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .steps-container::-webkit-scrollbar {
-                height: 8px;
-            }
-
-            .steps-container::-webkit-scrollbar-track {
-                background: var(--light-color);
-                border-radius: 10px;
-            }
-
-            .steps-container::-webkit-scrollbar-thumb {
-                background: var(--primary-color);
-                border-radius: 10px;
-            }
-
-            .steps-container::-webkit-scrollbar-thumb:hover {
-                background: var(--secondary-color);
-            }
-
-            .step-card {
-                flex: 0 0 85vw;
-                max-width: 85vw;
-                padding: 2rem;
-                margin-bottom: 0;
-                scroll-snap-align: start;
-            }
-
-            .step-card:hover {
-                transform: none;
-            }
-
-            .step-card h3 {
-                font-size: 1.5rem;
-            }
-
-            /* Initiatives Grid - Horizontal Scroll */
-            .initiatives-grid {
-                display: flex;
-                flex-wrap: nowrap;
-                gap: 1.5rem;
-                overflow-x: auto;
-                overflow-y: hidden;
-                padding-bottom: 1.5rem;
-                scroll-behavior: smooth;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                grid-template-columns: none;
-            }
-
-            .initiatives-grid::-webkit-scrollbar {
-                height: 8px;
-            }
-
-            .initiatives-grid::-webkit-scrollbar-track {
-                background: #e0e0e0;
-                border-radius: 10px;
-            }
-
-            .initiatives-grid::-webkit-scrollbar-thumb {
-                background: var(--primary-color);
-                border-radius: 10px;
-            }
-
-            .initiatives-grid::-webkit-scrollbar-thumb:hover {
-                background: var(--secondary-color);
-            }
-
-            .initiative-card {
-                flex: 0 0 85vw;
-                max-width: 85vw;
-                scroll-snap-align: start;
-            }
-
-            .initiative-card:hover {
-                transform: none;
-            }
-
-            /* Make overlay always visible on mobile */
-            .initiative-overlay {
-                opacity: 1 !important;
-            }
-
-            /* Modal adjustments */
-            .outreach-modal .modal-body {
-                padding: 2rem 1.5rem;
-            }
-
-            .modal-initiative-title {
-                font-size: 1.6rem;
-            }
-
-            /* Add scroll indicator hint */
-            .salvation-steps::after,
-            .outreach-initiatives::after {
-                content: '← Swipe to see more →';
-                display: block;
-                text-align: center;
-                color: var(--text-light);
-                font-size: 0.9rem;
-                margin-top: 1rem;
-                font-style: italic;
-            }
-        }
-
-        /* Tablet adjustments */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .step-card {
-                flex: 1 1 calc(50% - 1rem);
-            }
-        }
-    </style>
+    @media(max-width:900px){.steps-grid{grid-template-columns:1fr 1fr;}.outreach-grid{grid-template-columns:1fr;}}
+    @media(max-width:600px){.page-hero-content{padding:0 28px 48px;}.steps-grid{grid-template-columns:1fr;}.modal-header{padding:28px 24px;}.modal-content-inner{padding:24px;}}
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <div class="logo-image-container">
-                        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-image">
-                        
-                    </div>
-                    <div class="logo-text">
-                        <!-- <h1>DESTINY CHAPEL</h1> -->
-                        <p class="tagline">Activating Dreams<br>To Transform Lives</p>
-                    </div>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="index.html">HOME</a></li>
-                    <li class="dropdown">
-                        <a href="about.html">ABOUT</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="about.html#history">Our History</a></li>
-                            <li><a href="about.html#leadership">Leadership</a></li>
-                            <li><a href="about.html#vision">Vision & Values</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="sermons.html">SERMONS</a></li>
-                    <li class="dropdown">
-                        <a href="ministries.html">MINISTRIES</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#youth">Youth Ministry</a></li>
-                            <li><a href="#kids">Kids Ministry</a></li>
-                            <li><a href="#men">Men's Ministry</a></li>
-                            <li><a href="#women">Women's Ministry</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="evangelism.html" class="active">EVANGELISM</a></li>
-                    <li><a href="missions.html">MISSIONS</a></li>
-                    <li><a href="fusion.html">FUSION</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Page Hero -->
-    <section class="hero" style="height: 60vh; margin-top: 80px;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">The Greatest News Ever</h1>
-            <p class="hero-subtitle">Discover the Life-Changing Message of Jesus Christ</p>
-        </div>
-    </section>
-
-    <!-- Salvation Steps Section -->
-    <section class="salvation-steps">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">THE GOSPEL MESSAGE</span>
-                <h2>Steps to Receiving Christ</h2>
-                <p>The simple truth that can change your life forever</p>
-            </div>
-
-            <div class="steps-container">
-                <!-- Step 1: Recognize Your Need -->
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Recognize Your Need for God</h3>
-                    <p>
-                        We all have sinned and fallen short of God's perfect standard. Sin separates us from God and leads to spiritual death. No matter how good we try to be, we cannot save ourselves through our own efforts or good works.
-                    </p>
-                    <div class="scripture">
-                        "For all have sinned and fall short of the glory of God."
-                        <span class="scripture-ref">— Romans 3:23</span>
-                    </div>
-                    <div class="scripture">
-                        "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord."
-                        <span class="scripture-ref">— Romans 6:23</span>
-                    </div>
-                </div>
-
-                <!-- Step 2: Believe in Jesus -->
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Believe in Jesus Christ</h3>
-                    <p>
-                        God loved us so much that He sent His only Son, Jesus Christ, to die on the cross for our sins. Jesus paid the price we couldn't pay. He died in our place, was buried, and rose again on the third day, defeating sin and death forever.
-                    </p>
-                    <div class="scripture">
-                        "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
-                        <span class="scripture-ref">— John 3:16</span>
-                    </div>
-                    <div class="scripture">
-                        "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us."
-                        <span class="scripture-ref">— Romans 5:8</span>
-                    </div>
-                </div>
-
-                <!-- Step 3: Confess and Receive -->
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Confess and Receive Him</h3>
-                    <p>
-                        Salvation is a free gift that we receive by faith. When you believe in your heart that Jesus is Lord and confess Him with your mouth, you will be saved. It's not about being perfect—it's about accepting God's grace and surrendering your life to Jesus.
-                    </p>
-                    <div class="scripture">
-                        "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved. For it is with your heart that you believe and are justified, and it is with your mouth that you profess your faith and are saved."
-                        <span class="scripture-ref">— Romans 10:9-10</span>
-                    </div>
-                    <div class="scripture">
-                        "Yet to all who did receive him, to those who believed in his name, he gave the right to become children of God."
-                        <span class="scripture-ref">— John 1:12</span>
-                    </div>
-                </div>
-
-                <!-- Step 4: Assurance of Salvation -->
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>Have Assurance of Your Salvation</h3>
-                    <p>
-                        When you receive Christ, you become a new creation. Your sins are forgiven, and you have eternal life. God's Spirit lives in you, and nothing can separate you from His love. You are now a child of God!
-                    </p>
-                    <div class="scripture">
-                        "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!"
-                        <span class="scripture-ref">— 2 Corinthians 5:17</span>
-                    </div>
-                    <div class="scripture">
-                        "I write these things to you who believe in the name of the Son of God so that you may know that you have eternal life."
-                        <span class="scripture-ref">— 1 John 5:13</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Decision Section -->
-    <section class="decision-section">
-        <div class="decision-content">
-            <h2>Ready to Make the Most Important Decision of Your Life?</h2>
-            <p>
-                If you believe in your heart that Jesus Christ is Lord and you want to surrender your life to Him, we invite you to take the next step. Accepting Jesus as your Savior is the beginning of an incredible journey of faith, purpose, and eternal life.
-            </p>
-            <p>
-                Don't wait another moment. Today is the day of salvation!
-            </p>
-            <a href="born-again.html" class="btn btn-light" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
-                I Want to Accept Jesus
-            </a>
-        </div>
-    </section>
-
-    <!-- Outreach Initiatives -->
-    <section class="outreach-initiatives">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">SPREADING THE GOSPEL</span>
-                <h2>Our Outreach Initiatives</h2>
-                <p>Taking the good news beyond the church walls</p>
-            </div>
-
-            <div class="initiatives-grid">
-                <!-- Street Evangelism -->
-                <div class="initiative-card" data-initiative="street">
-                    <div class="initiative-image">
-                        <div class="initiative-title">Street Evangelism</div>
-                        Street Outreach Photo
-                    </div>
-                    <div class="initiative-overlay">
-                        <button class="view-more-btn">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- Community Events -->
-                <div class="initiative-card" data-initiative="community">
-                    <div class="initiative-image">
-                        <div class="initiative-title">Community Events</div>
-                        Community Event Photo
-                    </div>
-                    <div class="initiative-overlay">
-                        <button class="view-more-btn">Learn More</button>
-                    </div>
-                </div>
-
-                <!-- School & Campus Ministry -->
-                <div class="initiative-card" data-initiative="campus">
-                    <div class="initiative-image">
-                        <div class="initiative-title">School & Campus Ministry</div>
-                        Campus Ministry Photo
-                    </div>
-                    <div class="initiative-overlay">
-                        <button class="view-more-btn">Learn More</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Outreach Modal -->
-    <div class="outreach-modal" id="outreachModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div class="modal-body">
-                <h2 class="modal-initiative-title"></h2>
-                <div class="modal-initiative-content"></div>
-            </div>
-        </div>
+  <div class="top-bar">
+    <span>📍 Ngei Primary, Lang'ata, Nairobi</span>
+    <span>⛪ Sunday Service: 10:00 AM – 12:30 PM</span>
+    <a href="https://www.youtube.com/@destinychapel04" target="_blank">▶ Watch Live on YouTube</a>
+  </div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo"><img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-img"/><div class="logo-text"><span class="logo-tagline">Activating Dreams<br>To Transform Lives</span></div></a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">HOME</a></li><li><a href="About.html">ABOUT</a></li><li><a href="sermons.html">SERMONS</a></li><li><a href="ministries.html">MINISTRIES</a></li><li><a href="evangelism.html" class="active">EVANGELISM</a></li><li><a href="missions.html">MISSIONS</a></li><li><a href="fusion.html">FUSION</a></li><li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <a href="visitors.html" class="nav-cta">Plan Your Visit</a>
     </div>
+  </nav>
 
-    <!-- Call to Action -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-                <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;">Join Us in Spreading the Gospel</h2>
-                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; line-height: 1.8;">
-                    Whether you've just accepted Christ or you're a seasoned believer, there's a place for you in our evangelism efforts. Together, we can reach our community and beyond with the life-changing message of Jesus.
-                </p>
-                <div class="button-group" style="justify-content: center;">
-                    <a href="contact.html" class="btn btn-primary">Get Involved</a>
-                    <a href="fusion.html" class="btn btn-outline">Join a Fusion Group</a>
-                </div>
-            </div>
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">The Gospel</div>
+      <h1>The Greatest News<br/><em>Ever Told</em></h1>
+      <p>Discover the life-changing message of Jesus Christ and how you can share it with the world around you.</p>
+    </div>
+    <div class="page-hero-line"></div>
+  </section>
+
+  <!-- GOSPEL STEPS -->
+  <section class="steps-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">THE GOSPEL MESSAGE</span>
+        <h2 class="section-title">Steps to<br/>Receiving Christ</h2>
+        <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:.97rem;">The simple truth that can change your life forever.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Recognise Your Need for God</h3>
+          <p>We all have sinned and fallen short of God's perfect standard. Sin separates us from God and leads to spiritual death. No matter how good we try to be, we cannot save ourselves through our own efforts.</p>
+          <div class="scripture-block"><p>"For all have sinned and fall short of the glory of God."</p><span>Romans 3:23</span></div>
+          <div class="scripture-block" style="margin-top:8px;"><p>"For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord."</p><span>Romans 6:23</span></div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Destiny Chapel</h3>
-                    <p>Activating Dreams To Transform Lives</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="YouTube">▶️</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="ministries.html">Ministries</a></li>
-                        <li><a href="evangelism.html">Evangelism</a></li>
-                        <li><a href="missions.html">Missions</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <ul class="contact-info">
-                        <li>📍 Ngei, Nairobi, Kenya</li>
-                        <li>📞 +254 XXX XXX XXX</li>
-                        <li>✉️ info@destinychapelngei.org</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Destiny Chapel. All rights reserved.</p>
-            </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Believe in Jesus Christ</h3>
+          <p>God loved us so much that He sent His only Son to die on the cross for our sins. Jesus paid the price we couldn't pay. He died in our place, rose again on the third day, defeating sin and death forever.</p>
+          <div class="scripture-block"><p>"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p><span>John 3:16</span></div>
         </div>
-    </footer>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Confess and Receive Him</h3>
+          <p>Salvation is a free gift received by faith. When you believe in your heart that Jesus is Lord and confess Him with your mouth, you will be saved. It's not about being perfect — it's about accepting God's grace.</p>
+          <div class="scripture-block"><p>"If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved."</p><span>Romans 10:9</span></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3>Have Assurance of Salvation</h3>
+          <p>When you receive Christ, you become a new creation. Your sins are forgiven, and you have eternal life. God's Spirit lives in you, and nothing can separate you from His love. You are now a child of God!</p>
+          <div class="scripture-block"><p>"Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!"</p><span>2 Corinthians 5:17</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-    <script>
-        // Outreach Initiative Data
-        const initiativeData = {
-            street: {
-                title: 'Street Evangelism',
-                content: `
-                    <p>Our street evangelism teams take the gospel directly to the people, meeting them where they are. Every Saturday, dedicated volunteers go out into the streets, markets, and public spaces to share the love of Christ through personal conversations, testimonies, and prayer.</p>
-                    
-                    <h3>What We Do</h3>
-                    <ul>
-                        <li>Weekly street outreach in various neighborhoods across Nairobi</li>
-                        <li>One-on-one gospel conversations with passersby</li>
-                        <li>Distribution of gospel tracts and Bibles</li>
-                        <li>Prayer for physical and spiritual needs</li>
-                        <li>Follow-up with those who accept Christ</li>
-                    </ul>
+  <!-- DECISION BANNER -->
+  <section class="decision-banner">
+    <div class="decision-inner">
+      <span class="section-tag">TAKE THE STEP</span>
+      <h2>Ready to Make the Most Important Decision of Your Life?</h2>
+      <p>If you believe in your heart that Jesus Christ is Lord and want to surrender your life to Him, we invite you to take the next step. Today is the day of salvation!</p>
+      <a href="born-again.html" class="btn-decision">I Want to Accept Jesus →</a>
+    </div>
+  </section>
 
-                    <h3>Our Impact</h3>
-                    <p>Through street evangelism, we've seen hundreds come to know Christ. Many who were hopeless, addicted, or lost have found new life and purpose through a simple conversation on the street. Our teams are trained, Spirit-led, and passionate about reaching the lost.</p>
+  <!-- OUTREACH -->
+  <section class="outreach-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">SPREADING THE GOSPEL</span>
+        <h2 class="section-title">Our Outreach<br/>Initiatives</h2>
+        <p style="color:var(--muted);max-width:480px;margin:0 auto;font-size:.97rem;">Taking the good news beyond the church walls.</p>
+      </div>
+      <div class="outreach-grid">
+        <div class="initiative-card" data-key="street">
+          <div class="initiative-img">
+            <span class="initiative-img-icon">🎤</span>
+            <div class="initiative-overlay"><button class="overlay-btn" onclick="openModal('street')">Learn More</button></div>
+            <div class="initiative-img-title">Street Evangelism</div>
+          </div>
+          <div class="initiative-body"><p>Every Saturday our teams go into streets, markets, and public spaces to share the love of Christ through conversations, testimonies, and prayer.</p></div>
+        </div>
+        <div class="initiative-card" data-key="community">
+          <div class="initiative-img">
+            <span class="initiative-img-icon">🤝</span>
+            <div class="initiative-overlay"><button class="overlay-btn" onclick="openModal('community')">Learn More</button></div>
+            <div class="initiative-img-title">Community Events</div>
+          </div>
+          <div class="initiative-body"><p>Medical camps, food distributions, family fun days and community clean-ups — meeting practical needs while sharing the Gospel.</p></div>
+        </div>
+        <div class="initiative-card" data-key="campus">
+          <div class="initiative-img">
+            <span class="initiative-img-icon">📚</span>
+            <div class="initiative-overlay"><button class="overlay-btn" onclick="openModal('campus')">Learn More</button></div>
+            <div class="initiative-img-title">School & Campus Ministry</div>
+          </div>
+          <div class="initiative-body"><p>Reaching students in high schools, colleges, and universities with the Gospel during their most formative years.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                    <div class="involvement-section">
-                        <h3>How You Can Get Involved</h3>
-                        <p>Join our street evangelism team! We provide training, materials, and support. Whether you're bold in sharing your faith or just starting out, there's a place for you. We go out every Saturday at 9:00 AM.</p>
-                        <p><strong>Contact:</strong> evangelism@destinychapelngei.org</p>
-                    </div>
-                `
-            },
-            community: {
-                title: 'Community Events',
-                content: `
-                    <p>We believe in meeting people's practical needs while sharing the hope of the gospel. Our community events create opportunities to serve, connect, and demonstrate Christ's love in tangible ways.</p>
-                    
-                    <h3>Types of Events</h3>
-                    <ul>
-                        <li>Free medical camps offering health screenings and consultations</li>
-                        <li>Food distribution drives for families in need</li>
-                        <li>Youth empowerment workshops and career guidance</li>
-                        <li>Family fun days with games, music, and gospel presentations</li>
-                        <li>Community clean-up initiatives</li>
-                        <li>Holiday celebrations (Christmas, Easter) with outreach</li>
-                    </ul>
+  <!-- INITIATIVE MODAL -->
+  <div class="initiative-modal" id="initiativeModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+      <div class="modal-header"><h2 id="modalTitle"></h2></div>
+      <div class="modal-content-inner" id="modalBody"></div>
+    </div>
+  </div>
 
-                    <h3>Our Approach</h3>
-                    <p>Every community event is designed to serve people holistically—addressing physical, emotional, and spiritual needs. While we provide practical help, we never miss the opportunity to share the greatest gift: the message of salvation through Jesus Christ.</p>
+  <!-- JOIN CTA -->
+  <section class="join-section">
+    <div class="container">
+      <div class="join-inner">
+        <span class="section-tag">GET INVOLVED</span>
+        <h2>Join Us in Spreading the Gospel</h2>
+        <p>Whether you've just accepted Christ or you're a seasoned believer, there's a place for you in our evangelism efforts. Together, we can reach our community with the life-changing message of Jesus.</p>
+        <div class="btn-group center-group">
+          <a href="contact.html" class="btn btn-gold">Get Involved</a>
+          <a href="fusion.html" class="btn btn-outline">Join a Fusion Group</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                    <div class="involvement-section">
-                        <h3>Partner With Us</h3>
-                        <p>We host community events monthly and need volunteers, sponsors, and partners. Whether you can contribute resources, time, or expertise, your involvement makes a difference in someone's life.</p>
-                        <p><strong>Contact:</strong> community@destinychapelngei.org</p>
-                    </div>
-                `
-            },
-            campus: {
-                title: 'School & Campus Ministry',
-                content: `
-                    <p>The next generation is our focus! Our school and campus ministry reaches students in high schools, colleges, and universities with the gospel, helping them navigate life's challenges with a foundation of faith.</p>
-                    
-                    <h3>What We Offer</h3>
-                    <ul>
-                        <li>Weekly fellowship meetings on various campuses</li>
-                        <li>Bible studies tailored for students</li>
-                        <li>Mentorship programs pairing students with mature believers</li>
-                        <li>Campus crusades and evangelistic events</li>
-                        <li>Life skills training (relationships, finances, career preparation)</li>
-                        <li>Prayer support during exam periods</li>
-                    </ul>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top"><div class="container"><div class="footer-grid">
+      <div class="footer-brand"><img src="images/dc.jpg" alt="Destiny Chapel" class="footer-logo"/><p class="footer-tagline">Activating Dreams To Transform Lives</p><p class="footer-address">Ngei Primary, Lang'ata<br/>Nairobi, Kenya</p><div class="social-links"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">𝕏</a><a href="#" class="social-btn">◈</a><a href="https://www.youtube.com/@destinychapel04" class="social-btn">▶</a></div></div>
+      <div class="footer-col"><h4>Explore</h4><a href="About.html">About Us</a><a href="sermons.html">Sermons</a><a href="ministries.html">Ministries</a><a href="evangelism.html">Evangelism</a><a href="missions.html">Missions</a><a href="fusion.html">Fusion Groups</a></div>
+      <div class="footer-col"><h4>Get Involved</h4><a href="visitors.html">Plan Your Visit</a><a href="#">Online Giving</a><a href="#">Volunteer</a><a href="#">Food Bank</a><a href="#">Prayer Requests</a></div>
+      <div class="footer-col"><h4>Contact Us</h4><a href="#">📍 Ngei, Lang'ata, Nairobi</a><a href="tel:+254000000000">📞 +254 XXX XXX XXX</a><a href="mailto:info@destinychapelngei.org">✉️ info@destinychapelngei.org</a><div class="footer-service-times"><h4>Service Times</h4><p>Sunday: 10:00 AM – 12:30 PM</p></div></div>
+    </div></div></div>
+    <div class="footer-bottom"><div class="container"><p>© <span id="fy"></span> Destiny Chapel. All rights reserved.</p></div></div>
+  </footer>
 
-                    <h3>Why Campus Ministry Matters</h3>
-                    <p>University and high school years are critical in shaping a person's worldview. Many students face pressure, identity struggles, and spiritual questions. Our campus ministry provides a safe space for students to explore faith, ask questions, and build a relationship with Jesus surrounded by peers who share their journey.</p>
-
-                    <h3>Success Stories</h3>
-                    <p>We've seen countless students come to Christ, grow in their faith, and even become campus leaders themselves. Many of our church leaders today were first reached through campus ministry!</p>
-
-                    <div class="involvement-section">
-                        <h3>Support Campus Ministry</h3>
-                        <p>Are you a student who wants to start a fellowship on your campus? Or perhaps you'd like to mentor students? We're always looking for passionate individuals to invest in the next generation.</p>
-                        <p><strong>Contact:</strong> campus@destinychapelngei.org</p>
-                    </div>
-                `
-            }
-        };
-
-        // Get modal elements
-        const outreachModal = document.getElementById('outreachModal');
-        const modalOverlay = outreachModal.querySelector('.modal-overlay');
-        const modalClose = outreachModal.querySelector('.modal-close');
-
-        // Open modal function
-        function openOutreachModal(initiativeKey) {
-            const initiative = initiativeData[initiativeKey];
-            outreachModal.querySelector('.modal-initiative-title').textContent = initiative.title;
-            outreachModal.querySelector('.modal-initiative-content').innerHTML = initiative.content;
-            outreachModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close modal function
-        function closeOutreachModal() {
-            outreachModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Add click events to 'Learn More' buttons
-        document.querySelectorAll('.view-more-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const card = btn.closest('.initiative-card');
-                if (card) {
-                    const initiativeKey = card.getAttribute('data-initiative');
-                    openOutreachModal(initiativeKey);
-                }
-            });
-        });
-
-        // Close modal events
-        modalClose.addEventListener('click', closeOutreachModal);
-        modalOverlay.addEventListener('click', closeOutreachModal);
-
-        // Close with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && outreachModal.classList.contains('active')) {
-                closeOutreachModal();
-            }
-        });
-    </script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('fy').textContent = new Date().getFullYear();
+    const modalData = {
+      street:{title:'Street Evangelism',body:`<p>Our street evangelism teams take the gospel directly to people, meeting them where they are. Every Saturday, dedicated volunteers go into streets, markets, and public spaces to share the love of Christ.</p><h3>What We Do</h3><ul class="modal-check-list"><li>Weekly street outreach in various Nairobi neighbourhoods</li><li>One-on-one gospel conversations with passersby</li><li>Distribution of gospel tracts and Bibles</li><li>Prayer for physical and spiritual needs</li><li>Follow-up with those who accept Christ</li></ul><div class="modal-cta-block"><h3>Get Involved</h3><p>We go out every Saturday at 9:00 AM. We provide training, materials, and support for all levels of experience.<br/><strong>Contact:</strong> evangelism@destinychapelngei.org</p></div>`},
+      community:{title:'Community Events',body:`<p>We believe in meeting people's practical needs while sharing the hope of the Gospel. Our community events create opportunities to serve, connect, and demonstrate Christ's love in tangible ways.</p><h3>Types of Events</h3><ul class="modal-check-list"><li>Free medical camps offering health screenings</li><li>Food distribution drives for families in need</li><li>Youth empowerment workshops</li><li>Family fun days with gospel presentations</li><li>Community clean-up initiatives</li><li>Holiday celebrations with outreach</li></ul><div class="modal-cta-block"><h3>Partner With Us</h3><p>We host community events monthly and need volunteers, sponsors, and partners.<br/><strong>Contact:</strong> community@destinychapelngei.org</p></div>`},
+      campus:{title:'School & Campus Ministry',body:`<p>The next generation is our focus! Our school and campus ministry reaches students in high schools, colleges, and universities with the gospel, helping them navigate life's challenges with a foundation of faith.</p><h3>What We Offer</h3><ul class="modal-check-list"><li>Weekly fellowship meetings on campuses</li><li>Bible studies tailored for students</li><li>Mentorship pairing students with mature believers</li><li>Campus crusades and evangelistic events</li><li>Life skills training (relationships, finances, career)</li><li>Prayer support during exam periods</li></ul><div class="modal-cta-block"><h3>Support Campus Ministry</h3><p>Are you a student wanting to start a fellowship on your campus? We're always looking for passionate individuals.<br/><strong>Contact:</strong> campus@destinychapelngei.org</p></div>`}
+    };
+    function openModal(key){
+      const d=modalData[key];
+      document.getElementById('modalTitle').textContent=d.title;
+      document.getElementById('modalBody').innerHTML=d.body;
+      document.getElementById('initiativeModal').classList.add('active');
+      document.body.style.overflow='hidden';
+    }
+    function closeModal(){document.getElementById('initiativeModal').classList.remove('active');document.body.style.overflow='';}
+    document.getElementById('modalCloseBtn').addEventListener('click',closeModal);
+    document.getElementById('initiativeModal').addEventListener('click',e=>{if(e.target===document.getElementById('initiativeModal'))closeModal();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  </script>
 </body>
 </html>

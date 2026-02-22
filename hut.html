@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIZZ – Get Clear Near Vision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #0a1628;
+      --teal: #00b5c8;
+      --teal-light: #e0f7fa;
+      --cream: #f7f4ef;
+      --white: #ffffff;
+      --text: #1a2640;
+      --muted: #6b7a8f;
+      --accent: #00b5c8;
+      --border: rgba(0,181,200,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── TOP BAR ── */
+    .top-bar {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      padding: 8px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .top-bar a { color: rgba(255,255,255,0.75); text-decoration: none; }
+    .top-bar a:hover { color: var(--teal); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--navy); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #0f2a50 60%, #0d3b5e 100%);
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,181,200,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    /* decorative droplets */
+    .hero-drops {
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .drop {
+      position: absolute;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      background: linear-gradient(160deg, rgba(0,181,200,0.35), rgba(0,181,200,0.05));
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(0,181,200,0.2);
+      animation: float 6s ease-in-out infinite;
+    }
+    .drop:nth-child(1) { width: 280px; height: 360px; top: 5%; right: 8%; animation-delay: 0s; }
+    .drop:nth-child(2) { width: 160px; height: 210px; top: 55%; right: 35%; animation-delay: 1.5s; }
+    .drop:nth-child(3) { width: 100px; height: 130px; top: 15%; right: 42%; animation-delay: 3s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-18px) rotate(2deg); }
+    }
+
+    .hero-content {
+      padding: 80px 60px 80px 80px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(0,181,200,0.2);
+      color: var(--teal);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(0,181,200,0.3);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 4vw, 4rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(0,181,200,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,181,200,0.45); }
+    .btn-ghost {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .btn-ghost:hover { opacity: 1; }
+    .btn-ghost::before {
+      content: '▶';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      font-size: 0.65rem;
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 60px 60px 0;
+    }
+    .hero-celebrity {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 28px 32px;
+      max-width: 340px;
+      backdrop-filter: blur(10px);
+    }
+    .celebrity-badge {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .celebrity-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .celebrity-title {
+      font-size: 0.82rem;
+      color: var(--teal);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    .play-btn {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .play-btn:hover { color: var(--teal); }
+    .play-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(0,181,200,0.2);
+      border: 1px solid rgba(0,181,200,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--teal);
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 28px 40px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+      color: var(--white);
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SECTION HELPERS ── */
+    section { padding: 90px 80px; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 540px;
+    }
+
+    /* ── FEATURES ── */
+    .features { background: var(--cream); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+    }
+    .feat-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feat-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .feat-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #c8e6ea;
+      display: block;
+    }
+    .feat-img-placeholder {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, #b2ebf2, #e0f7fa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .feat-body { padding: 28px; }
+    .feat-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--teal-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    .feat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .feat-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .testimonials .section-title { color: var(--white); }
+    .testimonials .section-label { color: var(--teal); }
+    .quote-block {
+      border-left: 3px solid var(--teal);
+      padding-left: 28px;
+      margin-top: 40px;
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .quote-attr {
+      font-size: 0.85rem;
+      color: var(--teal);
+      font-weight: 600;
+    }
+    .testimonial-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .tcard {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 2/3;
+      position: relative;
+    }
+    .tcard-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #0d3b5e, #0a2035);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+    .tcard:first-child { grid-row: span 2; }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--white); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 56px;
+    }
+    .step {
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -24px;
+      top: 30px;
+      color: var(--teal);
+      font-size: 1.5rem;
+    }
+    .step-num {
+      width: 64px;
+      height: 64px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--teal);
+      margin: 0 auto 20px;
+      font-weight: 600;
+    }
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .step-text { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--teal) 0%, #007d8a 100%);
+      padding: 70px 80px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+    }
+    .cta-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      color: var(--white);
+      line-height: 1.25;
+    }
+    .cta-band p {
+      color: rgba(255,255,255,0.8);
+      margin-top: 10px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--teal);
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+
+    /* ── SIGN UP FORM ── */
+    .signup-section {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .signup-form {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+    }
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { border-color: var(--teal); }
+    .form-check {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .form-check input { margin-top: 2px; flex-shrink: 0; accent-color: var(--teal); }
+    .btn-submit {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-submit:hover { background: var(--teal); transform: translateY(-1px); }
+
+    /* ── SAFETY INFO ── */
+    .safety {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+    .safety h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .safety-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .safety p, .safety li {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .safety ul { padding-left: 18px; margin-top: 8px; }
+    .safety li { margin-bottom: 4px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 80px 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo { color: var(--white); display: block; margin-bottom: 14px; }
+    .footer-brand p { font-size: 0.83rem; line-height: 1.7; max-width: 260px; }
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--teal); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--teal); }
+    .social-links { display: flex; gap: 16px; }
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── ANNOUNCEMENT BANNER ── */
+    .announcement {
+      background: var(--cream);
+      border-left: 4px solid var(--teal);
+      margin: 60px 80px;
+      padding: 32px 40px;
+      border-radius: 0 16px 16px 0;
+    }
+    .announcement h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .announcement p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .announcement .highlight {
+      font-style: italic;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      section { padding: 60px 28px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 60px 28px 32px; }
+      .hero-right { padding: 0 28px 60px; }
+      .features-grid, .steps { grid-template-columns: 1fr; }
+      .step:not(:last-child)::after { display: none; }
+      .testimonials { grid-template-columns: 1fr; }
+      .testimonial-cards { grid-template-columns: 1fr 1fr; }
+      .tcard:first-child { grid-row: span 1; }
+      .cta-band { grid-template-columns: 1fr; text-align: center; padding: 50px 28px; }
+      .signup-section { grid-template-columns: 1fr; }
+      .safety-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .announcement { margin: 40px 28px; padding: 24px 28px; }
+      .stats-strip { gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content > * {
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    .hero h1 { animation-delay: 0.25s; }
+    .hero-sub { animation-delay: 0.4s; }
+    .hero-actions { animation-delay: 0.55s; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="#">Important Safety Information</a>
+    <a href="#">Full Prescribing Information</a>
+    <a href="#">Eye Care Professionals</a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">VI<span>ZZ</span></a>
+    <ul class="nav-links">
+      <li><a href="#">About VIZZ</a></li>
+      <li><a href="#">Real Experiences</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Access &amp; Pricing</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Find A Doctor Near You</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-drops">
+      <div class="drop"></div>
+      <div class="drop"></div>
+      <div class="drop"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Prescription Eye Drops</div>
+      <h1>Better days<br/>start with <em>VIZZ</em></h1>
+      <p class="hero-sub">Get clear near vision with VIZZ, a once-daily prescription eye drop to treat blurry near vision for up to 10 hours.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Find A Doctor</a>
+        <a href="#" class="btn-ghost">Watch Commercial</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-celebrity">
+        <div class="celebrity-badge">Real VIZZ User</div>
+        <div class="celebrity-name">Sarah Jessica<br/>Parker</div>
+        <div class="celebrity-title">Brand Ambassador &amp; Patient</div>
+        <div class="play-btn">
+          <div class="play-icon">▶</div>
+          Watch the commercial
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat">
+      <span class="stat-num">128M</span>
+      <span class="stat-label">Adults with presbyopia in the US</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">30 min</span>
+      <span class="stat-label">Works within 30 minutes</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">10 hrs</span>
+      <span class="stat-label">Lasts up to 10 hours</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1×</span>
+      <span class="stat-label">Once daily dose</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-label">Stay in the moment</div>
+    <h2 class="section-title">Clear near vision,<br/>whenever you need it</h2>
+    <p class="section-sub">VIZZ (aceclidine ophthalmic solution) 1.44% is the first and only FDA-approved aceclidine-based eye drop for presbyopia.</p>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-img-placeholder">⏱️</div>
+        <div class="feat-body">
+          <div class="feat-title">Ready When You Are</div>
+          <p class="feat-text">Works within 30 minutes so you can start your day with confidence. Just one drop in each eye, once daily.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-img-placeholder">☀️</div>
+        <div class="feat-body">
+          <div class="feat-title">All Day Benefit</div>
+          <p class="feat-text">Lasts up to 10 hours — so you can read menus, messages, and fine print from morning to night.</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-img-placeholder">✅</div>
+        <div class="feat-body">
+          <div class="feat-title">Safe to Use Every Day</div>
+          <p class="feat-text">Common side effects were instillation site irritation, dim vision, eye redness and headache. Most were mild and temporary.</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:40px;">
+      <a href="#" class="btn-primary" style="text-decoration:none;">Learn More About VIZZ</a>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div style="max-width:560px;">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Rediscover clear<br/>near vision</h2>
+      <p class="section-sub">VIZZ uses aceclidine to contract the iris sphincter muscle, creating a pinhole effect that extends your depth of focus.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Get a Prescription</div>
+        <p class="step-text">Visit an eye care professional near you to see if VIZZ is right for you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Apply One Drop</div>
+        <p class="step-text">Apply VIZZ once daily in the morning. No reading glasses needed after that.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">See Clearly All Day</div>
+        <p class="step-text">Enjoy up to 10 hours of clear near vision, every day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" style="padding: 90px 80px;">
+    <div>
+      <div class="section-label">Real Experiences</div>
+      <h2 class="section-title">See the impact of<br/>VIZZ with real users</h2>
+      <div class="quote-block">
+        <p class="quote-text">"I think I was just shocked at the fact that it actually did work. I actually could see better than I could have even imagined."</p>
+        <div class="quote-attr">Deanna, 52 — Hairstylist</div>
+      </div>
+      <div style="margin-top:32px;">
+        <a href="#" class="btn-primary" style="text-decoration:none;">Explore Their Stories</a>
+      </div>
+    </div>
+    <div class="testimonial-cards">
+      <div class="tcard"><div class="tcard-img-placeholder">👩</div></div>
+      <div class="tcard"><div class="tcard-img-placeholder">👨</div></div>
+      <div class="tcard"><div class="tcard-img-placeholder">👩‍🦳</div></div>
+    </div>
+  </section>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement">
+    <h3>LENZ Therapeutics Announces US FDA Approval of VIZZ™</h3>
+    <p>VIZZ is <span class="highlight">the first and only aceclidine-based eye drop approved to improve near vision in adults with presbyopia,</span> a condition impacting approximately 128 million adults in the United States. The first once-daily solution to treat blurry near vision with proven efficacy for up to 10 hours. Available in the United States since October 2025.</p>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div>
+      <h2>Ready to see the difference?</h2>
+      <p>Find an eye care professional near you and ask about VIZZ today.</p>
+    </div>
+    <a href="#" class="btn-white">Find A Doctor Near You</a>
+  </div>
+
+  <!-- SIGN UP -->
+  <section class="signup-section">
+    <div>
+      <div class="section-label">Stay Connected</div>
+      <h2 class="section-title">Stay connected<br/>with VIZZ</h2>
+      <p class="section-sub">Enter your information to receive updates about VIZZ, including availability, access programs, and savings opportunities.</p>
+      <div style="margin-top:32px; background:var(--teal-light); border-radius:16px; padding:24px 28px;">
+        <div style="font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--navy); margin-bottom:8px;">Important Safety Information</div>
+        <ul style="font-size:0.83rem; color:var(--muted); line-height:1.7; padding-left:18px;">
+          <li>Do not use VIZZ if you are allergic to any of the ingredients.</li>
+          <li>The most common side effects include: eye irritation, temporary dim or dark vision, headaches, and eye redness.</li>
+          <li>Remove contact lenses before use; reinsert after 10 minutes.</li>
+          <li>Do not drive if vision is not clear after use.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="signup-form">
+      <div class="form-title">Get VIZZ Updates</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Jane" />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="jane@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="(555) 000-0000" />
+      </div>
+      <div class="form-group">
+        <label>ZIP Code</label>
+        <input type="text" placeholder="90210" />
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="consent" />
+        <label for="consent">By checking this box, you consent to receive marketing emails, special offers, and promotions from VIZZ. You can opt out at any time.</label>
+      </div>
+      <button class="btn-submit">Submit</button>
+    </div>
+  </section>
+
+  <!-- SAFETY FULL -->
+  <section class="safety">
+    <div class="safety-grid">
+      <div>
+        <h3>Usage</h3>
+        <p>VIZZ (aceclidine ophthalmic solution) 1.44% is a prescription eye drop used to treat age-related blurry near vision (presbyopia) in adults.</p>
+        <h3 style="margin-top:28px;">Adverse Reactions</h3>
+        <p>The most common reported adverse reactions were instillation site irritation (20%), dim vision (16%), and headache (13%). Most adverse reactions were mild, transient, and self-resolving.</p>
+      </div>
+      <div>
+        <h3>Important Safety Information</h3>
+        <ul>
+          <li>Do not use VIZZ if you are allergic to any of the ingredients.</li>
+          <li>Do not allow the vial tip to touch the eye or any surfaces.</li>
+          <li>Remove contact lenses before use; reinsert after 10 minutes.</li>
+          <li>If using more than one topical eye medication, administer at least 5 minutes apart.</li>
+          <li>Do not drive or operate machinery if vision is not clear after use.</li>
+          <li>Seek immediate medical care if you experience sudden onset of flashing lights, floaters, or vision loss.</li>
+        </ul>
+        <p style="margin-top:14px;"><strong>To report suspected adverse reactions:</strong> contact LENZ Therapeutics at 1-888-711-LENZ or FDA at 1-800-FDA-1088.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">VI<span style="color:var(--teal);">ZZ</span></a>
+        <p>201 Lomas Santa Fe Drive, Suite 300<br/>Solana Beach, CA 92075</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="#" class="social-link" title="Facebook">f</a>
+          <a href="#" class="social-link" title="Instagram">&#9670;</a>
+          <a href="#" class="social-link" title="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#">About VIZZ</a>
+        <a href="#">Real Experiences</a>
+        <a href="#">FAQs</a>
+        <a href="#">Access &amp; Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Find A Doctor</a>
+        <a href="#">Eye Care Professionals</a>
+        <a href="#">Full Prescribing Info</a>
+        <a href="#">Safety Information</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>©2026 LENZ Therapeutics, Inc. All rights reserved. U.S.-ACE-1272-v8</span>
+      <div style="display:flex; gap:20px;">
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+```

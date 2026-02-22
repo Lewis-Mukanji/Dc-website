@@ -1,437 +1,234 @@
-// Mobile Menu Toggle
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
+/* ============================================================
+   DESTINY CHAPEL – script.js
+   ============================================================ */
 
-if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-    });
-}
+/* ── MOBILE MENU ── */
+const mobileToggle = document.getElementById('mobileToggle');
+const navMenu      = document.getElementById('navMenu');
 
-// Close mobile menu when clicking on a link
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
+if (mobileToggle && navMenu) {
+  mobileToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    mobileToggle.classList.toggle('open');
+  });
+
+  // Close when a link is clicked
+  navMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        if (mobileMenuToggle) {
-            mobileMenuToggle.classList.remove('active');
-        }
+      navMenu.classList.remove('open');
+      mobileToggle.classList.remove('open');
     });
-});
-
-// Smooth Scrolling for Navigation Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offset = 80;
-            const targetPosition = target.offsetTop - offset;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Navbar Background on Scroll
-const navbar = document.querySelector('.navbar');
-if (navbar) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
-        } else {
-            navbar.style.background = '#ffffff';
-            navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-        }
-    });
+  });
 }
 
-// Active Navigation Link Based on Scroll Position
-const sections = document.querySelectorAll('section');
-const navItems = document.querySelectorAll('.nav-menu a');
+/* ── NAVBAR SHADOW ON SCROLL ── */
+const navbar = document.getElementById('navbar');
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navbar.style.boxShadow = '0 4px 32px rgba(0,0,0,0.13)';
+    } else {
+      navbar.style.boxShadow = '0 1px 0 rgba(201,149,42,0.18), 0 4px 24px rgba(0,0,0,0.07)';
+    }
+  });
+}
+
+/* ── ACTIVE NAV LINK ON SCROLL ── */
+const sections = document.querySelectorAll('section[id]');
+const navLinks  = document.querySelectorAll('.nav-menu a');
 
 window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') === `#${current}`) {
-            item.classList.add('active');
-        }
-    });
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href').includes(current) && current) {
+      link.classList.add('active');
+    }
+  });
 });
 
-// Event Data
-const eventData = {
-    prema: {
-        title: 'PREMA 2026',
-        date: 'Sat 17 January - Sat 4 April, 2026',
-        time: '8:00 AM',
-        venue: 'Destiny Chapel - Nairobi',
-        description: 'PREMA is for dating and courting couples while Marriage Blessing is for couples staying together and would like to solemnize their union, or are married but did not get an opportunity to attend a comprehensive Premarital Counseling.',
-        price: 'Kshs. 15,000/= for ICC Members, Kshs.18,000/= for non-ICC couples',
-        paybill: '904800',
-        account: 'Prema or MB then your names. For example: PremaJohnJane / MBJohnJane.',
-        posterClass: 'prema-poster',
-        image: 'images/allyours.jpeg'
-    },
-    prayer: {
-        title: 'Prayer Conference',
-        date: 'Feb 13th 2026',
-        time: '9:00am - 4:00pm',
-        venue: 'Destiny Chapel - Nairobi',
-        description: 'Join us for a powerful day of prayer and seeking God\'s presence. Guest Speaker: Evangelist Mikel French will be ministering throughout the conference.',
-        price: 'Free Entry',
-        paybill: 'N/A',
-        account: 'N/A',
-        posterClass: 'prayer-poster',
-        image: 'images/how.jpeg'
-    },
-    masters: {
-        title: 'Masters Commission 2026',
-        date: '30th Jan - 10th May 2026',
-        time: 'Various Times',
-        venue: 'Destiny Chapel - Nairobi',
-        description: 'Master\'s commission is a three month transitional program for high school graduates that equips them for whatever God has next for them. In those three months, we instill spiritual disciplines and life skills and then give them access to professional short courses on Udemy.',
-        price: 'KES. 9,000/- The charge for the program is KES. 9,000/- is payable upon registration.',
-        paybill: '904800',
-        account: 'Account name: "Masters" followed by the participant\'s name',
-        posterClass: 'masters-poster',
-        image: 'images/how.jpeg'
-    },
-    valentine: {
-        title: 'Couples Valentine\'s Dinner',
-        date: '13TH FEBRUARY 2026',
-        time: '7:00PM',
-        venue: 'Destiny Chapel - Nairobi',
-        description: 'Celebrating Love - Join us for an elegant evening of romance, fine dining, and fellowship with other couples.',
-        price: 'KSH 6,000',
-        paybill: 'MPESA PAYBILL: 904800 ACCOUNT NAME: VALENTINES COUPLES DINNER',
-        account: 'VALENTINES COUPLES DINNER',
-        posterClass: 'valentine-poster',
-        image: 'images/Gala.jpeg'
+/* ── SMOOTH SCROLL FOR HASH LINKS ── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', e => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
     }
-};
+  });
+});
 
-// Event Modal Functionality
-const modal = document.getElementById('eventModal');
-const modalOverlay = modal.querySelector('.modal-overlay');
-const modalClose = modal.querySelector('.modal-close');
-const eventCards = document.querySelectorAll('.event-card-new');
-
-// Function to create poster HTML for modal
-function createPosterHTML(eventKey) {
-    const event = eventData[eventKey];
-    return `<img src="${event.image}" alt="${event.title}" style="width: 100%; height: 100%; object-fit: cover;">`;
+/* ── COUNTER ANIMATION ── */
+function animateCounter(el, target, duration = 1800) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) {
+      el.textContent = target;
+      clearInterval(timer);
+    } else {
+      el.textContent = Math.floor(start);
+    }
+  }, 16);
 }
 
-// Open modal when clicking event card or More Info button
-eventCards.forEach(card => {
-    const eventKey = card.getAttribute('data-event');
-    const imageUrl = card.getAttribute('data-image');
-    const imageWrapper = card.querySelector('.event-image-wrapper');
-    
-    // Set background image for the card
-    if (imageWrapper && imageUrl) {
-        imageWrapper.style.backgroundImage = `url('${imageUrl}')`;
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
+        animateCounter(el, parseInt(el.dataset.target));
+      });
+      statsObserver.unobserve(entry.target);
     }
-    
-    const moreInfoBtn = card.querySelector('.more-info-btn');
-    
-    if (moreInfoBtn) {
-        moreInfoBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openModal(eventKey);
-        });
+  });
+}, { threshold: 0.4 });
+
+const statsSection = document.querySelector('.stats-row');
+if (statsSection) statsObserver.observe(statsSection);
+
+/* ── FADE-UP ON SCROLL ── */
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      fadeObserver.unobserve(entry.target);
     }
-    
-    // Also open on card click
-    card.addEventListener('click', () => {
-        openModal(eventKey);
-    });
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.connect-card, .event-card, .feat-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+  fadeObserver.observe(el);
 });
 
-function openModal(eventKey) {
-    const event = eventData[eventKey];
-    
-    // Populate modal poster
-    const modalPoster = modal.querySelector('.modal-poster');
-    modalPoster.innerHTML = createPosterHTML(eventKey);
-    
-    // Populate modal info
-    modal.querySelector('.modal-title').textContent = event.title;
-    modal.querySelector('.event-date').textContent = event.date;
-    modal.querySelector('.event-time').textContent = event.time;
-    modal.querySelector('.event-venue').textContent = event.venue;
-    modal.querySelector('.event-description').textContent = event.description;
-    modal.querySelector('.event-price').textContent = event.price;
-    modal.querySelector('.event-paybill').textContent = event.paybill;
-    modal.querySelector('.event-account').textContent = event.account;
-    
-    // Show modal
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+/* ── EVENT DATA ── */
+const eventData = {
+  prema: {
+    title: 'PREMA 2026',
+    date: 'Sat 17 January – Sat 4 April, 2026',
+    time: '8:00 AM',
+    venue: 'Destiny Chapel – Nairobi',
+    description: 'PREMA is for dating and courting couples, while Marriage Blessing is for couples staying together and who would like to solemnise their union, or are married but did not get an opportunity to attend comprehensive Premarital Counselling.',
+    price: 'Kshs. 15,000/= for ICC Members · Kshs. 18,000/= for non-ICC couples',
+    paybill: '904800',
+    account: 'Prema or MB then your names. E.g. PremaJohnJane / MBJohnJane.',
+    image: 'images/allyours.jpeg'
+  },
+  prayer: {
+    title: 'Prayer Conference',
+    date: 'Feb 13th, 2026',
+    time: '9:00 AM – 4:00 PM',
+    venue: 'Destiny Chapel – Nairobi',
+    description: "Join us for a powerful day of prayer and seeking God's presence. Guest Speaker: Evangelist Mikel French will be ministering throughout the conference.",
+    price: 'Free Entry',
+    paybill: 'N/A',
+    account: 'N/A',
+    image: 'images/how.jpeg'
+  },
+  valentine: {
+    title: "Couples Valentine's Dinner",
+    date: '13th February, 2026',
+    time: '7:00 PM',
+    venue: 'Destiny Chapel – Nairobi',
+    description: 'Celebrating Love — Join us for an elegant evening of romance, fine dining, and fellowship with other couples.',
+    price: 'KSH 6,000 per couple',
+    paybill: '904800',
+    account: 'VALENTINES COUPLES DINNER',
+    image: 'images/Gala.jpeg'
+  }
+};
+
+/* ── EVENT CARDS – SET BACKGROUND IMAGES ── */
+document.querySelectorAll('.event-card[data-image]').forEach(card => {
+  const wrap = card.querySelector('.event-img-wrap');
+  if (wrap) wrap.style.backgroundImage = `url('${card.dataset.image}')`;
+});
+
+/* ── EVENT MODAL ── */
+const modal       = document.getElementById('eventModal');
+const modalOverlay = modal && modal.querySelector('.modal-overlay');
+const modalClose   = modal && modal.querySelector('.modal-close');
+
+function openModal(key) {
+  const ev = eventData[key];
+  if (!ev || !modal) return;
+
+  modal.querySelector('.modal-poster').innerHTML =
+    `<img src="${ev.image}" alt="${ev.title}" />`;
+  modal.querySelector('.modal-title').textContent     = ev.title;
+  modal.querySelector('.event-date').textContent      = ev.date;
+  modal.querySelector('.event-time').textContent      = ev.time;
+  modal.querySelector('.event-venue').textContent     = ev.venue;
+  modal.querySelector('.event-description').textContent = ev.description;
+  modal.querySelector('.event-price').textContent     = ev.price;
+  modal.querySelector('.event-paybill').textContent   = ev.paybill;
+  modal.querySelector('.event-account').textContent   = ev.account;
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+  modal && modal.classList.remove('active');
+  document.body.style.overflow = '';
 }
 
-// Close modal when clicking close button
-if (modalClose) {
-    modalClose.addEventListener('click', closeModal);
-}
-
-// Close modal when clicking overlay
-if (modalOverlay) {
-    modalOverlay.addEventListener('click', closeModal);
-}
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-    }
+document.querySelectorAll('.event-card').forEach(card => {
+  const key = card.dataset.event;
+  const btn = card.querySelector('.more-info-btn');
+  if (btn) btn.addEventListener('click', e => { e.stopPropagation(); openModal(key); });
+  card.addEventListener('click', () => openModal(key));
 });
 
-// Fade In Animation on Scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+if (modalClose)   modalClose.addEventListener('click', closeModal);
+if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Add fade-in class and observe elements
-const fadeElements = document.querySelectorAll('.service-card, .connect-card, .fusion-feature, .event-card-new');
-fadeElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// Form Validation (Visitor Form)
-const visitorForm = document.querySelector('.visitor-form form');
+/* ── VISITOR FORM ── */
+const visitorForm = document.getElementById('visitorForm');
 if (visitorForm) {
-    visitorForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const name = visitorForm.querySelector('input[type="text"]').value;
-        const email = visitorForm.querySelector('input[type="email"]').value;
-        
-        if (!name || !email) {
-            alert('Please fill in all required fields (Name and Email)');
-            return;
-        }
-        
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        alert('Thank you! We look forward to welcoming you. You will receive a confirmation email shortly.');
-        visitorForm.reset();
-    });
+  visitorForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name  = visitorForm.querySelector('input[type="text"]').value.trim();
+    const email = visitorForm.querySelector('input[type="email"]').value.trim();
+    if (!name || !email) { alert('Please fill in your name and email.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+    alert('Thank you! We look forward to welcoming you. You will receive a confirmation shortly. 🙏');
+    visitorForm.reset();
+  });
 }
 
-// Counter Animation for Impact Stats
-const animateCounter = (element, target, duration = 2000) => {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target + '+';
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start) + '+';
-        }
-    }, 16);
-};
+/* ── FOOTER YEAR ── */
+const yearEl = document.getElementById('footerYear');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Observe stats section for counter animation
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const stats = entry.target.querySelectorAll('.stat h3');
-            stats.forEach(stat => {
-                const target = parseInt(stat.textContent);
-                animateCounter(stat, target);
-            });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const statsSection = document.querySelector('.impact-stats');
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
-
-// Add current year to footer
-const footerYear = document.querySelector('.footer-bottom p');
-if (footerYear) {
-    const currentYear = new Date().getFullYear();
-    footerYear.innerHTML = footerYear.innerHTML.replace('2026', currentYear);
-}
-
-// Scroll-to-Top Button
-let scrollTopBtn = document.createElement('button');
+/* ── SCROLL TO TOP BUTTON ── */
+const scrollTopBtn = document.createElement('button');
 scrollTopBtn.innerHTML = '↑';
-scrollTopBtn.className = 'scroll-top-btn';
-scrollTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 999;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-`;
+Object.assign(scrollTopBtn.style, {
+  position: 'fixed', bottom: '28px', right: '28px',
+  width: '48px', height: '48px', borderRadius: '50%',
+  background: '#0d1f3c', color: '#fff', border: 'none',
+  fontSize: '20px', cursor: 'pointer', opacity: '0',
+  visibility: 'hidden', transition: 'all 0.3s ease',
+  zIndex: '999', boxShadow: '0 4px 16px rgba(0,0,0,0.2)'
+});
 document.body.appendChild(scrollTopBtn);
 
 window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 500) {
-        scrollTopBtn.style.opacity = '1';
-        scrollTopBtn.style.visibility = 'visible';
-    } else {
-        scrollTopBtn.style.opacity = '0';
-        scrollTopBtn.style.visibility = 'hidden';
-    }
+  const show = window.scrollY > 500;
+  scrollTopBtn.style.opacity     = show ? '1' : '0';
+  scrollTopBtn.style.visibility  = show ? 'visible' : 'hidden';
 });
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+scrollTopBtn.addEventListener('mouseenter', () => { scrollTopBtn.style.background = '#c9952a'; });
+scrollTopBtn.addEventListener('mouseleave', () => { scrollTopBtn.style.background = '#0d1f3c'; });
 
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-scrollTopBtn.addEventListener('mouseenter', () => {
-    scrollTopBtn.style.background = 'var(--accent-color)';
-});
-
-scrollTopBtn.addEventListener('mouseleave', () => {
-    scrollTopBtn.style.background = 'var(--primary-color)';
-});
-
-// Lazy Loading for Images (if you add real images later)
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-
-    const images = document.querySelectorAll('img[data-src]');
-    images.forEach(img => imageObserver.observe(img));
-}
-
-// Leader Modal Functionality
-const leaderData = {
-    'bishop-joel': {
-        name: 'Bishop Joel Chola',
-        role: 'Senior Pastor & Founder',
-        image: 'https://via.placeholder.com/300x400?text=Bishop+Joel+Chola',
-        bio: 'Bishop Joel Chola founded Destiny Chapel in 2012 with a heart for revival and transformation. His dynamic teaching and pastoral care have impacted thousands of lives. He holds a Master\'s in Theology and has served in ministry for over 25 years. His vision is to see every believer empowered to live victoriously in Christ and reach their full potential in God\'s kingdom.',
-        email: 'pastor@destinychapel.org',
-        phone: '+254'
-    },
-    'pastor-james': {
-        name: 'Pastor James Okumu',
-        role: 'Senior Pastor',
-        image: 'https://via.placeholder.com/300x400?text=Pastor+James+Okumu',
-        bio: 'Pastor James Okumu is a dedicated minister with a passion for biblical teaching and equipping believers. With extensive experience in pastoral leadership and discipleship, he has helped countless individuals find their calling in God. He is committed to creating an environment where faith is deepened and lives are transformed through God\'s Word.',
-        email: 'grace@destinychapel.org',
-        phone: '+254'
-    },
-    'pastor-joe': {
-        name: 'Pastor Joe',
-        role: 'Associate Pastor',
-        image: 'https://via.placeholder.com/300x400?text=Pastor+Joe',
-        bio: 'With a passion for the next generation, Pastor Joe leads our vibrant youth ministry. His creative approach to teaching and worship has attracted hundreds of young people seeking authentic faith and purpose. He believes in empowering young leaders to become agents of change in their communities and world.',
-        email: 'david@destinychapel.org',
-        phone: '+254'
-    }
-};
-
-function openLeaderModal(leaderId) {
-    const modal = document.getElementById('leaderModal');
-    const leader = leaderData[leaderId];
-    
-    if (leader) {
-        document.getElementById('modalImage').src = leader.image;
-        document.getElementById('modalImage').alt = leader.name;
-        document.getElementById('modalName').textContent = leader.name;
-        document.getElementById('modalRole').textContent = leader.role;
-        document.getElementById('modalBio').textContent = leader.bio;
-        
-        const contactDiv = document.getElementById('modalContact');
-        contactDiv.innerHTML = `
-            <a href="mailto:${leader.email}" title="Email">✉️</a>
-            <a href="tel:${leader.phone}" title="Phone">📞</a>
-        `;
-        
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeLeaderModal() {
-    const modal = document.getElementById('leaderModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Close modal when clicking outside of it
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('leaderModal');
-    if (event.target === modal) {
-        closeLeaderModal();
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeLeaderModal();
-    }
-});
-
-console.log('Destiny Chapel Website Initialized Successfully! 🙏');
+console.log('Destiny Chapel – Activating Dreams To Transform Lives 🙏');

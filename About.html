@@ -1,826 +1,995 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Destiny Chapel</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        /* Timeline Styles */
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 4rem auto;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – Destiny Chapel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-        }
+  <style>
+    /* ── PAGE HERO (shorter than homepage) ── */
+    .page-hero {
+      position: relative;
+      height: 52vh;
+      min-height: 340px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 30% 50%, rgba(201,149,42,0.08) 0%, transparent 65%),
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+    }
+    /* Decorative dot grid */
+    .page-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 80px 60px;
+      color: var(--white);
+    }
+    .page-hero-eyebrow {
+      display: inline-block;
+      background: rgba(201,149,42,0.2);
+      border: 1px solid rgba(201,149,42,0.45);
+      color: var(--gold-light);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 18px;
+    }
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 520px;
+    }
+    /* Gold accent line at bottom */
+    .page-hero-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, transparent 100%);
+      z-index: 3;
+    }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-            display: flex;
-            justify-content: center;
-        }
+    /* ── INTRO ── */
+    .about-intro { background: var(--white); }
+    .about-intro-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-intro-inner p {
+      font-size: 1.12rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .about-intro-inner p:first-of-type {
+      font-size: 1.22rem;
+      color: var(--text);
+      font-weight: 500;
+    }
 
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-right: auto;
-            margin-left: 0;
-            text-align: right;
-        }
+    /* ── TIMELINE ── */
+    .timeline-section { background: var(--cream); }
 
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-left: auto;
-            margin-right: 0;
-            text-align: left;
-        }
+    .timeline {
+      position: relative;
+      max-width: 960px;
+      margin: 56px auto 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--gold) 0%, var(--navy) 100%);
+      border-radius: 2px;
+    }
 
-        .timeline-content {
-            width: 45%;
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.1);
-            position: relative;
-        }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 52px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
 
-        .timeline-year {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            z-index: 10;
-        }
+    .timeline-content {
+      width: 44%;
+      background: var(--white);
+      padding: 28px 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      border-top: 3px solid var(--gold);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .timeline-content:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(201,149,42,0.13);
+    }
+    .timeline-item:nth-child(odd) .timeline-content  { margin-right: auto; text-align: right; }
+    .timeline-item:nth-child(even) .timeline-content { margin-left: auto;  text-align: left; }
 
-        .timeline-content h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
+    .timeline-year {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      transform: translateX(-50%);
+      background: var(--navy);
+      color: var(--gold-light);
+      padding: 7px 20px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      z-index: 10;
+      border: 2px solid var(--gold);
+      white-space: nowrap;
+    }
+    .timeline-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .timeline-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
 
-        /* Values Grid */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+    /* ── VISION BANNER ── */
+    .vision-banner {
+      position: relative;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-light) 100%);
+      padding: 100px 32px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .vision-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: movePattern 24s linear infinite;
+    }
+    @keyframes movePattern {
+      from { transform: translate(0,0); }
+      to   { transform: translate(40px,40px); }
+    }
+    .vision-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .vision-inner .section-tag { color: var(--gold-light); }
+    .vision-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 28px;
+      line-height: 1.15;
+    }
+    .vision-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.75;
+      border-left: 3px solid var(--gold);
+      padding-left: 28px;
+      text-align: left;
+      max-width: 680px;
+      margin: 0 auto;
+    }
 
-        .value-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: var(--transition);
-            border-top: 4px solid var(--primary-color);
-        }
+    /* ── MISSION ── */
+    .mission-section { background: var(--white); }
+    .mission-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--cream);
+      border-left: 5px solid var(--gold);
+      border-radius: 0 16px 16px 0;
+      padding: 44px 48px;
+    }
+    .mission-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+    .mission-card p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.82;
+      margin-bottom: 16px;
+    }
+    .mission-card p:last-child { margin-bottom: 0; }
+    .mission-card p:first-of-type { font-size: 1.15rem; color: var(--text); }
 
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
-        }
+    /* ── LEADERSHIP ── */
+    .leadership-section { background: var(--cream); }
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 52px;
+    }
+    .leader-card {
+      background: var(--white);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .leader-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(13,31,60,0.13);
+    }
+    .leader-photo {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    }
+    .leader-photo-placeholder {
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+    .leader-body { padding: 24px 28px 28px; flex: 1; display: flex; flex-direction: column; }
+    .leader-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .leader-role {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .leader-bio-short {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .see-more-btn {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 11px 22px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.03em;
+      width: 100%;
+    }
+    .see-more-btn:hover { background: var(--gold); transform: translateY(-1px); }
 
-        .value-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
-        }
+    /* Leader Modal */
+    .leader-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(4px);
+      animation: fadeIn 0.25s ease;
+    }
+    .leader-modal.active { display: flex; }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
-        /* Vision Statement */
-        .vision-statement {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: var(--white);
-            padding: 5rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+    .leader-modal-box {
+      position: relative;
+      background: var(--white);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 820px;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity:0; }
+      to   { transform: translateY(0);    opacity:1; }
+    }
+    .leader-modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 38px; height: 38px;
+      background: var(--white);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.14);
+      transition: all 0.25s ease;
+      z-index: 3;
+      line-height: 1;
+    }
+    .leader-modal-close:hover { background: var(--cream); transform: rotate(90deg); }
+    .leader-modal-body { display: grid; grid-template-columns: 1fr 1fr; }
+    .leader-modal-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 440px;
+      object-fit: cover;
+      border-radius: 20px 0 0 20px;
+      display: block;
+    }
+    .leader-modal-photo-placeholder {
+      min-height: 440px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      border-radius: 20px 0 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.9rem;
+    }
+    .leader-modal-info { padding: 44px 40px; }
+    .leader-modal-info h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .leader-modal-role {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .leader-modal-bio {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .leader-contact-links { display: flex; gap: 12px; }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cream);
+      color: var(--navy);
+      text-decoration: none;
+      padding: 9px 18px;
+      border-radius: 50px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .contact-link:hover { background: var(--navy); color: var(--white); }
 
-        .vision-statement::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: movePattern 20s linear infinite;
-        }
+    /* ── CORE VALUES ── */
+    .values-section { background: var(--white); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 52px;
+    }
+    .value-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 3px solid var(--gold);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .value-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(201,149,42,0.13);
+    }
+    .value-icon {
+      width: 68px;
+      height: 68px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 1.8rem;
+    }
+    .value-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .value-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
 
-        @keyframes movePattern {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
+    /* ── STATS ── */
+    .stats-section { background: var(--navy); padding: 80px 0; }
+    .stats-inner { max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+    .stats-grid-about {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .stat-about-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .stat-about-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em;
+    }
 
-        .vision-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    /* ── JOIN CTA ── */
+    .join-cta { background: var(--cream); }
+    .join-cta-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .join-cta-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .join-cta-inner p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
 
-        .vision-content h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            font-family: 'Playfair Display', serif;
-        }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .page-hero-content { padding: 0 28px 48px; }
 
-        .vision-content p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-        }
+      .timeline::before { left: 22px; }
+      .timeline-year { left: 22px; transform: translateX(0); top: 16px; }
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        width: calc(100% - 72px);
+        margin-left: 72px;
+        margin-right: 0;
+        text-align: left;
+      }
 
-        /* Leadership Grid */
-        .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
+      .leadership-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid     { grid-template-columns: 1fr 1fr; }
+      .stats-grid-about { grid-template-columns: repeat(3, 1fr); }
 
-        .leader-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: var(--transition);
-        }
+      .leader-modal-body { grid-template-columns: 1fr; }
+      .leader-modal-photo,
+      .leader-modal-photo-placeholder {
+        border-radius: 20px 20px 0 0;
+        min-height: 260px;
+      }
+      .leader-modal-info { padding: 28px 24px; }
+    }
 
-        .leader-card.simple {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
-        }
+    @media (max-width: 600px) {
+      .leadership-grid { grid-template-columns: 1fr; }
+      .values-grid     { grid-template-columns: 1fr 1fr; }
+      .stats-grid-about { grid-template-columns: 1fr 1fr; }
+      .mission-card { padding: 28px 24px; }
+    }
 
-        .leader-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
-        }
-
-        .leader-image-photo {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            display: block;
-            border-radius: 12px 12px 0 0;
-        }
-
-        .see-more-btn {
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            margin: 1rem;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            width: calc(100% - 2rem);
-        }
-
-        .see-more-btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
-        }
-
-        .leader-image {
-            height: 350px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .leader-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-        }
-
-        .leader-info {
-            padding: 2rem;
-        }
-
-        .leader-info h3 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .leader-role {
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .leader-bio {
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background-color: var(--white);
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .modal-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .modal-info h2 {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-role {
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .modal-info p {
-            color: var(--text-color);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .close {
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .close:hover {
-            color: var(--secondary-color);
-        }
-
-        .leader-contact {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-start;
-        }
-
-        .leader-contact a {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .leader-contact a:hover {
-            color: var(--secondary-color);
-            transform: scale(1.2);
-        }
-
-        /* Stats Section */
-        .stats-section {
-            background: var(--light-color);
-            padding: 4rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            position: relative;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-content,
-            .timeline-item:nth-child(even) .timeline-content {
-                width: calc(100% - 60px);
-                margin-left: 60px;
-                text-align: left;
-            }
-
-            .timeline-year {
-                left: 20px;
-                transform: translateX(0);
-            }
-
-            .vision-content h2 {
-                font-size: 2rem;
-            }
-
-            .vision-content p {
-                font-size: 1.1rem;
-            }
-
-            .modal-body {
-                grid-template-columns: 1fr;
-                padding: 1.5rem;
-            }
-
-            .modal-content {
-                width: 95%;
-                margin: 20% auto;
-            }
-
-            .modal-image {
-                height: 300px;
-            }
-
-            .leader-contact {
-                justify-content: center;
-            }
-        }
-    </style>
+    @media (max-width: 400px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <div class="logo-image-container">
-                        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-image">
-                        
-                    </div>
-                    <div class="logo-text">
-                        <!-- <h1>DESTINY CHAPEL</h1> -->
-                        <p class="tagline">Activating Dreams<br>To Transform Lives</p>
-                    </div>
-                </a>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu">
-                    <li><a href="index.html">HOME</a></li>
-                    <li class="dropdown">
-                        <a href="About.html" class="Active">ABOUT</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#history">Our History</a></li>
-                            <li><a href="#leadership">Leadership</a></li>
-                            <li><a href="#vision">Vision & Values</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="sermons.html">SERMONS</a></li>
-                    <li class="dropdown">
-                        <a href="ministries.html">MINISTRIES</a>
-                        <!-- <ul class="dropdown-menu">
-                            <li><a href="#youth">Youth Ministry</a></li>
-                            <li><a href="#kids">Kids Ministry</a></li>
-                            <li><a href="#men">Men's Ministry</a></li>
-                            <li><a href="#women">Women's Ministry</a></li>
-                        </ul> -->
-                    </li>
-                    <li><a href="evangelism.html">EVANGELISM</a></li>
-                    <li><a href="missions.html">MISSIONS</a></li>
-                    <li><a href="fusion.html">FUSION</a></li>
-                    <!-- <li><a href="visitors.html">VISITORS</a></li> -->
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span>📍 Ngei Primary, Lang'ata, Nairobi</span>
+    <span>⛪ Sunday Service: 10:00 AM – 12:30 PM</span>
+    <a href="https://www.youtube.com/@destinychapel04" target="_blank">▶ Watch Live on YouTube</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-tagline">Activating Dreams<br>To Transform Lives</span>
         </div>
-    </nav>
+      </a>
 
-    <!-- Page Hero -->
-    <section class="hero" style="height: 60vh; margin-top: 80px;">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Our Story</h1>
-            <p class="hero-subtitle">A Journey of Faith, Hope, and Transformation</p>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="About.html" class="active">ABOUT</a></li>
+        <li><a href="sermons.html">SERMONS</a></li>
+        <li><a href="ministries.html">MINISTRIES</a></li>
+        <li><a href="evangelism.html">EVANGELISM</a></li>
+        <li><a href="missions.html">MISSIONS</a></li>
+        <li><a href="fusion.html">FUSION</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+
+      <a href="visitors.html" class="nav-cta">Plan Your Visit</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">Our Story</div>
+      <h1>A Journey of <em>Faith,</em><br/>Hope &amp; Transformation</h1>
+      <p>From a living room gathering to a thriving community — discover how Destiny Chapel came to be.</p>
+    </div>
+    <div class="page-hero-line"></div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="about-intro" style="padding: 90px 0;">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">WHO WE ARE</span>
+        <h2 class="section-title">Welcome to the<br/>Destiny Chapel Family</h2>
+      </div>
+      <div class="about-intro-inner">
+        <p>Destiny Chapel is more than just a church — we are a vibrant community of believers united by our love for God and our commitment to making a lasting impact in our world. Our journey began with a simple vision: to create a place where people could encounter God's presence, discover their purpose, and live out their destiny.</p>
+        <p>Today, we stand as a testament to God's faithfulness, growing from humble beginnings into a thriving community that reaches across neighbourhoods, nations, and generations. Every testimony, every life transformed, and every soul saved reminds us of why we do what we do.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section" style="padding: 90px 0;" id="history">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">OUR JOURNEY</span>
+        <h2 class="section-title">The Destiny Chapel Story</h2>
+        <p style="color:var(--muted); max-width:520px; margin: 0 auto; font-size:0.97rem;">Tracing our path from humble beginnings to a thriving community of faith.</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-year">2005</div>
+          <div class="timeline-content">
+            <h3>The Vision is Born</h3>
+            <p>A small group of passionate believers gathered in a living room, united by a vision to establish a church that would transform lives and impact communities. With nothing but faith and determination, Destiny Chapel was born.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Our Story Introduction -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">WHO WE ARE</span>
-                <h2>Welcome to the Destiny Chapel Family</h2>
-            </div>
-            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2rem;">
-                    Destiny Chapel is more than just a church – we are a vibrant community of believers united by our love for God and our commitment to making a lasting impact in our world. Our journey began with a simple vision: to create a place where people could encounter God's presence, discover their purpose, and live out their destiny.
-                </p>
-                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
-                    Today, we stand as a testament to God's faithfulness, growing from humble beginnings into a thriving community that reaches across neighborhoods, nations, and generations. Every testimony, every life transformed, and every soul saved reminds us of why we do what we do.
-                </p>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2008</div>
+          <div class="timeline-content">
+            <h3>First Permanent Location</h3>
+            <p>God blessed us with our first permanent facility in Ngei. What started as 30 members quickly grew to over 150 as the community witnessed the power of genuine worship and biblical teaching.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Timeline Section -->
-    <section id="history" style="padding: 5rem 0; background: var(--light-color);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">OUR JOURNEY</span>
-                <h2>The Destiny Chapel Story</h2>
-                <p>Tracing our path from humble beginnings to a thriving community of faith</p>
-            </div>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-year">2005</div>
-                    <div class="timeline-content">
-                        <h3>The Vision is Born</h3>
-                        <p>A small group of passionate believers gathered in a living room, united by a vision to establish a church that would transform lives and impact communities. With nothing but faith and determination, Destiny Chapel was born.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2008</div>
-                    <div class="timeline-content">
-                        <h3>First Permanent Location</h3>
-                        <p>God blessed us with our first permanent facility in Ngei. What started as 30 members quickly grew to over 150 as the community witnessed the power of genuine worship and biblical teaching.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2012</div>
-                    <div class="timeline-content">
-                        <h3>Ministry Expansion</h3>
-                        <p>We launched our Youth, Children's, Men's, and Women's ministries, recognizing the importance of targeted discipleship for every demographic. Our community outreach programs also began, serving hundreds of families in need.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2015</div>
-                    <div class="timeline-content">
-                        <h3>Missions Movement</h3>
-                        <p>Our missions department was established, sending teams to unreached areas both locally and internationally. We partnered with organizations to bring the gospel to remote villages and urban centers alike.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2018</div>
-                    <div class="timeline-content">
-                        <h3>Fusion Groups Launch</h3>
-                        <p>Understanding the power of community, we introduced Fusion cell groups – small, location-based gatherings that foster deeper relationships and spiritual growth. These groups became the heartbeat of our church.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2020</div>
-                    <div class="timeline-content">
-                        <h3>Food Bank Initiative</h3>
-                        <p>During challenging times, we opened the Destiny Chapel Food Bank, demonstrating Christ's love through practical action. To date, we've served over 500 families and continue to be a beacon of hope in our community.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-year">2026</div>
-                    <div class="timeline-content">
-                        <h3>Looking Forward</h3>
-                        <p>Today, with over 1,000 active members and growing, we continue to pursue our mission with renewed passion. Our vision remains clear: to build lives, transform communities, and impact the world for Christ.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2012</div>
+          <div class="timeline-content">
+            <h3>Ministry Expansion</h3>
+            <p>We launched our Youth, Children's, Men's, and Women's ministries, recognising the importance of targeted discipleship. Our community outreach programs also began, serving hundreds of families in need.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Vision Statement -->
-    <section id="vision" class="vision-statement">
-        <div class="vision-content">
-            <h2>Our Vision</h2>
-            <p>"To be a transformational church that raises disciples who live out their God-given destiny, impacting communities and nations through the power of the Gospel, authentic worship, and sacrificial service."</p>
+        <div class="timeline-item">
+          <div class="timeline-year">2015</div>
+          <div class="timeline-content">
+            <h3>Missions Movement</h3>
+            <p>Our missions department was established, sending teams to unreached areas both locally and internationally. We partnered with organisations to bring the gospel to remote villages and urban centres alike.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Mission Statement -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">OUR MISSION</span>
-                <h2>Why We Exist</h2>
-            </div>
-            <div style="max-width: 900px; margin: 0 auto;">
-                <div style="background: var(--light-color); padding: 3rem; border-radius: 12px; border-left: 6px solid var(--primary-color);">
-                    <h3 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1.5rem;">Our Mission</h3>
-                    <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-color); margin-bottom: 1.5rem;">
-                        To lead people into a life-changing relationship with Jesus Christ through dynamic worship, relevant biblical teaching, and intentional discipleship.
-                    </p>
-                    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-light);">
-                        We are committed to equipping every believer to discover and fulfill their divine purpose, serving as ambassadors of Christ in their homes, workplaces, and communities. Through evangelism, missions, and compassionate outreach, we extend God's love to the lost, the hurting, and the marginalized.
-                    </p>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-content">
+            <h3>Fusion Groups Launch</h3>
+            <p>Understanding the power of community, we introduced Fusion cell groups — small, location-based gatherings that foster deeper relationships and spiritual growth. These groups became the heartbeat of our church.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Leadership Section -->
-    <section id="leadership" style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">OUR LEADERS</span>
-                <h2>Meet Our Leadership Team</h2>
-                <p>Shepherds committed to serving God's people with integrity and passion</p>
-            </div>
-            
-            <div class="leadership-grid">
-                <div class="leader-card simple">
-                    <img src="https://via.placeholder.com/300x400?text=Bishop+Joel+Chola" alt="Bishop Joel Chola" class="leader-image-photo">
-                    <button class="see-more-btn" onclick="openLeaderModal('bishop-joel')">See more about Bishop Joel Chola</button>
-                </div>
-
-                <div class="leader-card simple">
-                    <img src="https://via.placeholder.com/300x400?text=Pastor+James+Okumu" alt="Pastor James Okumu" class="leader-image-photo">
-                    <button class="see-more-btn" onclick="openLeaderModal('pastor-james')">See more about Pastor James Okumu</button>
-                </div>
-
-                <div class="leader-card simple">
-                    <img src="https://via.placeholder.com/300x400?text=Pastor+Joe" alt="Pastor Joe" class="leader-image-photo">
-                    <button class="see-more-btn" onclick="openLeaderModal('pastor-joe')">See more about Pastor Joe</button>
-                </div>
-              
-            </div>
-
-            <!-- Leader Details Modal -->
-            <div id="leaderModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeLeaderModal()">&times;</span>
-                    <div class="modal-body">
-                        <img id="modalImage" src="" alt="" class="modal-image">
-                        <div class="modal-info">
-                            <h2 id="modalName"></h2>
-                            <p id="modalRole" class="modal-role"></p>
-                            <p id="modalBio"></p>
-                            <div id="modalContact" class="leader-contact"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-content">
+            <h3>Food Bank Initiative</h3>
+            <p>During challenging times, we opened the Destiny Chapel Food Bank, demonstrating Christ's love through practical action. To date, we've served over 500 families and continue to be a beacon of hope in our community.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Core Values -->
-    <section style="padding: 5rem 0; background: var(--light-color);">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">WHAT WE STAND FOR</span>
-                <h2>Our Core Values</h2>
-                <p>These principles guide everything we do as a church community</p>
-            </div>
-            
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">📖</div>
-                    <h3>Biblical Authority</h3>
-                    <p>We believe the Bible is God's inspired Word and the ultimate authority for faith and practice. Scripture guides our teaching, decisions, and daily living.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">🙏</div>
-                    <h3>Authentic Worship</h3>
-                    <p>We pursue genuine, Spirit-led worship that engages the heart, mind, and soul. Our worship is both a lifestyle and a corporate expression of our love for God.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">❤️</div>
-                    <h3>Unconditional Love</h3>
-                    <p>We embrace everyone with Christ's love, creating a welcoming environment where people from all backgrounds can experience God's grace and acceptance.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">🌱</div>
-                    <h3>Intentional Discipleship</h3>
-                    <p>We are committed to spiritual growth through biblical teaching, small groups, and mentorship relationships that help believers mature in their faith.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">🌍</div>
-                    <h3>Kingdom Impact</h3>
-                    <p>We actively engage in evangelism and missions, both locally and globally, believing that every person deserves to hear the good news of Jesus Christ.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">🤝</div>
-                    <h3>Servant Leadership</h3>
-                    <p>We lead by example, following Christ's model of servant leadership. We use our gifts and resources to serve others and advance God's kingdom.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">👨‍👩‍👧‍👦</div>
-                    <h3>Community & Unity</h3>
-                    <p>We value authentic relationships and genuine community. Together, we're stronger, and we celebrate the diversity within the body of Christ.</p>
-                </div>
-
-                <div class="value-card">
-                    <div class="value-icon">✨</div>
-                    <h3>Excellence</h3>
-                    <p>We honor God by pursuing excellence in everything we do, from worship to service to administration, believing that God deserves our very best.</p>
-                </div>
-            </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-content">
+            <h3>Looking Forward</h3>
+            <p>Today, with over 1,000 active members and growing, we continue to pursue our mission with renewed passion. Our vision remains clear: to build lives, transform communities, and impact the world for Christ.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-tag">BY THE NUMBERS</span>
-                <h2>Our Impact</h2>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Active Members</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">25+</div>
-                    <div class="stat-label">Fusion Groups</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Families Served</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Mission Trips</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">20</div>
-                    <div class="stat-label">Years of Ministry</div>
-                </div>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION BANNER -->
+  <section class="vision-banner" id="vision">
+    <div class="vision-inner">
+      <span class="section-tag">OUR VISION</span>
+      <h2>What Drives<br/>Everything We Do</h2>
+      <p class="vision-quote">"To be a transformational church that raises disciples who live out their God-given destiny, impacting communities and nations through the power of the Gospel, authentic worship, and sacrificial service."</p>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission-section" style="padding: 90px 0;">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">OUR MISSION</span>
+        <h2 class="section-title">Why We Exist</h2>
+      </div>
+      <div class="mission-card">
+        <h3>Our Mission</h3>
+        <p>To lead people into a life-changing relationship with Jesus Christ through dynamic worship, relevant biblical teaching, and intentional discipleship.</p>
+        <p>We are committed to equipping every believer to discover and fulfil their divine purpose, serving as ambassadors of Christ in their homes, workplaces, and communities. Through evangelism, missions, and compassionate outreach, we extend God's love to the lost, the hurting, and the marginalised.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="leadership-section" style="padding: 90px 0;" id="leadership">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">OUR LEADERS</span>
+        <h2 class="section-title">Meet Our<br/>Leadership Team</h2>
+        <p style="color:var(--muted); max-width:480px; margin: 0 auto; font-size:0.97rem;">Shepherds committed to serving God's people with integrity and passion.</p>
+      </div>
+
+      <div class="leadership-grid">
+
+        <!-- Bishop Joel Chola -->
+        <div class="leader-card">
+          <div class="leader-photo-placeholder">Photo — Bishop Joel Chola</div>
+          <div class="leader-body">
+            <div class="leader-name">Bishop Joel Chola</div>
+            <div class="leader-role">Senior Pastor &amp; Founder</div>
+            <p class="leader-bio-short">Bishop Joel Chola founded Destiny Chapel with a heart for revival and transformation. His dynamic teaching and pastoral care have impacted thousands of lives.</p>
+            <button class="see-more-btn" onclick="openLeaderModal('bishop-joel')">Learn More</button>
+          </div>
         </div>
-    </section>
 
-    <!-- Call to Action -->
-    <section style="padding: 5rem 0; background: var(--white);">
-        <div class="container">
-            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-                <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;">Join Our Family</h2>
-                <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; line-height: 1.8;">
-                    We'd love to welcome you into the Destiny Chapel family. Whether you're seeking a church home or just exploring faith, there's a place for you here.
-                </p>
-                <div class="button-group" style="justify-content: center;">
-                    <a href="visitors.html" class="btn btn-primary">Plan Your Visit</a>
-                    <a href="contact.html" class="btn btn-outline">Get In Touch</a>
-                </div>
-            </div>
+        <!-- Pastor James Okumu -->
+        <div class="leader-card">
+          <div class="leader-photo-placeholder">Photo — Pastor James Okumu</div>
+          <div class="leader-body">
+            <div class="leader-name">Pastor James Okumu</div>
+            <div class="leader-role">Senior Pastor</div>
+            <p class="leader-bio-short">A dedicated minister with a passion for biblical teaching and equipping believers. He has helped countless individuals find their calling in God.</p>
+            <button class="see-more-btn" onclick="openLeaderModal('pastor-james')">Learn More</button>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Destiny Chapel</h3>
-                    <p>Activating Dreams To Transform Lives</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="YouTube">▶️</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="ministries.html">Ministries</a></li>
-                        <li><a href="evangelism.html">Evangelism</a></li>
-                        <li><a href="missions.html">Missions</a></li>
-                        <li><a href="fusion.html">Fusion Groups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Get Involved</h4>
-                    <ul>
-                        <li><a href="visitors.html">Plan Your Visit</a></li>
-                        <li><a href="#">Online Giving</a></li>
-                        <li><a href="#">Volunteer</a></li>
-                        <li><a href="#">Food Bank</a></li>
-                        <li><a href="#">Prayer Requests</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <ul class="contact-info">
-                        <li>📍 Ngei, Nairobi, Kenya</li>
-                        <li>📞 +254 XXX XXX XXX</li>
-                        <li>✉️ info@destinychapelngei.org</li>
-                    </ul>
-                    <h4 style="margin-top: 1.5rem;">Service Times</h4>
-                    <p>Sunday: 9:00 AM - 12:00 PM<br>Wednesday: 6:00 PM</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Destiny Chapel. All rights reserved.</p>
-            </div>
+        <!-- Pastor Joe -->
+        <div class="leader-card">
+          <div class="leader-photo-placeholder">Photo — Pastor Joe</div>
+          <div class="leader-body">
+            <div class="leader-name">Pastor Joe</div>
+            <div class="leader-role">Associate Pastor</div>
+            <p class="leader-bio-short">With a passion for the next generation, Pastor Joe leads our vibrant youth ministry, empowering young leaders to become agents of change.</p>
+            <button class="see-more-btn" onclick="openLeaderModal('pastor-joe')">Learn More</button>
+          </div>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+      </div>
+    </div>
+
+    <!-- LEADER MODAL -->
+    <div class="leader-modal" id="leaderModal">
+      <div class="leader-modal-box">
+        <button class="leader-modal-close" id="leaderModalClose">&times;</button>
+        <div class="leader-modal-body">
+          <div class="leader-modal-photo-placeholder" id="leaderModalImg">Photo</div>
+          <div class="leader-modal-info">
+            <h2 id="leaderModalName"></h2>
+            <span class="leader-modal-role" id="leaderModalRole"></span>
+            <p class="leader-modal-bio" id="leaderModalBio"></p>
+            <div class="leader-contact-links" id="leaderModalContact"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE VALUES -->
+  <section class="values-section" style="padding: 90px 0;">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">WHAT WE STAND FOR</span>
+        <h2 class="section-title">Our Core Values</h2>
+        <p style="color:var(--muted); max-width:500px; margin: 0 auto; font-size:0.97rem;">These principles guide everything we do as a church community.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-icon">📖</div><h3>Biblical Authority</h3><p>We believe the Bible is God's inspired Word and the ultimate authority for faith and practice.</p></div>
+        <div class="value-card"><div class="value-icon">🙏</div><h3>Authentic Worship</h3><p>We pursue genuine, Spirit-led worship that engages the heart, mind, and soul.</p></div>
+        <div class="value-card"><div class="value-icon">❤️</div><h3>Unconditional Love</h3><p>We embrace everyone with Christ's love, creating a welcoming environment for all backgrounds.</p></div>
+        <div class="value-card"><div class="value-icon">🌱</div><h3>Intentional Discipleship</h3><p>We are committed to spiritual growth through biblical teaching, small groups, and mentorship.</p></div>
+        <div class="value-card"><div class="value-icon">🌍</div><h3>Kingdom Impact</h3><p>We actively engage in evangelism and missions, believing every person deserves to hear the Gospel.</p></div>
+        <div class="value-card"><div class="value-icon">🤝</div><h3>Servant Leadership</h3><p>We lead by example, following Christ's model of servant leadership in all we do.</p></div>
+        <div class="value-card"><div class="value-icon">👨‍👩‍👧‍👦</div><h3>Community &amp; Unity</h3><p>We value authentic relationships and celebrate the diversity within the body of Christ.</p></div>
+        <div class="value-card"><div class="value-icon">✨</div><h3>Excellence</h3><p>We honour God by pursuing excellence in everything — worship, service, and administration.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="stats-inner">
+      <div class="section-header center">
+        <span class="section-tag" style="color:var(--gold-light);">BY THE NUMBERS</span>
+        <h2 class="section-title" style="color:var(--white);">Our Impact</h2>
+      </div>
+      <div class="stats-grid-about">
+        <div>
+          <span class="stat-about-num" data-target="1000">0</span>
+          <span class="stat-about-label">Active Members</span>
+        </div>
+        <div>
+          <span class="stat-about-num" data-target="25">0</span>
+          <span class="stat-about-label">Fusion Groups</span>
+        </div>
+        <div>
+          <span class="stat-about-num" data-target="500">0</span>
+          <span class="stat-about-label">Families Served</span>
+        </div>
+        <div>
+          <span class="stat-about-num" data-target="15">0</span>
+          <span class="stat-about-label">Mission Trips</span>
+        </div>
+        <div>
+          <span class="stat-about-num" data-target="20">0</span>
+          <span class="stat-about-label">Years of Ministry</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN CTA -->
+  <section class="join-cta" style="padding: 90px 0;">
+    <div class="container">
+      <div class="join-cta-inner">
+        <span class="section-tag">JOIN US</span>
+        <h2>Become Part<br/>of Our Family</h2>
+        <p>We'd love to welcome you into the Destiny Chapel family. Whether you're seeking a church home or just exploring faith, there's a place for you here.</p>
+        <div class="btn-group center-group">
+          <a href="visitors.html" class="btn btn-gold">Plan Your Visit</a>
+          <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="images/dc.jpg" alt="Destiny Chapel Logo" class="footer-logo" />
+            <p class="footer-tagline">Activating Dreams To Transform Lives</p>
+            <p class="footer-address">Ngei Primary, Lang'ata<br/>Nairobi, Kenya</p>
+            <div class="social-links">
+              <a href="#" class="social-btn" aria-label="Facebook">f</a>
+              <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+              <a href="#" class="social-btn" aria-label="Instagram">◈</a>
+              <a href="https://www.youtube.com/@destinychapel04" class="social-btn" aria-label="YouTube">▶</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="About.html">About Us</a>
+            <a href="sermons.html">Sermons</a>
+            <a href="ministries.html">Ministries</a>
+            <a href="evangelism.html">Evangelism</a>
+            <a href="missions.html">Missions</a>
+            <a href="fusion.html">Fusion Groups</a>
+          </div>
+          <div class="footer-col">
+            <h4>Get Involved</h4>
+            <a href="visitors.html">Plan Your Visit</a>
+            <a href="#">Online Giving</a>
+            <a href="#">Volunteer</a>
+            <a href="#">Food Bank</a>
+            <a href="#">Prayer Requests</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact Us</h4>
+            <a href="#">📍 Ngei, Lang'ata, Nairobi</a>
+            <a href="tel:+254000000000">📞 +254 XXX XXX XXX</a>
+            <a href="mailto:info@destinychapelngei.org">✉️ info@destinychapelngei.org</a>
+            <div class="footer-service-times">
+              <h4>Service Times</h4>
+              <p>Sunday: 10:00 AM – 12:30 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="footerYear">2026</span> Destiny Chapel. All rights reserved. |
+          <a href="#privacy">Privacy Policy</a> |
+          <a href="#terms">Terms of Use</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* ── LEADER DATA ── */
+    const leaderData = {
+      'bishop-joel': {
+        name: 'Bishop Joel Chola',
+        role: 'Senior Pastor & Founder',
+        bio: "Bishop Joel Chola founded Destiny Chapel with a heart for revival and transformation. His dynamic teaching and pastoral care have impacted thousands of lives. He holds a Master's in Theology and has served in ministry for over 25 years. His vision is to see every believer empowered to live victoriously in Christ and reach their full potential in God's kingdom.",
+        email: 'pastor@destinychapel.org',
+        phone: '+254000000000'
+      },
+      'pastor-james': {
+        name: 'Pastor James Okumu',
+        role: 'Senior Pastor',
+        bio: 'Pastor James Okumu is a dedicated minister with a passion for biblical teaching and equipping believers. With extensive experience in pastoral leadership and discipleship, he has helped countless individuals find their calling in God. He is committed to creating an environment where faith is deepened and lives are transformed through God\'s Word.',
+        email: 'james@destinychapel.org',
+        phone: '+254000000000'
+      },
+      'pastor-joe': {
+        name: 'Pastor Joe',
+        role: 'Associate Pastor',
+        bio: "With a passion for the next generation, Pastor Joe leads our vibrant youth ministry. His creative approach to teaching and worship has attracted hundreds of young people seeking authentic faith and purpose. He believes in empowering young leaders to become agents of change in their communities and world.",
+        email: 'joe@destinychapel.org',
+        phone: '+254000000000'
+      }
+    };
+
+    function openLeaderModal(id) {
+      const l = leaderData[id];
+      if (!l) return;
+      document.getElementById('leaderModalName').textContent  = l.name;
+      document.getElementById('leaderModalRole').textContent  = l.role;
+      document.getElementById('leaderModalBio').textContent   = l.bio;
+      document.getElementById('leaderModalImg').textContent   = 'Photo — ' + l.name;
+      document.getElementById('leaderModalContact').innerHTML =
+        `<a href="mailto:${l.email}" class="contact-link">✉️ Email</a>
+         <a href="tel:${l.phone}"  class="contact-link">📞 Call</a>`;
+      document.getElementById('leaderModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLeaderModal() {
+      document.getElementById('leaderModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('leaderModalClose').addEventListener('click', closeLeaderModal);
+    document.getElementById('leaderModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('leaderModal')) closeLeaderModal();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLeaderModal(); });
+
+    /* ── STATS COUNTER ── */
+    const statObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.stat-about-num[data-target]').forEach(el => {
+          const target = parseInt(el.dataset.target);
+          let current = 0;
+          const step = target / (1800 / 16);
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { el.textContent = target + '+'; clearInterval(timer); }
+            else { el.textContent = Math.floor(current) + '+'; }
+          }, 16);
+        });
+        statObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+
+    const sg = document.querySelector('.stats-grid-about');
+    if (sg) statObserver.observe(sg);
+
+    /* ── TIMELINE FADE-IN ── */
+    const tlObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity  = '1';
+          entry.target.style.transform = 'translateY(0)';
+          tlObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.timeline-content, .value-card, .leader-card').forEach(el => {
+      el.style.opacity   = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+      tlObserver.observe(el);
+    });
+
+    /* Footer year */
+    const fy = document.getElementById('footerYear');
+    if (fy) fy.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
