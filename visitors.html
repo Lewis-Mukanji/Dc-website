@@ -128,7 +128,7 @@
   </section>
 
   <!-- WHAT TO EXPECT -->
-  <section class="expect-section">
+  <!-- <section class="expect-section">
     <div class="container">
       <div class="section-header center"><span class="section-tag">YOUR FIRST VISIT</span><h2 class="section-title">What to Expect</h2></div>
       <div class="expect-grid">
@@ -140,7 +140,7 @@
         <div class="expect-card"><div class="expect-card-icon">☕</div><h3>Connect Time</h3><p>After service, join us for coffee and snacks. A great time to meet people, ask questions, and start building friendships.</p></div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- SERVICE TIMES -->
   <section class="times-section">
@@ -148,15 +148,15 @@
       <div class="section-header center"><span class="section-tag">WHEN WE MEET</span><h2 class="section-title">Service Times</h2></div>
       <div class="times-grid">
         <div class="time-card primary">
-          <h3>Sunday Celebration</h3>
+          <h3>Sunday Service</h3>
           <div class="time-big">⏰ 10:00 AM – 12:30 PM</div>
           <p>Our main worship service featuring dynamic praise, powerful preaching, and programmes for all ages. This is perfect for the whole family.</p>
         </div>
-        <div class="time-card secondary">
+        <!-- <div class="time-card secondary">
           <h3>Midweek Service</h3>
           <div class="time-big">⏰ Wednesday, 6:00 PM</div>
           <p>A more intimate evening of worship, prayer, and Bible teaching focused on deeper spiritual growth and intercession.</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -185,24 +185,31 @@
         <div class="visit-form-body">
           <form id="visitForm" novalidate>
             <div class="form-row-2">
-              <div class="fg"><label>Your Name *</label><input type="text" required placeholder="Jane Doe"/></div>
-              <div class="fg"><label>Email Address *</label><input type="email" required placeholder="you@email.com"/></div>
+              <div class="fg"><label for="fullName">Full Name *</label><input id="fullName" name="fullName" type="text" required placeholder="e.g. Jane Doe"/></div>
+              <div class="fg"><label for="phone">Phone Number *</label><input id="phone" name="phone" type="tel" inputmode="tel" required placeholder="+254 7XX XXX XXX"/></div>
             </div>
             <div class="form-row-2">
-              <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+254 700 000 000"/></div>
-              <div class="fg"><label>Planned Visit Date</label><input type="date"/></div>
+              <div class="fg"><label for="email">Email *</label><input id="email" name="email" type="email" required placeholder="you@example.com"/></div>
+              <div class="fg"><label for="occupation">Occupation</label><input id="occupation" name="occupation" type="text" placeholder="Teacher, Engineer, Student..."/></div>
             </div>
             <div class="form-row-2">
-              <div class="fg"><label>How many people?</label>
-                <select><option>Just me</option><option>2 people</option><option>3 people</option><option>4 people</option><option>5+ people</option></select>
-              </div>
-              <div class="fg"><label>Bringing children?</label>
-                <select><option>No</option><option>Yes – Infant (0–2)</option><option>Yes – Preschool (3–5)</option><option>Yes – Elementary (6–12)</option><option>Yes – Multiple ages</option></select>
-              </div>
+              <div class="fg"><label for="residence">Area of Residence</label><input id="residence" name="residence" type="text" placeholder="e.g. Lang'ata, Nairobi"/></div>
+              <div class="fg"><label for="visitDate">Visit Date *</label><input id="visitDate" name="visitDate" type="date" required/></div>
             </div>
-            <div class="fg"><label>Questions or special needs</label><textarea placeholder="Anything we should know?"></textarea></div>
+            <div class="form-row-2">
+              <div class="fg"><label for="invitedBy">Invited By</label><input id="invitedBy" name="invitedBy" type="text" placeholder="Friend, Family, Online..."/></div>
+              <div class="fg"><label for="reason">Reason for Visit</label><select id="reason" name="reason">
+                <option value="worship">Worship</option>
+                <option value="connect">Connect / Meet People</option>
+                <option value="seek">Seek Prayer / Counselling</option>
+                <option value="service">Volunteer / Serve</option>
+                <option value="other">Other</option>
+              </select></div>
+            </div>
+            <div class="fg"><label for="notes">More Details (optional)</label><textarea id="notes" name="notes" placeholder="Any additional information you'd like us to know"></textarea></div>
             <button type="submit" class="btn-vsub">Submit →</button>
           </form>
+          <div id="visitSuccess" role="status" aria-live="polite" style="display:none;margin-top:12px;padding:12px 14px;border-radius:10px;background:linear-gradient(90deg,var(--gold),var(--gold-light));color:var(--navy);font-weight:700;">Thank you — we've received your info and will be ready to welcome you!</div>
         </div>
       </div>
     </div>
@@ -240,8 +247,63 @@
     document.getElementById('fy').textContent=new Date().getFullYear();
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const item=q.parentElement;const wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!wasOpen)item.classList.add('open');});});
-    // Visit form
-    document.getElementById('visitForm').addEventListener('submit',e=>{e.preventDefault();alert('Thank you! We\'ll have someone ready to welcome you. See you Sunday! 🎉');e.target.reset();});
+    // Visit form - send visitor info to the backend
+    (function(){
+      const form = document.getElementById('visitForm');
+      const success = document.getElementById('visitSuccess');
+      const apiUrl = 'http://localhost:5000/api/visitors/public';
+      if (!form) return;
+      const submitButton = form.querySelector('.btn-vsub');
+      const submitButtonText = submitButton ? submitButton.textContent : '';
+
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        if (success) success.style.display = 'none';
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Submitting...';
+        }
+        const submission = {
+          full_name: form.fullName.value.trim(),
+          phone: form.phone.value.trim(),
+          email: form.email.value.trim(),
+          occupation: form.occupation.value.trim(),
+          residence: form.residence.value.trim(),
+          visit_date: form.visitDate.value,
+          invited_by: form.invitedBy.value.trim(),
+          reason_for_visit: form.reason.value,
+          notes: form.notes.value.trim()
+        };
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(submission)
+          });
+          const data = await response.json().catch(() => ({}));
+
+          if (!response.ok || !data.success) {
+            throw new Error(data.error || 'Submission failed');
+          }
+
+          if (success) success.style.display = 'block';
+          form.reset();
+          setTimeout(() => {
+            if (success) success.style.display = 'none';
+          }, 6000);
+          console.log('Visit submitted', data);
+        } catch (err) {
+          console.error('Failed to submit visit information', err);
+          alert(err.message || 'Sorry - something went wrong. Please try again.');
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = submitButtonText;
+          }
+        }
+      });
+    })();
   </script>
 </body>
 </html>

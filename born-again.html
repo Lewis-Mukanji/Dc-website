@@ -700,6 +700,7 @@
     let currentStep = 1;
     const totalSteps = 3;
     let selectedDecision = null;
+    const apiUrl = 'http://localhost:5000/api/born-again/public';
 
     function updateProgress() {
       const pct = (currentStep / totalSteps) * 100;
@@ -775,15 +776,72 @@
       }
     }
 
-    document.getElementById('decisionForm').addEventListener('submit', function(e) {
+    document.getElementById('decisionForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      // Hide form, show success
-      this.style.display = 'none';
-      document.getElementById('progressWrap').style.display = 'none';
-      document.getElementById('formSuccess').classList.add('visible');
+      const active = document.querySelector('.form-step.active');
+      const required = active.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(el => {
+        if (!el.value.trim()) {
+          el.classList.add('error');
+          valid = false;
+        } else {
+          el.classList.remove('error');
+        }
+      });
+      if (!valid) return;
 
-      window.scrollTo({ top: document.querySelector('.decision-form-wrap').offsetTop - 100, behavior: 'smooth' });
+      if (!selectedDecision) {
+        alert('Please select one of the decision options.');
+        return;
+      }
+
+      const submitButton = this.querySelector('.btn-submit-step');
+      const submitButtonText = submitButton ? submitButton.textContent : '';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+      }
+
+      const submission = {
+        fullName: document.getElementById('fullName').value.trim(),
+        phoneNumber: document.getElementById('phoneNumber').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        decision: selectedDecision,
+        prayerNotes: document.getElementById('prayerNotes').value.trim(),
+        location: document.getElementById('location').value.trim(),
+        specificLocation: document.getElementById('specificLocation').value.trim(),
+        additionalNotes: document.getElementById('additionalNotes').value.trim()
+      };
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(submission)
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.error || 'Submission failed');
+        }
+
+        // Hide form, show success
+        this.style.display = 'none';
+        document.getElementById('progressWrap').style.display = 'none';
+        document.getElementById('formSuccess').classList.add('visible');
+
+        window.scrollTo({ top: document.querySelector('.decision-form-wrap').offsetTop - 100, behavior: 'smooth' });
+      } catch (err) {
+        console.error('Failed to submit decision', err);
+        alert(err.message || 'Sorry - something went wrong. Please try again.');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = submitButtonText;
+        }
+      }
     });
 
     // Clear error on input
